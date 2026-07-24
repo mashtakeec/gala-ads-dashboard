@@ -3,192 +3,319 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GALA RESORT — 広告・予約ダッシュボード</title>
+<title>GALA RESORT ｜ Google広告 ダッシュボード</title>
 <style>
   :root{
-    --bg:#0d0f14; --panel:#161a22; --panel2:#1c212b; --line:#2a3140;
-    --ink:#eef1f6; --muted:#9aa4b5; --faint:#6b7688;
-    --gold:#d8b26a; --gold-dim:#a98a4e;
-    --green:#4bd08b; --amber:#e6b84b; --red:#e57373; --blue:#5aa9e6;
+    --bg:#0d0f14; --panel:#151922; --panel2:#1c2130; --line:#2a3040;
+    --txt:#e8ebf2; --muted:#9aa3b5; --dim:#6b7488;
+    --gold:#d4af37; --gold2:#f0d874;
+    --good:#3ecf8e; --warn:#f0b64a; --bad:#f0685a; --info:#5aa9f0;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
-    line-height:1.55;-webkit-font-smoothing:antialiased;padding:28px 22px 60px;}
-  .wrap{max-width:1080px;margin:0 auto}
-  /* language toggle */
-  .en{display:none} body.lang-en .ja{display:none} body.lang-en .en{display:inline}
-  #langBtn{position:fixed;top:16px;right:18px;z-index:50;background:var(--panel2);color:var(--gold);
-    border:1px solid var(--gold-dim);border-radius:999px;padding:7px 15px;font-size:12.5px;font-weight:700;cursor:pointer}
-  #langBtn:hover{background:#232a36}
-  h1{font-size:22px;font-weight:700;letter-spacing:.2px}
-  h2{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold);margin-bottom:14px}
-  .sub{color:var(--muted);font-size:13px;margin-top:4px}
-  header{display:flex;justify-content:space-between;align-items:flex-start;
-    border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px;flex-wrap:wrap;gap:12px}
-  .badge{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px;margin-left:6px}
-  .src{text-align:right;font-size:12px;color:var(--faint)}
-  .src b{color:var(--muted);font-weight:600}
-  section{margin-bottom:30px}
-  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-  .tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
-  .tile .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
-  .tile .v{font-size:25px;font-weight:700;margin-top:6px;letter-spacing:.3px}
-  .tile .n{font-size:11px;color:var(--faint);margin-top:4px}
-  .tile.hi{border-color:var(--gold-dim)} .tile.hi .v{color:var(--gold)}
-  .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .goal{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:18px}
-  .goal .lab{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
-  .goal .big{font-size:40px;font-weight:800;line-height:1;margin:10px 0 6px}
-  .goal .desc{font-size:12.5px;color:var(--muted)}
-  .goal .tag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:6px;padding:2px 8px;margin-bottom:2px}
-  .tag.real{background:rgba(75,208,139,.14);color:var(--green)}
-  .tag.soft{background:rgba(230,184,75,.14);color:var(--amber)}
-  .g-green .big{color:var(--green)} .g-blue .big{color:var(--blue)} .g-gold .big{color:var(--gold)}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6;font-size:14px}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+  a{color:var(--info);text-decoration:none}a:hover{text-decoration:underline}
+  h1{font-size:22px;font-weight:700;letter-spacing:.02em}
+  h2{font-size:16px;font-weight:700;margin:0 0 2px}
+  .en{display:none}
+  body.lang-en .ja{display:none}
+  body.lang-en .en{display:inline}
+
+  header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:10px}
+  .brand .k{color:var(--gold);font-weight:700;letter-spacing:.14em;font-size:12px}
+  .brand h1{margin-top:4px}
+  .meta{color:var(--muted);font-size:12.5px;margin-top:8px}
+  .meta b{color:var(--txt);font-weight:600}
+  .toggle{display:flex;gap:6px;align-items:center}
+  .toggle button{background:var(--panel2);color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:12px;cursor:pointer;font-weight:600}
+  .toggle button.active{background:var(--gold);color:#1a1200;border-color:var(--gold)}
+
+  .band{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin:34px 0 4px;display:flex;align-items:center;gap:10px}
+  .band::after{content:"";flex:1;height:1px;background:var(--line)}
+  .band.owner{color:var(--gold)}
+
+  section{margin:18px 0}
+  .sec-head{margin-bottom:12px}
+  .sec-head h2{font-size:16px}
+  .sec-head .sub{color:var(--dim);font-size:12px}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kpi .lab{color:var(--muted);font-size:11.5px;font-weight:600;letter-spacing:.03em}
+  .kpi .val{font-size:26px;font-weight:800;margin-top:4px}
+  .kpi .note{color:var(--dim);font-size:11px;margin-top:2px}
+  .kpi.hl{border-color:rgba(212,175,55,.45);background:linear-gradient(180deg,rgba(212,175,55,.09),var(--panel))}
+  .kpi .val.big{font-size:30px;color:var(--gold2)}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+
+  .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:760px){.goals{grid-template-columns:1fr}}
+  .goal{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .goal .tag{font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.06em}
+  .goal .nm{font-weight:700;margin:2px 0 8px;font-size:14px}
+  .goal .num{font-size:30px;font-weight:800}
+  .goal .st{margin-top:8px;font-size:11.5px;padding:3px 8px;border-radius:5px;display:inline-block;font-weight:600}
+  .st.ok{background:rgba(62,207,142,.14);color:var(--good)}
+  .st.warn{background:rgba(240,182,74,.14);color:var(--warn)}
+  .st.wait{background:rgba(90,169,240,.14);color:var(--info)}
+
   table{width:100%;border-collapse:collapse;font-size:13px}
-  th{text-align:left;color:var(--faint);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:0 8px 8px;border-bottom:1px solid var(--line)}
-  td{padding:9px 8px;border-bottom:1px solid rgba(42,49,64,.5)}
-  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-  tr:last-child td{border-bottom:none}
-  .bar{height:7px;border-radius:4px;background:var(--gold);display:inline-block;vertical-align:middle}
-  .barbg{display:block;height:7px;border-radius:4px;background:rgba(255,255,255,.06);margin-top:5px}
-  .funnel{display:flex;flex-direction:column;gap:8px}
-  .step{display:flex;align-items:center;gap:12px}
-  .step .fbar{height:34px;border-radius:7px;background:linear-gradient(90deg,var(--gold),var(--gold-dim));display:flex;align-items:center;padding-left:12px;color:#1a1206;font-weight:700;font-size:13px;min-width:46px}
-  .step .flab{font-size:12.5px;color:var(--muted)}
-  .notes{background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:16px 18px;font-size:12.5px;color:var(--muted)}
-  .notes b{color:var(--ink)}
-  .notes li{margin:5px 0;list-style:none;position:relative;padding-left:16px}
-  .notes li:before{content:"•";position:absolute;left:0;color:var(--gold)}
-  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
-  .source{margin-top:14px;padding-top:10px;border-top:1px solid rgba(42,49,64,.6);font-size:11px;color:var(--faint)}
-  .source a{color:var(--gold-dim);text-decoration:none;border-bottom:1px dotted var(--gold-dim)}
-  .source a:hover{color:var(--gold)}
-  footer{color:var(--faint);font-size:11.5px;text-align:center;margin-top:34px;border-top:1px solid var(--line);padding-top:16px}
-  @media(max-width:820px){.kpis{grid-template-columns:repeat(3,1fr)}.goals{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+  th,td{padding:9px 10px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  thead th{color:var(--muted);font-size:11.5px;font-weight:700;letter-spacing:.03em}
+  tbody tr:hover{background:var(--panel2)}
+  tr.zero td{color:var(--dim)}
+  tr.peak td{background:rgba(212,175,55,.06)}
+  tfoot td{font-weight:800;border-top:2px solid var(--line);border-bottom:none}
+  .daytag{font-size:10px;color:var(--dim);margin-left:5px}
+
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .filters button{background:var(--panel2);color:var(--muted);border:1px solid var(--line);border-radius:18px;padding:5px 13px;font-size:12px;cursor:pointer;font-weight:600}
+  .filters button.active{background:var(--gold);color:#1a1200;border-color:var(--gold)}
+
+  .callout{border-left:3px solid var(--gold);background:var(--panel2);border-radius:0 8px 8px 0;padding:12px 15px;font-size:13px;color:var(--muted);margin-top:12px}
+  .callout b{color:var(--txt)}
+  .callout.warn{border-color:var(--warn)}.callout.info{border-color:var(--info)}.callout.good{border-color:var(--good)}
+
+  ul.clean{list-style:none;font-size:13px;color:var(--muted)}
+  ul.clean li{padding:5px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
+  ul.clean li:last-child{border-bottom:none}
+  ul.clean li b{color:var(--txt);font-weight:600}
+
+  .src{color:var(--dim);font-size:11px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+  .src a{color:var(--dim);text-decoration:underline}
+  .pill{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:4px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+  .tip{position:relative;border-bottom:1px dotted var(--dim);cursor:help}
+  .tip .tt{display:none;position:absolute;left:50%;transform:translateX(-50%);bottom:135%;width:215px;background:#0a0c11;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:11.5px;font-weight:400;color:var(--muted);line-height:1.5;z-index:30;text-transform:none;letter-spacing:normal;text-align:left;box-shadow:0 8px 22px rgba(0,0,0,.55)}
+  .tip .tt::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--line)}
+  .tip:hover .tt{display:block}
+  .tip .tt b{color:var(--gold2)}
+  .foot{margin-top:40px;color:var(--dim);font-size:11.5px;text-align:center;border-top:1px solid var(--line);padding-top:16px}
 </style>
 </head>
-<body>
-<button id="langBtn" onclick="document.body.classList.toggle('lang-en');this.textContent=document.body.classList.contains('lang-en')?'日本語':'EN';">EN</button>
+<body class="lang-ja">
 <div class="wrap">
 
   <header>
-    <div>
-      <h1>GALA RESORT — <span class="ja">広告・予約ダッシュボード</span><span class="en">Ads &amp; Reservations</span> <span class="badge"><span class="ja">スナップショット</span><span class="en">Snapshot</span></span></h1>
-      <div class="sub">Google広告「GALA｜大阪ナイトクラブ｜検索」<span class="ja"> · 訪日EN/ES</span><span class="en"> · Osaka nightlife, EN/ES inbound</span></div>
+    <div class="brand">
+      <div class="k">GALA RESORT ・ NIGHTCLUB OSAKA</div>
+      <h1><span class="ja">Google広告 ダッシュボード</span><span class="en">Google Ads Dashboard</span></h1>
+      <div class="meta">
+        <span class="ja">期間</span><span class="en">Period</span>: <b>2026/07/17 – 07/24</b>
+        &nbsp;·&nbsp; <span class="ja">更新</span><span class="en">Updated</span>: <b>2026/07/24</b>
+        &nbsp;·&nbsp; <span class="ja">作成</span><span class="en">By</span>: <b>MASHTAKE / AI-BOW</b>
+      </div>
     </div>
-    <div class="src">
-      <div><span class="ja">データ基準日</span><span class="en">Data as of</span> <b>2026-07-23</b></div>
-      <div><span class="ja">対象期間</span><span class="en">Period</span>: <b>2026-07-17 → 07-23</b> <span class="ja">(配信開始〜・7日)</span><span class="en">(since launch, 7 days)</span></div>
-      <div><span class="ja">出典</span><span class="en">Sources</span>: <b>Google広告</b> 213-819-7168 · <b>GA4</b> 383604323</div>
+    <div class="toggle">
+      <button id="btn-ja" class="active" onclick="setLang('ja')">日本語</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
     </div>
   </header>
 
-  <!-- KPI ROW -->
+  <!-- ================= OWNER SUMMARY ================= -->
+  <div class="band owner"><span class="ja">経営サマリー（まずここだけ見ればOK）</span><span class="en">Owner summary — read this first</span></div>
+
+  <!-- 1. Money -> reservations -->
   <section>
+    <div class="sec-head">
+      <h2><span class="ja">① 広告費は「予約」につながっているか</span><span class="en">① Is the ad spend turning into reservations?</span></h2>
+      <div class="sub"><span class="ja">この広告の目的は予約。費用に対して予約がどれだけ出たか</span><span class="en">The point of the ad is reservations — spend vs reservations produced</span></div>
+    </div>
     <div class="kpis">
-      <div class="tile"><div class="k"><span class="ja">費用</span><span class="en">Cost</span></div><div class="v">¥7,420</div><div class="n"><span class="ja">約¥1,060/日 · 予算¥6,000</span><span class="en">~¥1,060/day · budget ¥6,000</span></div></div>
-      <div class="tile"><div class="k"><span class="ja">クリック</span><span class="en">Clicks</span></div><div class="v">26</div><div class="n"><span class="ja">表示652回のうち</span><span class="en">of 652 impressions</span></div></div>
-      <div class="tile"><div class="k">CTR</div><div class="v">3.99%</div><div class="n"><span class="ja">目安2〜3%超</span><span class="en">above 2–3% norm</span></div></div>
-      <div class="tile"><div class="k"><span class="ja">平均CPC</span><span class="en">Avg CPC</span></div><div class="v">¥285</div><div class="n"><span class="ja">1クリック単価</span><span class="en">cost per click</span></div></div>
-      <div class="tile"><div class="k"><span class="ja">広告CV</span><span class="en">Ad conv.</span></div><div class="v">2.00</div><div class="n"><span class="ja">※予約"開始" · ¥3,710/件</span><span class="en">*booking-started · ¥3,710 ea</span></div></div>
-      <div class="tile hi"><div class="k"><span class="ja">予約完了</span><span class="en">Reservations</span></div><div class="v">0</div><div class="n"><span class="ja">当期0 · 配信前に2件</span><span class="en">0 this period · 2 pre-launch</span></div></div>
+      <div class="kpi"><div class="lab"><span class="ja">広告費</span><span class="en">Spend</span></div><div class="val">¥11,257</div><div class="note"><span class="ja">7日間・日予算¥6,000</span><span class="en">7 days · ¥6,000/day</span></div></div>
+      <div class="kpi hl"><div class="lab"><span class="tip"><span class="ja">予約アクション（広告CV）</span><span class="en">Reservation actions (ad CV)</span><span class="tt"><span class="ja"><b>CV=コンバージョン</b>：広告経由で起きた「予約につながる行動」（WhatsApp・予約開始など）</span><span class="en"><b>CV=conversion</b>: a reservation-leading action from the ad (WhatsApp, booking-start, etc.)</span></span></span></div><div class="val big">2</div><div class="note"><span class="ja">WhatsApp/予約開始など</span><span class="en">WhatsApp / booking-start</span></div></div>
+      <div class="kpi"><div class="lab"><span class="ja">予約1件あたり費用</span><span class="en">Cost / reservation action</span></div><div class="val">¥5,629</div><div class="note"><span class="ja">費用 ÷ 広告CV</span><span class="en">spend ÷ ad CV</span></div></div>
+      <div class="kpi"><div class="lab"><span class="ja">予約完了（決済）</span><span class="en">Completed (paid)</span></div><div class="val">2</div><div class="note"><span class="ja">出所は計測開始前</span><span class="en">source pre-tracking</span></div></div>
     </div>
-    <div class="source"><span class="ja">出典</span><span class="en">Source</span>: Google広告 概要／キャンペーン — <a href="https://ads.google.com/aw/campaigns?ocid=8309101085&ascid=8309101085" target="_blank" rel="noopener"><span class="ja">この数値を確認</span><span class="en">verify in Google Ads →</span></a></div>
+    <div class="callout warn">
+      <span class="ja"><b>正直な現状:</b> 7日間・26〜34クリックの初期段階。WhatsApp等の「予約アクション」は2件出ているが、<b>その予約が広告から来たか</b>はこれまで計測できていなかった。2026/07/24に出所計測を実装したので、<b>ここから先は「広告費→予約」を1件ずつ証明できる</b>。判断は2〜3週間データを溜めてから。</span>
+      <span class="en"><b>Honest status:</b> Early stage — 7 days, 26–34 clicks. 2 "reservation actions" (WhatsApp etc.) fired, but until now we couldn't tell <b>whether those bookings came from the ad</b>. On 2026/07/24 we shipped source tracking, so <b>from here we can prove "spend → reservation" one by one</b>. Judge after 2–3 weeks of data.</span>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads <a href="https://ads.google.com/aw/overview?ocid=8309101085" target="_blank">213-819-7168</a> · GA4 383604323</div>
   </section>
 
-  <!-- TRUE GOALS -->
+  <!-- 2. Where do reservations come from -->
   <section>
-    <h2><span class="ja">本当のゴール — 予約は入ったか？（A / B / C）</span><span class="en">The real goal — did a booking happen? (A / B / C)</span></h2>
+    <div class="sec-head">
+      <h2><span class="ja">② 予約はどこから来ているか</span><span class="en">② Where do the reservations come from?</span></h2>
+      <div class="sub"><span class="ja">広告 / LP自然流入 / 直接 の内訳。★2026/07/24 計測開始</span><span class="en">Ads / LP-organic / direct · ★tracking live 2026/07/24</span></div>
+    </div>
     <div class="goals">
-      <div class="goal g-green">
-        <span class="tag real"><span class="ja">完了</span><span class="en">COMPLETED</span></span>
-        <div class="lab"><span class="ja">A · 予約完了</span><span class="en">A · Reservation complete</span></div>
-        <div class="big">0</div>
-        <div class="desc"><span class="ja">reserve_success（7/17〜23）。計測は稼働。完了2件は<b>配信前</b>（7/5・7/15）で、<b>広告経由はまだ0</b>。</span><span class="en">reserve_success (Jul 17–23). Tracking works. The 2 completions were <b>before</b> launch — <b>0 from ads yet</b>.</span></div>
-      </div>
-      <div class="goal g-blue">
-        <span class="tag soft"><span class="ja">タップ</span><span class="en">TAP</span></span>
-        <div class="lab"><span class="ja">B · 電話</span><span class="en">B · Phone</span></div>
-        <div class="big">1</div>
-        <div class="desc"><span class="ja">phone_tap。番号をタップしただけで、通話成立とは限らない。</span><span class="en">phone_tap. The number was tapped — not a guaranteed call.</span></div>
-      </div>
-      <div class="goal g-gold">
-        <span class="tag soft"><span class="ja">タップ</span><span class="en">TAP</span></span>
-        <div class="lab"><span class="ja">C · WhatsApp</span><span class="en">C · WhatsApp</span></div>
-        <div class="big">3</div>
-        <div class="desc"><span class="ja">whatsapp_tap（2人）。配信で最初に出た反応。</span><span class="en">whatsapp_tap, from 2 people. The first sign of life from the campaign.</span></div>
-      </div>
+      <div class="goal"><div class="tag"><span class="ja">広告から</span><span class="en">FROM ADS</span></div><div class="nm">google / cpc</div><div class="num">0</div><div class="st wait"><span class="ja">計測開始したばかり</span><span class="en">just went live</span></div></div>
+      <div class="goal"><div class="tag"><span class="ja">LPから（自然）</span><span class="en">LP ORGANIC</span></div><div class="nm">vip_lp</div><div class="num">0</div><div class="st wait"><span class="ja">計測開始したばかり</span><span class="en">just went live</span></div></div>
+      <div class="goal"><div class="tag"><span class="ja">直接 / 不明</span><span class="en">DIRECT</span></div><div class="nm">—</div><div class="num">2</div><div class="st warn"><span class="ja">計測開始前の予約</span><span class="en">pre-tracking</span></div></div>
     </div>
-    <div class="source"><span class="ja">出典</span><span class="en">Source</span>: GA4 383604323 · <span class="ja">エンゲージメント→イベント（7/17〜23）</span><span class="en">Events (Jul 17–23)</span> — <a href="https://analytics.google.com/analytics/web/#/p383604323/reports/intelligenthome" target="_blank" rel="noopener"><span class="ja">GA4で確認</span><span class="en">verify in GA4 →</span></a></div>
+    <div class="callout good">
+      <span class="ja"><b>新しくできるようになったこと:</b> LPの予約ボタンに流入元を付けてTableCheckの予約に記録するようにした。今後は「広告経由の予約」と「LP自然流入の予約」を分けて数えられる。これが揃えば①のROIが確定する。</span>
+      <span class="en"><b>New capability:</b> the LP's booking buttons now stamp the traffic source onto each TableCheck reservation. Going forward we can separate ad-driven vs organic-LP bookings — which is what makes the ROI in ① provable.</span>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: TableCheck <span class="ja">予約レコード(utm_source)</span><span class="en">reservation record (utm_source)</span></div>
   </section>
 
-  <!-- AD PERFORMANCE + KEYWORDS -->
-  <section class="grid2">
-    <div class="panel">
-      <h2><span class="ja">広告グループ別の実績</span><span class="en">Ad performance by group</span></h2>
+  <!-- 3. Which nights work -->
+  <section>
+    <div class="sec-head">
+      <h2><span class="ja">③ どの夜が効いているか</span><span class="en">③ Which nights are working?</span></h2>
+      <div class="sub"><span class="ja">ナイトクラブの勝負は木〜土。曜日で絞って見られる</span><span class="en">For a club the game is Thu–Sat — filter by day type</span></div>
+    </div>
+    <div class="filters">
+      <button class="active" onclick="filt('all',this)"><span class="ja">全期間</span><span class="en">All</span></button>
+      <button onclick="filt('active',this)"><span class="ja">配信あり</span><span class="en">Delivered</span></button>
+      <button onclick="filt('weekend',this)"><span class="ja">木〜日</span><span class="en">Thu–Sun</span></button>
+    </div>
+    <div class="panel" style="padding:6px 8px">
       <table>
-        <thead><tr><th><span class="ja">広告グループ</span><span class="en">Ad group</span></th><th class="num"><span class="ja">クリック</span><span class="en">Clicks</span></th><th class="num"><span class="ja">費用</span><span class="en">Cost</span></th><th class="num">CV</th></tr></thead>
-        <tbody>
-          <tr><td>英語・訪日 <span style="color:var(--faint)">EN</span><span class="barbg"><span class="bar" style="width:100%"></span></span></td><td class="num">23</td><td class="num">¥6,569</td><td class="num">1</td></tr>
-          <tr><td>Español (ES/LatAm)<span class="barbg"><span class="bar" style="width:9%"></span></span></td><td class="num">2</td><td class="num">¥582</td><td class="num">0</td></tr>
-          <tr><td>広告グループ 1個<span class="barbg"><span class="bar" style="width:4%"></span></span></td><td class="num">1</td><td class="num">¥269</td><td class="num">1</td></tr>
-          <tr><td>VIP・テーブル <span class="ja">ほか</span><span class="en">/ others</span><span class="barbg"><span class="bar" style="width:0%"></span></span></td><td class="num">0</td><td class="num">¥0</td><td class="num">0</td></tr>
-        </tbody>
+        <thead><tr>
+          <th><span class="ja">日付</span><span class="en">Date</span></th>
+          <th><span class="ja">表示</span><span class="en">Impr</span></th>
+          <th><span class="ja">クリック</span><span class="en">Clicks</span></th>
+          <th><span class="tip">CTR<span class="tt"><span class="ja"><b>クリック率</b>：広告が表示された回数のうち、クリックされた割合</span><span class="en"><b>Click-through rate</b>: share of times the ad was shown that got clicked</span></span></span></th>
+          <th><span class="ja">費用</span><span class="en">Cost</span></th>
+          <th><span class="tip">CPC<span class="tt"><span class="ja"><b>クリック単価</b>：1クリックあたりの平均費用</span><span class="en"><b>Cost per click</b>: average cost of one click</span></span></span></th>
+          <th><span class="tip">CV<span class="tt"><span class="ja"><b>コンバージョン</b>：予約・問い合わせなど、目的とする成果の件数</span><span class="en"><b>Conversion</b>: a goal action such as a reservation or inquiry</span></span></span></th>
+        </tr></thead>
+        <tbody id="logbody"></tbody>
+        <tfoot><tr><td><span class="ja">合計</span><span class="en">Total</span></td><td>914</td><td>34</td><td>3.72%</td><td>¥11,257</td><td>¥331</td><td>2</td></tr></tfoot>
       </table>
-      <div style="font-size:11.5px;color:var(--faint);margin-top:12px"><span class="ja">入札戦略: </span><span class="en">Bid: </span><b style="color:var(--muted)">Maximize Clicks</b> · <span class="ja">費用の96.3%がモバイル</span><span class="en">96.3% of spend is mobile</span></div>
-      <div class="source"><span class="ja">出典</span><span class="en">Source</span>: <a href="https://ads.google.com/aw/campaigns?ocid=8309101085&ascid=8309101085" target="_blank" rel="noopener"><span class="ja">Google広告 キャンペーン →</span><span class="en">Google Ads campaigns →</span></a></div>
     </div>
+    <div class="callout">
+      <span class="ja"><b>読み取れること:</b> 配信が動いたのは <b>7/17・18・19・23</b> のみ。<b>土曜(7/18)だけで費用の約47%</b>（¥5,253・19クリック）＝ここが一番の稼ぎ場。月〜水はスケジュール通りゼロ。7/24(金)は夜(18時〜)から配信予定。</span>
+      <span class="en"><b>Takeaway:</b> delivery ran only <b>7/17, 18, 19, 23</b>. <b>Saturday (7/18) alone = ~47% of spend</b> (¥5,253 / 19 clicks) — the money night. Mon–Wed zero by schedule. 7/24 (Fri) delivers from the evening (18:00).</span>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads → <span class="ja">キャンペーン → 分類:時間:日</span><span class="en">Campaign → Segment: Day</span></div>
+  </section>
 
+  <!-- 4. Who / where -->
+  <section>
+    <div class="sec-head">
+      <h2><span class="ja">④ 誰に・どこに出しているか</span><span class="en">④ Who & where we're reaching</span></h2>
+    </div>
+    <div class="grid2">
+      <div class="panel">
+        <ul class="clean">
+          <li><span><span class="ja">地域</span><span class="en">Location</span></span><b><span class="ja">大阪市（所在地ベース）</span><span class="en">Osaka city</span></b></li>
+          <li><span><span class="ja">言語</span><span class="en">Language</span></span><b><span class="ja">英語 + スペイン語(LatAm)</span><span class="en">English + Spanish (LatAm)</span></b></li>
+          <li><span><span class="ja">狙う層</span><span class="en">Audience</span></span><b><span class="ja">訪日外国人</span><span class="en">Inbound foreigners</span></b></li>
+          <li><span><span class="ja">属性ターゲット</span><span class="en">Segments</span></span><b><span class="ja">なし（酒類規制）</span><span class="en">None (alcohol policy)</span></b></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="callout info" style="margin-top:0">
+          <span class="ja">国・デバイス別（広告経由 google/cpc に限定）の内訳は、クリックが十分溜まり次第 次回版で追加。音楽プログラムや客層づくりの判断材料になる。</span>
+          <span class="en">Country/device breakdown (ad-driven only) will be added next edition once clicks accumulate — useful for programming and audience decisions.</span>
+        </div>
+      </div>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads <span class="ja">設定</span><span class="en">settings</span> · GA4 383604323</div>
+  </section>
+
+  <!-- 5. Next moves -->
+  <section>
+    <div class="sec-head">
+      <h2><span class="ja">⑤ 次にやること</span><span class="en">⑤ Next moves</span></h2>
+    </div>
     <div class="panel">
-      <h2><span class="ja">検索キーワード上位</span><span class="en">Top search keywords</span></h2>
-      <div style="font-size:11.5px;color:var(--faint);margin:-6px 0 12px"><span class="ja">実際に検索された語句 — 表示回数の多い順。</span><span class="en">What people actually typed — ranked by impressions.</span></div>
-      <table><tbody style="font-size:13px">
-        <tr><td>1&nbsp;&nbsp;osaka nightlife</td></tr>
-        <tr><td>2&nbsp;&nbsp;osaka clubbing</td></tr>
-        <tr><td>3&nbsp;&nbsp;clubs in osaka</td></tr>
-        <tr><td>4&nbsp;&nbsp;things to do in osaka at night</td></tr>
-        <tr><td>5&nbsp;&nbsp;dotonbori nightlife</td></tr>
-        <tr><td>6&nbsp;&nbsp;osaka nightclub</td></tr>
-        <tr><td>7&nbsp;&nbsp;party osaka</td></tr>
-        <tr><td>8&nbsp;&nbsp;discoteca osaka <span style="color:var(--faint)">(ES)</span></td></tr>
-        <tr><td>9&nbsp;&nbsp;gala resort <span style="color:var(--green)"><span class="ja">(指名)</span><span class="en">(brand)</span></span></td></tr>
-      </tbody></table>
-      <div class="source"><span class="ja">出典</span><span class="en">Source</span>: <a href="https://ads.google.com/aw/keywords/search?ocid=8309101085&ascid=8309101085" target="_blank" rel="noopener"><span class="ja">Google広告 検索キーワード →</span><span class="en">Google Ads search keywords →</span></a></div>
+      <ul class="clean">
+        <li><span>① <span class="ja">電話(phone_tap)を広告CVに追加</span><span class="en">Add phone_tap as an ad conversion</span></span><b class="pill"><span class="ja">今すぐ・広告側だけ</span><span class="en">now, ads-side</span></b></li>
+        <li><span>② <span class="ja">予約の出所データを2〜3週ためてROI確定</span><span class="en">Accrue 2–3 wks of source data → confirm ROI</span></span><b class="pill"><span class="ja">計測</span><span class="en">measure</span></b></li>
+        <li><span>③ <span class="ja">配信の回復確認（表示ゼロ日が続くなら入札見直し）</span><span class="en">Watch delivery recovers</span></span><b class="pill"><span class="ja">監視</span><span class="en">watch</span></b></li>
+        <li><span>④ <span class="ja">フォーム到達→予約完了の離脱を改善</span><span class="en">Reduce form→completed drop-off</span></span><b class="pill"><span class="ja">改善</span><span class="en">improve</span></b></li>
+      </ul>
+      <div class="callout warn">
+        <span class="ja"><b>織田様への依頼:</b> 予約完了の件数がまだ少なくTableCheck計測に依存。曜日別の音楽プログラム・想定単価をいただけると、訴求とレポート精度が上がります。</span>
+        <span class="en"><b>Ask to Orita-san:</b> completions are still low and depend on TableCheck. The day-by-day music program and expected price points would sharpen messaging and reporting.</span>
+      </div>
     </div>
   </section>
 
-  <!-- FUNNEL -->
-  <section class="panel">
-    <h2><span class="ja">予約ファネル — 7/17〜23（全流入・GA4）</span><span class="en">Booking funnel — Jul 17–23 (all site traffic, GA4)</span></h2>
-    <div class="funnel">
-      <div class="step"><div class="fbar" style="width:100%">238</div><div class="flab">reserve_form — <span class="ja">予約フォーム到達</span><span class="en">reached the form</span></div></div>
-      <div class="step"><div class="fbar" style="width:43%">102</div><div class="flab">vip_booking_start — <span class="ja">予約開始</span><span class="en">started a booking</span></div></div>
-      <div class="step"><div class="fbar" style="width:16%">39</div><div class="flab">form_submit — <span class="ja">フォーム送信</span><span class="en">submitted</span></div></div>
-      <div class="step"><div class="fbar" style="width:2%;font-size:12px">0</div><div class="flab" style="color:var(--green)"><b>reserve_success — <span class="ja">予約完了 ✓</span><span class="en">completed ✓</span></b></div></div>
+  <!-- ================= OPS DETAIL ================= -->
+  <div class="band"><span class="ja">運用ディテール（MASHTAKE/AI-BOW 用）</span><span class="en">Operational detail — MASHTAKE/AI-BOW</span></div>
+
+  <!-- delivery kpis -->
+  <section>
+    <div class="sec-head"><h2><span class="ja">配信の基本数値</span><span class="en">Delivery metrics</span></h2></div>
+    <div class="kpis">
+      <div class="kpi"><div class="lab"><span class="tip"><span class="ja">表示回数</span><span class="en">Impressions</span><span class="tt"><span class="ja"><b>表示回数</b>：広告が検索結果に表示された回数</span><span class="en"><b>Impressions</b>: number of times the ad was shown</span></span></span></div><div class="val">914</div></div>
+      <div class="kpi"><div class="lab"><span class="ja">クリック</span><span class="en">Clicks</span></div><div class="val">34</div></div>
+      <div class="kpi hl"><div class="lab"><span class="tip">CTR<span class="tt"><span class="ja"><b>クリック率</b>：表示のうちクリックされた割合</span><span class="en"><b>Click-through rate</b>: share of impressions that were clicked</span></span></span></div><div class="val">3.72%</div><div class="note"><span class="ja">目安2–3%超</span><span class="en">above 2–3%</span></div></div>
+      <div class="kpi"><div class="lab"><span class="tip"><span class="ja">平均CPC</span><span class="en">Avg CPC</span><span class="tt"><span class="ja"><b>クリック単価</b>：1クリックあたりの平均費用</span><span class="en"><b>Cost per click</b>: average cost of one click</span></span></span></div><div class="val">¥331</div></div>
     </div>
-    <div style="font-size:11.5px;color:var(--faint);margin-top:14px"><span class="ja">「開始」→「完了」の大きな落差は正常 — 完了はTableCheck（外部）で発生。当期の完了は0。</span><span class="en">The drop from &ldquo;started&rdquo; to &ldquo;completed&rdquo; is normal — completion happens off-site on TableCheck. 0 completed this period.</span></div>
-    <div class="source"><span class="ja">出典</span><span class="en">Source</span>: GA4 383604323 · <span class="ja">イベント（7/17〜23）</span><span class="en">Events (Jul 17–23)</span> — <a href="https://analytics.google.com/analytics/web/#/p383604323/reports/intelligenthome" target="_blank" rel="noopener"><span class="ja">GA4で確認 →</span><span class="en">verify in GA4 →</span></a></div>
   </section>
 
-  <!-- NOTES -->
-  <section class="notes">
-    <b><span class="ja">読み方（誤解を防ぐために）：</span><span class="en">How to read this (so nothing gets misread):</span></b>
-    <ul>
-      <li><span class="dot" style="background:var(--green)"></span><b><span class="ja">予約完了だけが本当のゴール。</span><span class="en">Reservation completed = the real goal.</span></b> <span class="ja">reserve_success のみが「予約が実際に成立」を意味する（TableCheck→GA4）。現在、広告経由は0。</span><span class="en">Only reserve_success means a booking actually finished (TableCheck → GA4). Currently 0 from ads.</span></li>
-      <li><span class="dot" style="background:var(--amber)"></span><b><span class="ja">「広告CV 2.00」はソフト指標。</span><span class="en">&ldquo;Ad conv. 2.00&rdquo; is a soft signal.</span></b> <span class="ja">今は vip_booking_start（予約"開始"）を計上しており、完了ではない。成果を過大に見せる（整理予定）。</span><span class="en">It counts vip_booking_start (booking <i>started</i>), not completed — it overstates results. On the cleanup list.</span></li>
-      <li><span class="dot" style="background:var(--blue)"></span><b><span class="ja">タップ ≠ 連絡成立。</span><span class="en">Tap ≠ contact.</span></b> <span class="ja">phone_tap / whatsapp_tap はボタンを押しただけ。</span><span class="en">phone_tap / whatsapp_tap mean the button was tapped, not that a call/chat happened.</span></li>
-      <li><span class="dot" style="background:var(--faint)"></span><b><span class="ja">まだ初期。</span><span class="en">Still early.</span></b> <span class="ja">7日・26クリックではキーワードの良し悪しは判定できない（要2〜3週間）。</span><span class="en">7 days &amp; 26 clicks is too little to judge keywords — needs 2–3 weeks.</span></li>
-    </ul>
+  <!-- funnel + goals -->
+  <section>
+    <div class="sec-head"><h2><span class="ja">予約ファネル & ゴール A/B/C</span><span class="en">Reservation funnel & goals A/B/C</span></h2></div>
+    <div class="grid2">
+      <div class="panel">
+        <ul class="clean">
+          <li><span>reserve_form <span class="daytag"><span class="ja">フォーム到達</span><span class="en">reached form</span></span></span><b>895</b></li>
+          <li><span>reserve_review <span class="daytag"><span class="ja">内容確認</span><span class="en">reviewing</span></span></span><b>8</b></li>
+          <li><span>reserve_success <span class="daytag"><span class="ja">予約完了</span><span class="en">completed</span></span></span><b>2</b></li>
+        </ul>
+        <div class="callout warn"><span class="ja">到達895→完了2の落差が最大の離脱ポイント。</span><span class="en">895→2 is the biggest drop-off.</span></div>
+      </div>
+      <div class="panel">
+        <ul class="clean">
+          <li><span>A · reserve_success <span class="ja">予約完了</span><span class="en">reservation</span></span><b>2 <span class="pill warn">計測OK</span></b></li>
+          <li><span>B · phone_tap <span class="ja">電話</span><span class="en">phone</span></span><b>1 <span class="pill"><span class="ja">CV未連携</span><span class="en">not imported</span></span></b></li>
+          <li><span>C · whatsapp_tap</span><b>3 <span class="pill">✅ <span class="ja">入札対象</span><span class="en">bid target</span></span></b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: GA4 <a href="https://analytics.google.com/analytics/web/#/p383604323" target="_blank">383604323</a> → <span class="ja">イベント</span><span class="en">Events</span></div>
   </section>
 
-  <footer>
-    <span class="ja">2026-07-23 時点のスナップショット · MASHTAKE / AI-BOW · リクエストで更新（自動更新ではありません）· 訪問者の地域（マップ）は次回更新で追加可能。</span>
-    <span class="en">Snapshot as of 2026-07-23 · MASHTAKE / AI-BOW · Refreshed on request (not auto-live) · Visitor geography (map) can be added on next refresh.</span>
-  </footer>
+  <!-- keywords -->
+  <section>
+    <div class="sec-head"><h2><span class="ja">キーワード戦略</span><span class="en">Keyword strategy</span></h2></div>
+    <div class="panel">
+      <ul class="clean">
+        <li><span><span class="ja">キーワード</span><span class="en">Keywords</span></span><b><span class="ja">指名3 / 英語23 / 西13（フレーズ一致）</span><span class="en">3 brand / 23 EN / 13 ES</span></b></li>
+        <li><span><span class="ja">競合コンクエスト</span><span class="en">Competitor conquest</span></span><b><span class="ja">維持（2–3週後に評価）</span><span class="en">kept</span></b></li>
+        <li><span><span class="ja">除外キーワード</span><span class="en">Negatives</span></span><b><span class="ja">約40語</span><span class="en">~40</span></b></li>
+      </ul>
+      <div class="callout"><span class="ja">検索語句の週次チェックで除外追加・伸びる語の発見を継続。詳細表は次回追加。</span><span class="en">Weekly search-terms review ongoing; detailed table next edition.</span></div>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads → <span class="ja">検索語句</span><span class="en">Search terms</span></div>
+  </section>
+
+  <div class="foot">
+    GALA RESORT ・ <span class="ja">株式会社無双JAPAN</span><span class="en">Musou Japan</span> ｜ MASHTAKE / AI-BOW ｜
+    <span class="ja">確定した実データのみ。推測は含みません。</span><span class="en">Confirmed actuals only.</span>
+    ｜ Ads 213-819-7168 · GA4 383604323
+  </div>
 
 </div>
+
+<script>
+  var DAILY = [
+    {d:"07/17", wd:"金", wdEn:"Fri", impr:80, clk:3, ctr:"3.75%", cost:"¥1,047", cpc:"¥349", cv:0, type:"weekend"},
+    {d:"07/18", wd:"土", wdEn:"Sat", impr:486, clk:19, ctr:"3.91%", cost:"¥5,253", cpc:"¥276", cv:1, type:"weekend", peak:true},
+    {d:"07/19", wd:"日", wdEn:"Sun", impr:86, clk:4, ctr:"4.65%", cost:"¥1,120", cpc:"¥280", cv:1, type:"weekend"},
+    {d:"07/20", wd:"月", wdEn:"Mon", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"week", zero:true},
+    {d:"07/21", wd:"火", wdEn:"Tue", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"week", zero:true},
+    {d:"07/22", wd:"水", wdEn:"Wed", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"week", zero:true},
+    {d:"07/23", wd:"木", wdEn:"Thu", impr:262, clk:8, ctr:"3.05%", cost:"¥3,837", cpc:"¥480", cv:0, type:"weekend"},
+    {d:"07/24", wd:"金", wdEn:"Fri", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"weekend", zero:true, note:true}
+  ];
+  var curFilter="all", curLang="ja";
+  function render(){
+    var b=document.getElementById("logbody"); b.innerHTML="";
+    DAILY.forEach(function(r){
+      if(curFilter==="active" && r.impr===0) return;
+      if(curFilter==="weekend" && r.type!=="weekend") return;
+      var wd = curLang==="en" ? r.wdEn : r.wd;
+      var cls = (r.zero?"zero ":"")+(r.peak?"peak":"");
+      var noteTag = r.note ? ' <span class="daytag">('+(curLang==="en"?"in progress":"配信中")+')</span>' : '';
+      b.innerHTML += '<tr class="'+cls+'"><td>'+r.d+' <span class="daytag">'+wd+'</span>'+noteTag+'</td><td>'+r.impr+'</td><td>'+r.clk+'</td><td>'+r.ctr+'</td><td>'+r.cost+'</td><td>'+r.cpc+'</td><td>'+r.cv+'</td></tr>';
+    });
+  }
+  function filt(f,el){curFilter=f;document.querySelectorAll('.filters button').forEach(function(x){x.classList.remove('active')});el.classList.add('active');render();}
+  function setLang(l){curLang=l;document.body.className=l==="en"?"lang-en":"lang-ja";document.getElementById('btn-ja').classList.toggle('active',l==="ja");document.getElementById('btn-en').classList.toggle('active',l==="en");render();}
+  render();
+</script>
 </body>
 </html>
