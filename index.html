@@ -88,6 +88,7 @@
   .src{color:var(--dim);font-size:11px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
   .src a{color:var(--dim);text-decoration:underline}
   .pill{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:4px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+  .dimq{color:var(--dim);font-style:italic}
   .tip{position:relative;border-bottom:1px dotted var(--dim);cursor:help}
   .tip .tt{display:none;position:absolute;left:50%;transform:translateX(-50%);bottom:135%;width:215px;background:#0a0c11;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:11.5px;font-weight:400;color:var(--muted);line-height:1.5;z-index:30;text-transform:none;letter-spacing:normal;text-align:left;box-shadow:0 8px 22px rgba(0,0,0,.55)}
   .tip .tt::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--line)}
@@ -144,13 +145,13 @@
       <div class="sub"><span class="ja">広告 / LP自然流入 / 直接 の内訳。★2026/07/24 計測開始</span><span class="en">Ads / LP-organic / direct · ★tracking live 2026/07/24</span></div>
     </div>
     <div class="goals">
-      <div class="goal"><div class="tag"><span class="ja">広告から</span><span class="en">FROM ADS</span></div><div class="nm">google / cpc</div><div class="num">0</div><div class="st wait"><span class="ja">計測開始したばかり</span><span class="en">just went live</span></div></div>
-      <div class="goal"><div class="tag"><span class="ja">LPから（自然）</span><span class="en">LP ORGANIC</span></div><div class="nm">vip_lp</div><div class="num">0</div><div class="st wait"><span class="ja">計測開始したばかり</span><span class="en">just went live</span></div></div>
-      <div class="goal"><div class="tag"><span class="ja">直接 / 不明</span><span class="en">DIRECT</span></div><div class="nm">—</div><div class="num">2</div><div class="st warn"><span class="ja">計測開始前の予約</span><span class="en">pre-tracking</span></div></div>
+      <div class="goal"><div class="tag"><span class="ja">広告から</span><span class="en">FROM ADS</span></div><div class="nm">google / cpc</div><div class="num">1</div><div class="st ok"><span class="ja">予約完了1件 確定</span><span class="en">1 completed, verified</span></div></div>
+      <div class="goal"><div class="tag"><span class="ja">LPから（自然）</span><span class="en">LP ORGANIC</span></div><div class="nm">vip_lp</div><div class="num">0</div><div class="st wait"><span class="ja">当期間なし</span><span class="en">none this period</span></div></div>
+      <div class="goal"><div class="tag"><span class="ja">直接 / 計測前</span><span class="en">DIRECT / PRE</span></div><div class="nm">—</div><div class="num">1</div><div class="st warn"><span class="ja">計測開始前(7/16)</span><span class="en">pre-tracking (7/16)</span></div></div>
     </div>
     <div class="callout good">
-      <span class="ja"><b>新しくできるようになったこと:</b> LPの予約ボタンに流入元を付けてTableCheckの予約に記録するようにした。今後は「広告経由の予約」と「LP自然流入の予約」を分けて数えられる。これが揃えば①のROIが確定する。</span>
-      <span class="en"><b>New capability:</b> the LP's booking buttons now stamp the traffic source onto each TableCheck reservation. Going forward we can separate ad-driven vs organic-LP bookings — which is what makes the ROI in ① provable.</span>
+      <span class="ja"><b>証明できたこと:</b> <b>広告→予約完了を1件、実データで確定</b>（Gabat Mark様・7/24・VIPテーブル。TableCheckに当社の広告タグ<code>gala_search</code>付きで記録）。¥150,000の大型予約(Tam Henry様・7/16)は<b>配信開始前の自然予約</b>＝広告成果ではない。詳細は下部「広告由来コンバージョン詳細」。</span>
+      <span class="en"><b>Now proven:</b> <b>1 ad → completed reservation confirmed in real data</b> (Gabat Mark, 7/24, VIP table; stamped with our <code>gala_search</code> tag in TableCheck). The ¥150,000 booking (Tam Henry, 7/16) is <b>organic, before launch</b> — not an ad result. See "Ad-driven conversions — full detail" below.</span>
     </div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: TableCheck <span class="ja">予約レコード(utm_source)</span><span class="en">reservation record (utm_source)</span></div>
   </section>
@@ -260,27 +261,100 @@
       </div>
       <div class="panel">
         <ul class="clean">
-          <li><span>A · reserve_success <span class="ja">予約完了</span><span class="en">reservation</span></span><b>2 <span class="pill warn">計測OK</span></b></li>
-          <li><span>B · phone_tap <span class="ja">電話</span><span class="en">phone</span></span><b>1 <span class="pill"><span class="ja">CV未連携</span><span class="en">not imported</span></span></b></li>
-          <li><span>C · whatsapp_tap</span><b>3 <span class="pill">✅ <span class="ja">入札対象</span><span class="en">bid target</span></span></b></li>
+          <li><span><span class="ja">ゴール</span><span class="en">Goal</span></span><b><span class="ja">全体 / うち広告(cpc)</span><span class="en">All / of which ads</span></b></li>
+          <li><span>A · reserve_success <span class="ja">予約完了</span><span class="en">reservation</span></span><b>2 / <span style="color:var(--good)">2</span> <span class="pill"><span class="ja">実質1件</span><span class="en">=1 real</span></span></b></li>
+          <li><span>B · phone_tap <span class="ja">電話</span><span class="en">phone</span></span><b>1 / <span style="color:var(--dim)">0</span> <span class="pill"><span class="ja">CV未連携</span><span class="en">not imported</span></span></b></li>
+          <li><span>C · whatsapp_tap</span><b>3 / <span style="color:var(--dim)">0</span> <span class="pill">✅ <span class="ja">入札対象</span><span class="en">bid target</span></span></b></li>
         </ul>
+        <div class="callout warn" style="margin-top:10px"><span class="ja"><b>注意:</b> 電話・WhatsAppの件数は<b>全流入合計</b>。広告(google/cpc)経由は<b>いずれも0件</b>。広告が直接生んだのは予約系のみ。</span><span class="en"><b>Note:</b> phone/WhatsApp counts are <b>all-traffic totals</b>. Via ads (google/cpc) both are <b>0</b>. Ads directly drove reservation events only.</span></div>
       </div>
     </div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: GA4 <a href="https://analytics.google.com/analytics/web/#/p383604323" target="_blank">383604323</a> → <span class="ja">イベント</span><span class="en">Events</span></div>
   </section>
 
+  <!-- 広告由来CV 詳細 (GA4 cpc 実測) -->
+  <section>
+    <div class="sec-head">
+      <h2><span class="ja">広告コンバージョン：検索語句 × 時刻 × 発生場所</span><span class="en">Ad conversions: keyword × time × where</span></h2>
+      <div class="sub"><span class="ja">7/17–27・広告(google/cpc)由来の全6件。「どの言葉で検索した人が・いつ・どこで」成果になったか（GA4＋Google広告 実測）</span><span class="en">7/17–27 · all 6 ad-driven conversions — which search term, when, and where it happened (GA4 + Google Ads, verified)</span></div>
+    </div>
+    <div class="panel" style="padding:6px 8px;overflow-x:auto">
+      <table>
+        <thead><tr>
+          <th style="text-align:left"><span class="tip"><span class="ja">日時</span><span class="en">Date / time</span><span class="tt"><span class="ja"><b>GA4は時単位まで</b>。分は TableCheck 予約詳細で確認（例：予約確定は 7/24 19:43）</span><span class="en"><b>GA4 resolves to the hour</b>. Minutes come from TableCheck (booking confirmed 7/24 19:43)</span></span></span></th>
+          <th style="text-align:left"><span class="ja">検索した言葉（キーワード）</span><span class="en">Search keyword</span></th>
+          <th style="text-align:left"><span class="ja">コンバージョン（何が起きたか）</span><span class="en">Conversion (what happened)</span></th>
+          <th style="text-align:left"><span class="ja">どこで発生したか</span><span class="en">Where it happened</span></th>
+          <th><span class="ja">件数</span><span class="en">n</span></th>
+        </tr></thead>
+        <tbody>
+          <tr><td style="text-align:left">7/18 23<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>the pink osaka</b></td><td style="text-align:left"><span class="ja">予約開始</span><span class="en">Booking started</span> <span class="daytag">vip_booking_start</span></td><td style="text-align:left">VIP LP <span class="daytag">book.gala-resort.jp</span></td><td>1</td></tr>
+          <tr><td style="text-align:left">7/19 00<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>nightclub gala resort</b></td><td style="text-align:left"><span class="ja">予約開始</span><span class="en">Booking started</span> <span class="daytag">vip_booking_start</span></td><td style="text-align:left">VIP LP <span class="daytag">book.gala-resort.jp</span></td><td>1</td></tr>
+          <tr class="peak"><td style="text-align:left">7/24 19<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>nightclub gala resort</b> <span class="daytag"><span class="ja">※同一人物・下の完了と同フロー</span><span class="en">※same person as completion below</span></span></td><td style="text-align:left"><b>連絡先</b> <span class="daytag">form_submit<span class="ja">＝予約フローのサインイン</span><span class="en"> = booking sign-in</span></span></td><td style="text-align:left">TableCheck <span class="ja">サインイン</span><span class="en">sign-in</span> <span class="daytag">tablecheck.com/en/users/sign_in</span></td><td>1</td></tr>
+          <tr class="peak"><td style="text-align:left">7/24 19:43</td><td style="text-align:left"><b>nightclub gala resort</b> <span class="daytag"><span class="ja">※Google広告で確定</span><span class="en">※confirmed in Google Ads</span></span></td><td style="text-align:left"><b style="color:var(--good)">予約完了</b> <span class="daytag">reserve_success<span class="ja">・実質1予約(二重発火)</span><span class="en"> · 1 real booking (double-fire)</span></span></td><td style="text-align:left">TableCheck <span class="ja">予約確定ページ</span><span class="en">confirmation page</span> <span class="daytag">tablecheck.com/reservations/FUCQX2</span></td><td>2</td></tr>
+          <tr><td style="text-align:left">7/24 22<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>nightclub gala resort</b></td><td style="text-align:left"><span class="ja">予約開始</span><span class="en">Booking started</span> <span class="daytag">vip_booking_start</span></td><td style="text-align:left">VIP LP <span class="daytag">book.gala-resort.jp</span></td><td>1</td></tr>
+        </tbody>
+        <tfoot><tr><td style="text-align:left">—</td><td style="text-align:left"><span class="ja">計2語（すべて指名検索）</span><span class="en">2 terms (all brand)</span></td><td style="text-align:left"><span class="ja">完了1・サインイン1・開始3</span><span class="en">1 completed · 1 sign-in · 3 starts</span></td><td style="text-align:left">—</td><td>6</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="callout info">
+      <span class="ja"><b>予約客がTableCheckへ辿った経路（参照元で復元）:</b><br>Google検索（指名ワード）→ <b>広告クリック</b> → <b>book.gala-resort.jp</b>（VIP LP）→ TableCheck予約ページ <span class="daytag">/en/shops/gala-resort/reserve</span> → <b>サインイン</b>(form_submit) → <b>決済</b> <span class="daytag">p01.mul-pay.jp＝GMO</span> → <b>予約確定</b> <span class="daytag">予約番号 FUCQX2</span></span>
+      <span class="en"><b>How the guest reached TableCheck (rebuilt from referrers):</b><br>Google search (brand term) → <b>ad click</b> → <b>book.gala-resort.jp</b> (VIP LP) → TableCheck reserve page <span class="daytag">/en/shops/gala-resort/reserve</span> → <b>sign-in</b> (form_submit) → <b>payment</b> <span class="daytag">p01.mul-pay.jp = GMO</span> → <b>reservation confirmed</b> <span class="daytag">booking no. FUCQX2</span></span>
+    </div>
+    <div class="callout good">
+      <span class="ja"><b>成果（TableCheck実測で確定）:</b> 広告→予約完了は<b>1件</b>（Gabat Mark様・作成 7/24 19:43・Weekend VIP Table）。<b>reserve_success の「2」は同一予約の二重発火</b>で、実際の完了は1件。予約開始(vip_booking_start)は別の3セッション。</span>
+      <span class="en"><b>Result (verified in TableCheck):</b> ad → <b>1 completed reservation</b> (Gabat Mark, created 7/24 19:43, Weekend VIP Table). The <b>reserve_success count of "2" is the same booking firing twice</b> — real completions = 1. The 3 vip_booking_start are separate sessions.</span>
+    </div>
+    <div class="callout warn">
+      <span class="ja"><b>電話・WhatsAppは広告経由ゼロ</b>（期間中、広告からの phone_tap / whatsapp_tap は0件のため、この表には含めていません）。</span>
+      <span class="en"><b>Phone & WhatsApp from ads = zero</b> this period, so they are not in this table.</span>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: GA4 <a href="https://analytics.google.com/analytics/web/#/p383604323" target="_blank">383604323</a> → <span class="ja">探索</span><span class="en">Explore</span>「広告CV内訳（google/cpc）＋流入＋ページ ★」（<span class="ja">タブ2=検索語句 / タブ3=全流入バックアップ</span><span class="en">tab2 = keywords / tab3 = all-traffic backup</span>） · Google Ads <span class="ja">検索語句レポート</span><span class="en">Search terms</span> · TableCheck <span class="ja">予約レコード</span><span class="en">reservation record</span></div>
+  </section>
+
   <!-- keywords -->
   <section>
-    <div class="sec-head"><h2><span class="ja">キーワード戦略</span><span class="en">Keyword strategy</span></h2></div>
-    <div class="panel">
-      <ul class="clean">
-        <li><span><span class="ja">キーワード</span><span class="en">Keywords</span></span><b><span class="ja">指名3 / 英語23 / 西13（フレーズ一致）</span><span class="en">3 brand / 23 EN / 13 ES</span></b></li>
-        <li><span><span class="ja">競合コンクエスト</span><span class="en">Competitor conquest</span></span><b><span class="ja">維持（2–3週後に評価）</span><span class="en">kept</span></b></li>
-        <li><span><span class="ja">除外キーワード</span><span class="en">Negatives</span></span><b><span class="ja">約40語</span><span class="en">~40</span></b></li>
-      </ul>
-      <div class="callout"><span class="ja">検索語句の週次チェックで除外追加・伸びる語の発見を継続。詳細表は次回追加。</span><span class="en">Weekly search-terms review ongoing; detailed table next edition.</span></div>
+    <div class="sec-head"><h2><span class="ja">キーワード戦略 & 実検索語句</span><span class="en">Keyword strategy & actual queries</span></h2></div>
+    <div class="grid2">
+      <div class="panel">
+        <ul class="clean">
+          <li><span><span class="ja">キーワード</span><span class="en">Keywords</span></span><b><span class="ja">指名3 / 英語23 / 西13（フレーズ一致）</span><span class="en">3 brand / 23 EN / 13 ES</span></b></li>
+          <li><span><span class="ja">競合コンクエスト</span><span class="en">Competitor conquest</span></span><b><span class="ja">維持（2–3週後に評価）</span><span class="en">kept</span></b></li>
+          <li><span><span class="ja">除外キーワード</span><span class="en">Negatives</span></span><b><span class="ja">約40語</span><span class="en">~40</span></b></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <ul class="clean">
+          <li><span><span class="ja">CVに繋がった実検索語句</span><span class="en">Queries that led to CV</span></span></li>
+          <li><span>nightclub gala resort</span><b>2 <span class="pill"><span class="ja">指名</span><span class="en">brand</span></span></b></li>
+          <li><span>the pink osaka</span><b>1 <span class="pill"><span class="ja">指名</span><span class="en">brand</span></span></b></li>
+        </ul>
+        <div class="callout info" style="margin-top:10px"><span class="ja">CV由来の検索語句は<b>すべてブランド指名</b>（既にGALAを知っている人）。予約完了イベントの語句はTableCheckドメイン発火のため(not set)。全語句は下記の検索語句レポートで確認。</span><span class="en">All CV-driving queries are <b>brand/navigational</b> (people already looking for GALA). Completion events show (not set) as they fired on the TableCheck domain. Full list = Search terms report.</span></div>
+      </div>
     </div>
-    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads → <span class="ja">検索語句</span><span class="en">Search terms</span></div>
+    <div class="panel" style="padding:6px 8px;margin-top:14px;overflow-x:auto">
+      <div style="font-size:12px;color:var(--muted);padding:7px 6px 3px"><b><span class="ja">Google広告 実検索語句</span><span class="en">Google Ads actual search terms</span></b> <span class="daytag"><span class="ja">クリックが付いた語・7/22–27</span><span class="en">terms with clicks · 7/22–27</span></span></div>
+      <table>
+        <thead><tr>
+          <th style="text-align:left"><span class="ja">検索語句（実際に入力された言葉）</span><span class="en">Search term</span></th>
+          <th><span class="ja">クリック</span><span class="en">Clicks</span></th>
+          <th><span class="ja">費用</span><span class="en">Cost</span></th>
+          <th><span class="tip">CV<span class="tt"><span class="ja"><b>コンバージョン</b>：この語から発生した成果件数</span><span class="en"><b>Conversion</b>: results from this term</span></span></span></th>
+        </tr></thead>
+        <tbody>
+          <tr class="peak"><td style="text-align:left"><b>nightclub gala resort</b> <span class="daytag"><span class="ja">指名／ブランド</span><span class="en">brand</span></span></td><td>3</td><td>¥803</td><td><b style="color:var(--good)">1 ✅</b></td></tr>
+          <tr><td style="text-align:left">club maria osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>2</td><td>¥974</td><td>0</td></tr>
+          <tr><td style="text-align:left">tenjin matsuri osaka <span class="daytag"><span class="ja">無関係（祭り）</span><span class="en">unrelated (festival)</span></span></td><td>2</td><td>¥1,438</td><td>0</td></tr>
+          <tr><td style="text-align:left">things to do in osaka at night <span class="daytag"><span class="ja">発見系</span><span class="en">discovery</span></span></td><td>1</td><td>¥872</td><td>0</td></tr>
+          <tr><td style="text-align:left">giraffe night club osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>1</td><td>¥853</td><td>0</td></tr>
+          <tr><td style="text-align:left">joule club osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>1</td><td>¥521</td><td>0</td></tr>
+          <tr><td style="text-align:left">owl osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>1</td><td>¥747</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout good"><span class="ja"><b>予約を生んだ語＝「nightclub gala resort」（指名）1CV。</b> これが完了予約(7/24)の裏にある検索語。GA4では(not set)だが、Google広告はクリック→検索語を保持しているため特定できる。</span><span class="en"><b>The term that produced the booking = "nightclub gala resort" (brand), 1 CV.</b> That's the query behind the 7/24 completed reservation — GA4 shows (not set), but Google Ads retains the click→query link so we can identify it.</span></div>
+    <div class="callout warn"><span class="ja"><b>除外候補:</b> 他店名（club maria / giraffe night club / joule club / owl osaka）と祭り(tenjin matsuri)はクリックのみ0CV。<b>「things to do in osaka at night」は発見系で残す価値あり。</b>ディスカバリ拡大が指名依存脱却の次の一手。</span><span class="en"><b>Negative candidates:</b> rival-venue names (club maria / giraffe / joule / owl) and the festival term (tenjin matsuri) got clicks, 0 CV. <b>Keep "things to do in osaka at night" (discovery).</b> Expanding discovery is the next step beyond brand-dependence.</span></div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads → <span class="ja">検索語句レポート</span><span class="en">Search terms report</span>（7/22–27） · GA4 <span class="ja">Google広告クエリ</span><span class="en">Google Ads query</span></div>
   </section>
 
   <div class="foot">
