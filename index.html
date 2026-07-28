@@ -95,6 +95,12 @@
   .tip:hover .tt{display:block}
   .tip .tt b{color:var(--gold2)}
   .foot{margin-top:40px;color:var(--dim);font-size:11.5px;text-align:center;border-top:1px solid var(--line);padding-top:16px}
+
+  /* ---- data-freshness banner (only shown when a source is stale/failed) ---- */
+  #freshness{display:none;border-left:3px solid var(--bad);background:rgba(240,104,90,.08);border-radius:0 8px 8px 0;padding:11px 15px;font-size:12.5px;color:var(--txt);margin:0 0 14px}
+  #freshness.partial{border-color:var(--warn);background:rgba(240,182,74,.08)}
+  #freshness b{color:var(--txt)}
+  #loaderr{display:none;border-left:3px solid var(--bad);background:rgba(240,104,90,.10);border-radius:0 8px 8px 0;padding:14px 16px;font-size:13px;color:var(--txt);margin:20px 0}
 </style>
 </head>
 <body class="lang-ja">
@@ -105,9 +111,9 @@
       <div class="k">GALA RESORT ・ NIGHTCLUB OSAKA</div>
       <h1><span class="ja">Google広告 ダッシュボード</span><span class="en">Google Ads Dashboard</span></h1>
       <div class="meta">
-        <span class="ja">期間</span><span class="en">Period</span>: <b>2026/07/17 – 07/27</b>
-        &nbsp;·&nbsp; <span class="ja">更新</span><span class="en">Updated</span>: <b>2026/07/27 17:00</b>
-        &nbsp;·&nbsp; <span class="ja">作成</span><span class="en">By</span>: <b>MASHTAKE / AI-BOW</b>
+        <span class="ja">期間</span><span class="en">Period</span>: <b id="m-period">—</b>
+        &nbsp;·&nbsp; <span class="ja">更新</span><span class="en">Updated</span>: <b id="m-updated">—</b>
+        &nbsp;·&nbsp; <span class="ja">作成</span><span class="en">By</span>: <b id="m-by">—</b>
       </div>
     </div>
     <div class="toggle">
@@ -115,6 +121,9 @@
       <button id="btn-en" onclick="setLang('en')">EN</button>
     </div>
   </header>
+
+  <div id="loaderr"></div>
+  <div id="freshness"></div>
 
   <!-- ================= OWNER SUMMARY ================= -->
   <div class="band owner"><span class="ja">経営サマリー（まずここだけ見ればOK）</span><span class="en">Owner summary — read this first</span></div>
@@ -126,15 +135,12 @@
       <div class="sub"><span class="ja">この広告の目的は予約。費用に対して予約がどれだけ出たか</span><span class="en">The point of the ad is reservations — spend vs reservations produced</span></div>
     </div>
     <div class="kpis">
-      <div class="kpi"><div class="lab"><span class="ja">広告費</span><span class="en">Spend</span></div><div class="val">¥36,907</div><div class="note"><span class="ja">11日間・日予算¥6,000</span><span class="en">11 days · ¥6,000/day</span></div></div>
-      <div class="kpi hl"><div class="lab"><span class="tip"><span class="ja">予約アクション（広告CV）</span><span class="en">Reservation actions (ad CV)</span><span class="tt"><span class="ja"><b>CV=コンバージョン</b>：広告経由で起きた「予約につながる行動」（WhatsApp・予約開始など）</span><span class="en"><b>CV=conversion</b>: a reservation-leading action from the ad (WhatsApp, booking-start, etc.)</span></span></span></div><div class="val big">6</div><div class="note"><span class="ja">うち<b>実予約1件</b>・惜しい離脱3人</span><span class="en"><b>1 real booking</b> · 3 near-misses</span></div></div>
-      <div class="kpi"><div class="lab"><span class="ja">予約1件あたり費用</span><span class="en">Cost / reservation action</span></div><div class="val">¥6,151</div><div class="note"><span class="ja">費用 ÷ 広告CV</span><span class="en">spend ÷ ad CV</span></div></div>
-      <div class="kpi"><div class="lab"><span class="ja">予約完了（決済）</span><span class="en">Completed (paid)</span></div><div class="val">2</div><div class="note"><span class="ja">出所は計測開始前</span><span class="en">source pre-tracking</span></div></div>
+      <div class="kpi"><div class="lab"><span class="ja">広告費</span><span class="en">Spend</span></div><div class="val" id="k-spend">—</div><div class="note" id="k-spend-n"></div></div>
+      <div class="kpi hl"><div class="lab"><span class="tip"><span class="ja">予約アクション（広告CV）</span><span class="en">Reservation actions (ad CV)</span><span class="tt"><span class="ja"><b>CV=コンバージョン</b>：広告経由で起きた「予約につながる行動」（WhatsApp・予約開始など）</span><span class="en"><b>CV=conversion</b>: a reservation-leading action from the ad (WhatsApp, booking-start, etc.)</span></span></span></div><div class="val big" id="k-cv">—</div><div class="note" id="k-cv-n"></div></div>
+      <div class="kpi"><div class="lab"><span class="ja">予約1件あたり費用</span><span class="en">Cost / reservation action</span></div><div class="val" id="k-cpa">—</div><div class="note" id="k-cpa-n"></div></div>
+      <div class="kpi"><div class="lab"><span class="ja">予約完了（決済）</span><span class="en">Completed (paid)</span></div><div class="val" id="k-done">—</div><div class="note" id="k-done-n"></div></div>
     </div>
-    <div class="callout warn">
-      <span class="ja"><b>正直な現状:</b> 初動2週間。<b>配信は週末に本格回復</b>し、7/24(金)・7/25(土)は1日約¥12,000（日予算の上限2倍）まで伸びた。広告アクションは累計6件（1件あたり¥6,151）。ただし「予約完了」が広告由来かは計測が始まったばかり（2026/07/24〜）。判断はもう2〜3週間データを溜めてから。</span>
-      <span class="en"><b>Honest status:</b> Two weeks in. <b>Delivery recovered strongly over the weekend</b> — 7/24 (Fri) & 7/25 (Sat) each hit ~¥12,000/day (2× the daily budget cap). 6 reservation-actions so far (¥6,151 each). But whether completions came from the ad only started being measurable on 2026/07/24 — judge after 2–3 more weeks.</span>
-    </div>
+    <div data-note="money"></div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads <a href="https://ads.google.com/aw/overview?ocid=8309101085" target="_blank">213-819-7168</a> · GA4 383604323</div>
   </section>
 
@@ -144,15 +150,8 @@
       <h2><span class="ja">② 予約はどこから来ているか</span><span class="en">② Where do the reservations come from?</span></h2>
       <div class="sub"><span class="ja">広告 / LP自然流入 / 直接 の内訳。★2026/07/24 計測開始</span><span class="en">Ads / LP-organic / direct · ★tracking live 2026/07/24</span></div>
     </div>
-    <div class="goals">
-      <div class="goal"><div class="tag"><span class="ja">広告から</span><span class="en">FROM ADS</span></div><div class="nm">google / cpc</div><div class="num">1</div><div class="st ok"><span class="ja">予約完了1件 確定</span><span class="en">1 completed, verified</span></div></div>
-      <div class="goal"><div class="tag"><span class="ja">LPから（自然）</span><span class="en">LP ORGANIC</span></div><div class="nm">vip_lp</div><div class="num">0</div><div class="st wait"><span class="ja">当期間なし</span><span class="en">none this period</span></div></div>
-      <div class="goal"><div class="tag"><span class="ja">直接 / 計測前</span><span class="en">DIRECT / PRE</span></div><div class="nm">—</div><div class="num">1</div><div class="st warn"><span class="ja">計測開始前(7/16)</span><span class="en">pre-tracking (7/16)</span></div></div>
-    </div>
-    <div class="callout good">
-      <span class="ja"><b>証明できたこと:</b> <b>広告→予約完了を1件、実データで確定</b>（Gabat Mark様・7/24・VIPテーブル。TableCheckに当社の広告タグ<code>gala_search</code>付きで記録）。¥150,000の大型予約(Tam Henry様・7/16)は<b>配信開始前の自然予約</b>＝広告成果ではない。詳細は下部「広告由来コンバージョン詳細」。</span>
-      <span class="en"><b>Now proven:</b> <b>1 ad → completed reservation confirmed in real data</b> (Gabat Mark, 7/24, VIP table; stamped with our <code>gala_search</code> tag in TableCheck). The ¥150,000 booking (Tam Henry, 7/16) is <b>organic, before launch</b> — not an ad result. See "Ad-driven conversions — full detail" below.</span>
-    </div>
+    <div class="goals" id="src-breakdown"></div>
+    <div data-note="sources"></div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: TableCheck <span class="ja">予約レコード(utm_source)</span><span class="en">reservation record (utm_source)</span></div>
   </section>
 
@@ -179,35 +178,24 @@
           <th><span class="tip">CV<span class="tt"><span class="ja"><b>コンバージョン</b>：予約・問い合わせなど、目的とする成果の件数</span><span class="en"><b>Conversion</b>: a goal action such as a reservation or inquiry</span></span></span></th>
         </tr></thead>
         <tbody id="logbody"></tbody>
-        <tfoot><tr><td><span class="ja">合計</span><span class="en">Total</span></td><td>2,105</td><td>77</td><td>3.66%</td><td>¥36,907</td><td>¥479</td><td>6</td></tr></tfoot>
+        <tfoot id="logfoot"></tfoot>
       </table>
     </div>
-    <div class="callout">
-      <span class="ja"><b>読み取れること:</b> 週末に配信が本格化。<b>7/24(金)¥11,990・7/25(土)¥11,996</b> の2夜で費用の約65%＝金・土が主戦場。月〜水はスケジュール通りゼロ。日予算¥6,000でも、需要の高い夜は自動で上限2倍（¥12,000）まで伸びる。</span>
-      <span class="en"><b>Takeaway:</b> delivery ramped hard on weekends. <b>7/24 (Fri) ¥11,990 + 7/25 (Sat) ¥11,996</b> = ~65% of spend — Fri & Sat are the battleground. Mon–Wed zero by schedule. Even on a ¥6,000/day budget, Google spends up to 2× (¥12,000) on high-demand nights.</span>
-    </div>
+    <div data-note="nights"></div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads → <span class="ja">キャンペーン → 分類:時間:日</span><span class="en">Campaign → Segment: Day</span></div>
   </section>
 
   <!-- 4. Who / where -->
   <section>
     <div class="sec-head">
-      <h2><span class="ja">④ 誰に・どこに出しているか</span><span class="en">④ Who & where we're reaching</span></h2>
+      <h2><span class="ja">④ 誰に・どこに出しているか</span><span class="en">④ Who &amp; where we're reaching</span></h2>
     </div>
     <div class="grid2">
       <div class="panel">
-        <ul class="clean">
-          <li><span><span class="ja">地域</span><span class="en">Location</span></span><b><span class="ja">大阪市（所在地ベース）</span><span class="en">Osaka city</span></b></li>
-          <li><span><span class="ja">言語</span><span class="en">Language</span></span><b><span class="ja">英語 + スペイン語(LatAm)</span><span class="en">English + Spanish (LatAm)</span></b></li>
-          <li><span><span class="ja">狙う層</span><span class="en">Audience</span></span><b><span class="ja">訪日外国人</span><span class="en">Inbound foreigners</span></b></li>
-          <li><span><span class="ja">属性ターゲット</span><span class="en">Segments</span></span><b><span class="ja">なし（酒類規制）</span><span class="en">None (alcohol policy)</span></b></li>
-        </ul>
+        <ul class="clean" id="targeting"></ul>
       </div>
       <div class="panel">
-        <div class="callout info" style="margin-top:0">
-          <span class="ja">国・デバイス別（広告経由 google/cpc に限定）の内訳は、クリックが十分溜まり次第 次回版で追加。音楽プログラムや客層づくりの判断材料になる。</span>
-          <span class="en">Country/device breakdown (ad-driven only) will be added next edition once clicks accumulate — useful for programming and audience decisions.</span>
-        </div>
+        <div data-note="targeting" data-style="margin-top:0"></div>
       </div>
     </div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads <span class="ja">設定</span><span class="en">settings</span> · GA4 383604323</div>
@@ -219,17 +207,8 @@
       <h2><span class="ja">⑤ 次にやること</span><span class="en">⑤ Next moves</span></h2>
     </div>
     <div class="panel">
-      <ul class="clean">
-        <li><span>① <span class="ja">電話(phone_tap)を広告CVに追加</span><span class="en">Add phone_tap as an ad conversion</span></span><b class="pill"><span class="ja">今すぐ・広告側だけ</span><span class="en">now, ads-side</span></b></li>
-        <li><span>② <span class="ja">予約の出所データを2〜3週ためてROI確定</span><span class="en">Accrue 2–3 wks of source data → confirm ROI</span></span><b class="pill"><span class="ja">計測</span><span class="en">measure</span></b></li>
-        <li><span>③ <span class="ja">配信は回復（週末に伸長）。週末の勢い維持を監視</span><span class="en">Delivery recovered (weekend surge) — monitor it holds</span></span><b class="pill"><span class="ja">監視</span><span class="en">watch</span></b></li>
-        <li><span>④ <span class="ja">フォーム到達→予約完了の離脱を改善（🟡の3人が落ちた場所）</span><span class="en">Reduce form→completed drop-off (where the 3 🟡 fell)</span></span><b class="pill"><span class="ja">改善</span><span class="en">improve</span></b></li>
-        <li><span>⑤ <span class="ja">画像アセット：撮り直し素材を待って入稿（現LP写真はポリシー不可）</span><span class="en">Image assets: wait for re-shoot before uploading (current LP photos fail policy)</span></span><b class="pill"><span class="ja">保留</span><span class="en">hold</span></b></li>
-      </ul>
-      <div class="callout warn">
-        <span class="ja"><b>織田様への依頼:</b> 予約完了の件数がまだ少なくTableCheck計測に依存。曜日別の音楽プログラム・想定単価をいただけると、訴求とレポート精度が上がります。</span>
-        <span class="en"><b>Ask to Orita-san:</b> completions are still low and depend on TableCheck. The day-by-day music program and expected price points would sharpen messaging and reporting.</span>
-      </div>
+      <ul class="clean" id="next-moves"></ul>
+      <div data-note="next_moves"></div>
     </div>
   </section>
 
@@ -240,39 +219,32 @@
   <section>
     <div class="sec-head"><h2><span class="ja">配信の基本数値</span><span class="en">Delivery metrics</span></h2></div>
     <div class="kpis">
-      <div class="kpi"><div class="lab"><span class="tip"><span class="ja">表示回数</span><span class="en">Impressions</span><span class="tt"><span class="ja"><b>表示回数</b>：広告が検索結果に表示された回数</span><span class="en"><b>Impressions</b>: number of times the ad was shown</span></span></span></div><div class="val">2,105</div></div>
-      <div class="kpi"><div class="lab"><span class="ja">クリック</span><span class="en">Clicks</span></div><div class="val">77</div></div>
-      <div class="kpi hl"><div class="lab"><span class="tip">CTR<span class="tt"><span class="ja"><b>クリック率</b>：表示のうちクリックされた割合</span><span class="en"><b>Click-through rate</b>: share of impressions that were clicked</span></span></span></div><div class="val">3.66%</div><div class="note"><span class="ja">目安2–3%超</span><span class="en">above 2–3%</span></div></div>
-      <div class="kpi"><div class="lab"><span class="tip"><span class="ja">平均CPC</span><span class="en">Avg CPC</span><span class="tt"><span class="ja"><b>クリック単価</b>：1クリックあたりの平均費用</span><span class="en"><b>Cost per click</b>: average cost of one click</span></span></span></div><div class="val">¥479</div></div>
+      <div class="kpi"><div class="lab"><span class="tip"><span class="ja">表示回数</span><span class="en">Impressions</span><span class="tt"><span class="ja"><b>表示回数</b>：広告が検索結果に表示された回数</span><span class="en"><b>Impressions</b>: number of times the ad was shown</span></span></span></div><div class="val" id="d-impr">—</div></div>
+      <div class="kpi"><div class="lab"><span class="ja">クリック</span><span class="en">Clicks</span></div><div class="val" id="d-clk">—</div></div>
+      <div class="kpi hl"><div class="lab"><span class="tip">CTR<span class="tt"><span class="ja"><b>クリック率</b>：表示のうちクリックされた割合</span><span class="en"><b>Click-through rate</b>: share of impressions that were clicked</span></span></span></div><div class="val" id="d-ctr">—</div><div class="note" id="d-ctr-n"></div></div>
+      <div class="kpi"><div class="lab"><span class="tip"><span class="ja">平均CPC</span><span class="en">Avg CPC</span><span class="tt"><span class="ja"><b>クリック単価</b>：1クリックあたりの平均費用</span><span class="en"><b>Cost per click</b>: average cost of one click</span></span></span></div><div class="val" id="d-cpc">—</div></div>
     </div>
   </section>
 
   <!-- funnel + goals -->
   <section>
-    <div class="sec-head"><h2><span class="ja">予約ファネル & ゴール A/B/C</span><span class="en">Reservation funnel & goals A/B/C</span></h2></div>
+    <div class="sec-head"><h2><span class="ja">予約ファネル &amp; ゴール A/B/C</span><span class="en">Reservation funnel &amp; goals A/B/C</span></h2></div>
     <div class="grid2">
       <div class="panel">
-        <ul class="clean">
-          <li><span>reserve_form <span class="daytag"><span class="ja">フォーム到達</span><span class="en">reached form</span></span></span><b>418</b></li>
-          <li><span>reserve_review <span class="daytag"><span class="ja">内容確認</span><span class="en">reviewing</span></span></span><b>3</b></li>
-          <li><span>reserve_success <span class="daytag"><span class="ja">予約完了</span><span class="en">completed</span></span></span><b>2</b></li>
-        </ul>
-        <div class="callout warn"><span class="ja">到達418→完了2の落差が最大の離脱ポイント。</span><span class="en">418→2 is the biggest drop-off.</span></div>
+        <ul class="clean" id="funnel"></ul>
+        <div data-note="funnel"></div>
       </div>
       <div class="panel">
-        <ul class="clean">
+        <ul class="clean" id="goals">
           <li><span><span class="ja">ゴール</span><span class="en">Goal</span></span><b><span class="ja">全体 / うち広告(cpc)</span><span class="en">All / of which ads</span></b></li>
-          <li><span>A · reserve_success <span class="ja">予約完了</span><span class="en">reservation</span></span><b>2 / <span style="color:var(--good)">2</span> <span class="pill"><span class="ja">実質1件</span><span class="en">=1 real</span></span></b></li>
-          <li><span>B · phone_tap <span class="ja">電話</span><span class="en">phone</span></span><b>1 / <span style="color:var(--dim)">0</span> <span class="pill"><span class="ja">CV未連携</span><span class="en">not imported</span></span></b></li>
-          <li><span>C · whatsapp_tap</span><b>3 / <span style="color:var(--dim)">0</span> <span class="pill">✅ <span class="ja">入札対象</span><span class="en">bid target</span></span></b></li>
         </ul>
-        <div class="callout warn" style="margin-top:10px"><span class="ja"><b>注意:</b> 電話・WhatsAppの件数は<b>全流入合計</b>。広告(google/cpc)経由は<b>いずれも0件</b>。広告が直接生んだのは予約系のみ。</span><span class="en"><b>Note:</b> phone/WhatsApp counts are <b>all-traffic totals</b>. Via ads (google/cpc) both are <b>0</b>. Ads directly drove reservation events only.</span></div>
+        <div data-note="goals" data-style="margin-top:10px"></div>
       </div>
     </div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: GA4 <a href="https://analytics.google.com/analytics/web/#/p383604323" target="_blank">383604323</a> → <span class="ja">イベント</span><span class="en">Events</span></div>
   </section>
 
-  <!-- 広告由来CV 詳細 (GA4 cpc 実測) -->
+  <!-- 広告由来CV 詳細 -->
   <section>
     <div class="sec-head">
       <h2><span class="ja">広告コンバージョン：検索語句 × 時刻 × 発生場所</span><span class="en">Ad conversions: keyword × time × where</span></h2>
@@ -288,68 +260,37 @@
           <th style="text-align:left"><span class="tip"><span class="ja">結果</span><span class="en">Outcome</span><span class="tt"><span class="ja"><b>✅成約</b>=予約確定／<b>🔵途中工程</b>=成約者本人の通過ステップ／<b>🟡あと一歩</b>=予約ボタンまで押したが完了せず離脱</span><span class="en"><b>✅booked</b> = confirmed / <b>🔵step</b> = the booker's own mid-step / <b>🟡near-miss</b> = tapped booking but dropped before completing</span></span></span></th>
           <th><span class="ja">件数</span><span class="en">n</span></th>
         </tr></thead>
-        <tbody>
-          <tr class="zero"><td style="text-align:left">7/18 23<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>the pink osaka</b></td><td style="text-align:left"><span class="ja">予約開始</span><span class="en">Booking started</span> <span class="daytag">vip_booking_start</span></td><td style="text-align:left">VIP LP <span class="daytag">book.gala-resort.jp</span></td><td style="text-align:left">🟡 <b style="color:var(--warn)"><span class="ja">あと一歩・離脱</span><span class="en">near-miss, dropped</span></b> <span class="daytag"><span class="ja">TableCheckで完了せず</span><span class="en">never completed</span></span></td><td>1</td></tr>
-          <tr class="zero"><td style="text-align:left">7/19 00<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>nightclub gala resort</b></td><td style="text-align:left"><span class="ja">予約開始</span><span class="en">Booking started</span> <span class="daytag">vip_booking_start</span></td><td style="text-align:left">VIP LP <span class="daytag">book.gala-resort.jp</span></td><td style="text-align:left">🟡 <b style="color:var(--warn)"><span class="ja">あと一歩・離脱</span><span class="en">near-miss, dropped</span></b> <span class="daytag"><span class="ja">TableCheckで完了せず</span><span class="en">never completed</span></span></td><td>1</td></tr>
-          <tr class="peak"><td style="text-align:left">7/24 19<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>nightclub gala resort</b> <span class="daytag"><span class="ja">※同一人物・下の完了と同フロー</span><span class="en">※same person as completion below</span></span></td><td style="text-align:left"><b>連絡先</b> <span class="daytag">form_submit<span class="ja">＝予約フローのサインイン</span><span class="en"> = booking sign-in</span></span></td><td style="text-align:left">TableCheck <span class="ja">サインイン</span><span class="en">sign-in</span> <span class="daytag">tablecheck.com/en/users/sign_in</span></td><td style="text-align:left">🔵 <b style="color:var(--info)"><span class="ja">成約者の途中工程</span><span class="en">booker's mid-step</span></b> <span class="daytag"><span class="ja">別客ではない</span><span class="en">not a separate guest</span></span></td><td>1</td></tr>
-          <tr class="peak"><td style="text-align:left">7/24 19:43</td><td style="text-align:left"><b>nightclub gala resort</b> <span class="daytag"><span class="ja">※Google広告で確定</span><span class="en">※confirmed in Google Ads</span></span></td><td style="text-align:left"><b style="color:var(--good)">予約完了</b> <span class="daytag">reserve_success<span class="ja">・実質1予約(二重発火)</span><span class="en"> · 1 real booking (double-fire)</span></span></td><td style="text-align:left">TableCheck <span class="ja">予約確定ページ</span><span class="en">confirmation page</span> <span class="daytag">tablecheck.com/reservations/FUCQX2</span></td><td style="text-align:left">✅ <b style="color:var(--good)"><span class="ja">成約（6件中唯一）</span><span class="en">BOOKED (the only one)</span></b> <span class="daytag"><span class="ja">2件目は二重計測</span><span class="en">2nd = double-count</span></span></td><td>2</td></tr>
-          <tr class="zero"><td style="text-align:left">7/24 22<span class="daytag"><span class="ja">時</span><span class="en">h</span></span></td><td style="text-align:left"><b>nightclub gala resort</b></td><td style="text-align:left"><span class="ja">予約開始</span><span class="en">Booking started</span> <span class="daytag">vip_booking_start</span></td><td style="text-align:left">VIP LP <span class="daytag">book.gala-resort.jp</span></td><td style="text-align:left">🟡 <b style="color:var(--warn)"><span class="ja">あと一歩・離脱</span><span class="en">near-miss, dropped</span></b> <span class="daytag"><span class="ja">TableCheckで完了せず</span><span class="en">never completed</span></span></td><td>1</td></tr>
-        </tbody>
-        <tfoot><tr><td style="text-align:left">—</td><td style="text-align:left"><span class="ja">計2語（すべて指名検索）</span><span class="en">2 terms (all brand)</span></td><td style="text-align:left"><span class="ja">完了1・サインイン1・開始3</span><span class="en">1 completed · 1 sign-in · 3 starts</span></td><td style="text-align:left">—</td><td style="text-align:left"><span class="ja">✅1 ／ 🔵1 ／ 🟡3</span><span class="en">✅1 / 🔵1 / 🟡3</span></td><td>6</td></tr></tfoot>
+        <tbody id="cvbody"></tbody>
+        <tfoot id="cvfoot"></tfoot>
       </table>
     </div>
     <div class="panel" style="margin-top:12px">
       <div style="font-size:13px;font-weight:700;margin-bottom:8px"><span class="ja">「6コンバージョン」の中身 — 成約1件と、残り5件の正体</span><span class="en">Inside the "6 conversions" — 1 booked, and what the other 5 really are</span></div>
-      <ul class="clean">
-        <li><span>✅ <b><span class="ja">成約 1件</span><span class="en">1 BOOKED</span></b> <span class="daytag">reserve_success · 7/24 19:43</span></span><b><span class="ja">Gabat Mark様・Weekend VIPテーブル3名・予約番号FUCQX2・「nightclub gala resort」検索</span><span class="en">Gabat Mark · Weekend VIP table ×3 · FUCQX2 · via "nightclub gala resort"</span></b></li>
-        <li><span>⚪ <span class="ja">残り① reserve_success の2発目</span><span class="en">#1 of the other 5: the 2nd reserve_success fire</span> <span class="daytag">7/24 19:43</span></span><b><span class="ja">上と同じ予約の二重計測。新しい客ではない</span><span class="en">double-count of the same booking — not a new guest</span></b></li>
-        <li><span>🔵 <span class="ja">残り② form_submit（連絡先）</span><span class="en">#2: form_submit (contact)</span> <span class="daytag">7/24 19時 · TableCheckサインイン</span></span><b><span class="ja">成約者本人の途中工程。問い合わせでも別客でもない</span><span class="en">the booker's own sign-in step — not an inquiry, not a separate guest</span></b></li>
-        <li><span>🟡 <span class="ja">残り③ 予約開始→離脱</span><span class="en">#3: booking-start → dropped</span> <span class="daytag">7/18 23時（土曜深夜）</span></span><b><span class="ja">「the pink osaka」で来訪→VIP LPで予約ボタンを押した→TableCheckで完了せず（サインイン・決済の記録なし）</span><span class="en">came via "the pink osaka" → tapped booking on VIP LP → never completed (no sign-in / payment recorded)</span></b></li>
-        <li><span>🟡 <span class="ja">残り④ 予約開始→離脱</span><span class="en">#4: booking-start → dropped</span> <span class="daytag">7/19 00時（土曜深夜）</span></span><b><span class="ja">「nightclub gala resort」で来訪→予約ボタンまで→完了せず</span><span class="en">via "nightclub gala resort" → reached booking button → never completed</span></b></li>
-        <li><span>🟡 <span class="ja">残り⑤ 予約開始→離脱</span><span class="en">#5: booking-start → dropped</span> <span class="daytag">7/24 22時（金曜夜・成約の約2時間後）</span></span><b><span class="ja">「nightclub gala resort」で来訪→予約ボタンまで→完了せず</span><span class="en">via "nightclub gala resort" → reached booking button → never completed</span></b></li>
-      </ul>
-      <div class="callout warn" style="margin-top:10px">
-        <span class="ja"><b>「惜しかった」3人（🟡）の共通点:</b> 全員が指名検索でLPに来て、予約ボタンまで押している＝意欲は高い。離脱点はいずれも<b>TableCheck予約フォーム〜サインインの間</b>（週末の深夜帯）。ここが「フォーム到達418→完了2」の落差の実態で、次の一手④（フォーム改善）が効く場所。GA4は個人を特定しないため、名前等は成約してTableCheckに記録が残った人しか分からない。</span>
-        <span class="en"><b>What the 3 near-misses (🟡) share:</b> all arrived via brand searches and got as far as the booking button — high intent. All dropped <b>between the TableCheck form and sign-in</b>, late on weekend nights. This is the reality behind the 418→2 funnel gap, and exactly where next-move ④ (form improvement) pays off. GA4 doesn't identify individuals — names exist only for guests who completed and appear in TableCheck.</span>
-      </div>
+      <ul class="clean" id="cv-inside"></ul>
+      <div data-note="near_miss" data-style="margin-top:10px"></div>
     </div>
-    <div class="callout info">
-      <span class="ja"><b>予約客がTableCheckへ辿った経路（参照元で復元）:</b><br>Google検索（指名ワード）→ <b>広告クリック</b> → <b>book.gala-resort.jp</b>（VIP LP）→ TableCheck予約ページ <span class="daytag">/en/shops/gala-resort/reserve</span> → <b>サインイン</b>(form_submit) → <b>決済</b> <span class="daytag">p01.mul-pay.jp＝GMO</span> → <b>予約確定</b> <span class="daytag">予約番号 FUCQX2</span></span>
-      <span class="en"><b>How the guest reached TableCheck (rebuilt from referrers):</b><br>Google search (brand term) → <b>ad click</b> → <b>book.gala-resort.jp</b> (VIP LP) → TableCheck reserve page <span class="daytag">/en/shops/gala-resort/reserve</span> → <b>sign-in</b> (form_submit) → <b>payment</b> <span class="daytag">p01.mul-pay.jp = GMO</span> → <b>reservation confirmed</b> <span class="daytag">booking no. FUCQX2</span></span>
-    </div>
-    <div class="callout good">
-      <span class="ja"><b>成果（TableCheck実測で確定）:</b> 広告→予約完了は<b>1件</b>（Gabat Mark様・作成 7/24 19:43・Weekend VIP Table）。<b>reserve_success の「2」は同一予約の二重発火</b>で、実際の完了は1件。予約開始(vip_booking_start)は別の3セッション。</span>
-      <span class="en"><b>Result (verified in TableCheck):</b> ad → <b>1 completed reservation</b> (Gabat Mark, created 7/24 19:43, Weekend VIP Table). The <b>reserve_success count of "2" is the same booking firing twice</b> — real completions = 1. The 3 vip_booking_start are separate sessions.</span>
-    </div>
-    <div class="callout warn">
-      <span class="ja"><b>電話・WhatsAppは広告経由ゼロ</b>（期間中、広告からの phone_tap / whatsapp_tap は0件のため、この表には含めていません）。</span>
-      <span class="en"><b>Phone & WhatsApp from ads = zero</b> this period, so they are not in this table.</span>
-    </div>
+    <div data-note="path"></div>
+    <div data-note="result"></div>
+    <div data-note="no_phone_whatsapp"></div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: GA4 <a href="https://analytics.google.com/analytics/web/#/p383604323" target="_blank">383604323</a> → <span class="ja">探索</span><span class="en">Explore</span>「広告CV内訳（google/cpc）＋流入＋ページ ★」（<span class="ja">タブ2=検索語句 / タブ3=全流入バックアップ</span><span class="en">tab2 = keywords / tab3 = all-traffic backup</span>） · Google Ads <span class="ja">検索語句レポート</span><span class="en">Search terms</span> · TableCheck <span class="ja">予約レコード</span><span class="en">reservation record</span></div>
   </section>
 
   <!-- keywords -->
   <section>
-    <div class="sec-head"><h2><span class="ja">キーワード戦略 & 実検索語句</span><span class="en">Keyword strategy & actual queries</span></h2></div>
+    <div class="sec-head"><h2><span class="ja">キーワード戦略 &amp; 実検索語句</span><span class="en">Keyword strategy &amp; actual queries</span></h2></div>
     <div class="grid2">
       <div class="panel">
-        <ul class="clean">
-          <li><span><span class="ja">キーワード</span><span class="en">Keywords</span></span><b><span class="ja">指名3 / 英語23 / 西13（フレーズ一致）</span><span class="en">3 brand / 23 EN / 13 ES</span></b></li>
-          <li><span><span class="ja">競合コンクエスト</span><span class="en">Competitor conquest</span></span><b><span class="ja">維持（2–3週後に評価）</span><span class="en">kept</span></b></li>
-          <li><span><span class="ja">除外キーワード</span><span class="en">Negatives</span></span><b><span class="ja">約40語</span><span class="en">~40</span></b></li>
-        </ul>
+        <ul class="clean" id="kw-strategy"></ul>
       </div>
       <div class="panel">
-        <ul class="clean">
+        <ul class="clean" id="cv-queries">
           <li><span><span class="ja">CVに繋がった実検索語句</span><span class="en">Queries that led to CV</span></span></li>
-          <li><span>nightclub gala resort</span><b>2 <span class="pill"><span class="ja">指名</span><span class="en">brand</span></span></b></li>
-          <li><span>the pink osaka</span><b>1 <span class="pill"><span class="ja">指名</span><span class="en">brand</span></span></b></li>
         </ul>
-        <div class="callout info" style="margin-top:10px"><span class="ja">CV由来の検索語句は<b>すべてブランド指名</b>（既にGALAを知っている人）。予約完了イベントの語句はTableCheckドメイン発火のため(not set)。全語句は下記の検索語句レポートで確認。</span><span class="en">All CV-driving queries are <b>brand/navigational</b> (people already looking for GALA). Completion events show (not set) as they fired on the TableCheck domain. Full list = Search terms report.</span></div>
+        <div data-note="cv_queries" data-style="margin-top:10px"></div>
       </div>
     </div>
     <div class="panel" style="padding:6px 8px;margin-top:14px;overflow-x:auto">
-      <div style="font-size:12px;color:var(--muted);padding:7px 6px 3px"><b><span class="ja">Google広告 実検索語句</span><span class="en">Google Ads actual search terms</span></b> <span class="daytag"><span class="ja">クリックが付いた語・7/22–27</span><span class="en">terms with clicks · 7/22–27</span></span></div>
+      <div style="font-size:12px;color:var(--muted);padding:7px 6px 3px"><b><span class="ja">Google広告 実検索語句</span><span class="en">Google Ads actual search terms</span></b> <span class="daytag" id="st-range"></span></div>
       <table>
         <thead><tr>
           <th style="text-align:left"><span class="ja">検索語句（実際に入力された言葉）</span><span class="en">Search term</span></th>
@@ -357,19 +298,11 @@
           <th><span class="ja">費用</span><span class="en">Cost</span></th>
           <th><span class="tip">CV<span class="tt"><span class="ja"><b>コンバージョン</b>：この語から発生した成果件数</span><span class="en"><b>Conversion</b>: results from this term</span></span></span></th>
         </tr></thead>
-        <tbody>
-          <tr class="peak"><td style="text-align:left"><b>nightclub gala resort</b> <span class="daytag"><span class="ja">指名／ブランド</span><span class="en">brand</span></span></td><td>3</td><td>¥803</td><td><b style="color:var(--good)">1 ✅</b></td></tr>
-          <tr><td style="text-align:left">club maria osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>2</td><td>¥974</td><td>0</td></tr>
-          <tr><td style="text-align:left">tenjin matsuri osaka <span class="daytag"><span class="ja">無関係（祭り）</span><span class="en">unrelated (festival)</span></span></td><td>2</td><td>¥1,438</td><td>0</td></tr>
-          <tr><td style="text-align:left">things to do in osaka at night <span class="daytag"><span class="ja">発見系</span><span class="en">discovery</span></span></td><td>1</td><td>¥872</td><td>0</td></tr>
-          <tr><td style="text-align:left">giraffe night club osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>1</td><td>¥853</td><td>0</td></tr>
-          <tr><td style="text-align:left">joule club osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>1</td><td>¥521</td><td>0</td></tr>
-          <tr><td style="text-align:left">owl osaka <span class="daytag"><span class="ja">他店名</span><span class="en">rival venue</span></span></td><td>1</td><td>¥747</td><td>0</td></tr>
-        </tbody>
+        <tbody id="stbody"></tbody>
       </table>
     </div>
-    <div class="callout good"><span class="ja"><b>予約を生んだ語＝「nightclub gala resort」（指名）1CV。</b> これが完了予約(7/24)の裏にある検索語。GA4では(not set)だが、Google広告はクリック→検索語を保持しているため特定できる。</span><span class="en"><b>The term that produced the booking = "nightclub gala resort" (brand), 1 CV.</b> That's the query behind the 7/24 completed reservation — GA4 shows (not set), but Google Ads retains the click→query link so we can identify it.</span></div>
-    <div class="callout warn"><span class="ja"><b>除外候補:</b> 他店名（club maria / giraffe night club / joule club / owl osaka）と祭り(tenjin matsuri)はクリックのみ0CV。<b>「things to do in osaka at night」は発見系で残す価値あり。</b>ディスカバリ拡大が指名依存脱却の次の一手。</span><span class="en"><b>Negative candidates:</b> rival-venue names (club maria / giraffe / joule / owl) and the festival term (tenjin matsuri) got clicks, 0 CV. <b>Keep "things to do in osaka at night" (discovery).</b> Expanding discovery is the next step beyond brand-dependence.</span></div>
+    <div data-note="winning_term"></div>
+    <div data-note="negatives"></div>
     <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads → <span class="ja">検索語句レポート</span><span class="en">Search terms report</span>（7/22–27） · GA4 <span class="ja">Google広告クエリ</span><span class="en">Google Ads query</span></div>
   </section>
 
@@ -382,35 +315,272 @@
 </div>
 
 <script>
-  var DAILY = [
-    {d:"07/17", wd:"金", wdEn:"Fri", impr:80, clk:3, ctr:"3.75%", cost:"¥1,047", cpc:"¥349", cv:0, type:"weekend"},
-    {d:"07/18", wd:"土", wdEn:"Sat", impr:486, clk:19, ctr:"3.91%", cost:"¥5,253", cpc:"¥276", cv:1, cvd:"🟡開始のみ", cvdEn:"🟡start only", type:"weekend"},
-    {d:"07/19", wd:"日", wdEn:"Sun", impr:86, clk:4, ctr:"4.65%", cost:"¥1,120", cpc:"¥280", cv:1, cvd:"🟡開始のみ", cvdEn:"🟡start only", type:"weekend"},
-    {d:"07/20", wd:"月", wdEn:"Mon", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"week", zero:true},
-    {d:"07/21", wd:"火", wdEn:"Tue", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"week", zero:true},
-    {d:"07/22", wd:"水", wdEn:"Wed", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"week", zero:true},
-    {d:"07/23", wd:"木", wdEn:"Thu", impr:262, clk:8, ctr:"3.05%", cost:"¥3,837", cpc:"¥480", cv:0, type:"weekend"},
-    {d:"07/24", wd:"金", wdEn:"Fri", impr:437, clk:18, ctr:"4.12%", cost:"¥11,990", cpc:"¥666", cv:4, cvd:"✅成約1・🟡開始1・🔵途中2", cvdEn:"✅1 booked·🟡1 start·🔵2 steps", type:"weekend", peak:true},
-    {d:"07/25", wd:"土", wdEn:"Sat", impr:620, clk:22, ctr:"3.55%", cost:"¥11,996", cpc:"¥545", cv:0, type:"weekend", peak:true},
-    {d:"07/26", wd:"日", wdEn:"Sun", impr:134, clk:3, ctr:"2.24%", cost:"¥1,664", cpc:"¥555", cv:0, type:"weekend"},
-    {d:"07/27", wd:"月", wdEn:"Mon", impr:0, clk:0, ctr:"—", cost:"¥0", cpc:"—", cv:0, type:"week", zero:true}
-  ];
-  var curFilter="all", curLang="ja";
-  function render(){
-    var b=document.getElementById("logbody"); b.innerHTML="";
-    DAILY.forEach(function(r){
-      if(curFilter==="active" && r.impr===0) return;
-      if(curFilter==="weekend" && r.type!=="weekend") return;
-      var wd = curLang==="en" ? r.wdEn : r.wd;
-      var cls = (r.zero?"zero ":"")+(r.peak?"peak":"");
-      var noteTag = r.note ? ' <span class="daytag">('+(curLang==="en"?"in progress":"配信中")+')</span>' : '';
-      var cvTag = r.cvd ? ' <span class="daytag">'+(curLang==="en"?r.cvdEn:r.cvd)+'</span>' : '';
-      b.innerHTML += '<tr class="'+cls+'"><td>'+r.d+' <span class="daytag">'+wd+'</span>'+noteTag+'</td><td>'+r.impr+'</td><td>'+r.clk+'</td><td>'+r.ctr+'</td><td>'+r.cost+'</td><td>'+r.cpc+'</td><td>'+r.cv+cvTag+'</td></tr>';
-    });
-  }
-  function filt(f,el){curFilter=f;document.querySelectorAll('.filters button').forEach(function(x){x.classList.remove('active')});el.classList.add('active');render();}
-  function setLang(l){curLang=l;document.body.className=l==="en"?"lang-en":"lang-ja";document.getElementById('btn-ja').classList.toggle('active',l==="ja");document.getElementById('btn-en').classList.toggle('active',l==="en");render();}
-  render();
+/* ============================================================
+   GALA ads dashboard — renderer
+   All numbers and copy live in data.json. This file is layout only.
+   Do not hardcode values here.
+   ============================================================ */
+
+var D = null;                       // the loaded data.json
+var curFilter = "all", curLang = "ja";
+
+/* bilingual span pair */
+function L(ja, en){
+  return '<span class="ja">' + (ja == null ? "" : ja) + '</span>' +
+         '<span class="en">' + (en == null ? ja : en) + '</span>';
+}
+function el(id){ return document.getElementById(id); }
+function setTxt(id, v){ var n = el(id); if(n) n.innerHTML = (v == null ? "—" : v); }
+
+/* ---------- header ---------- */
+function renderHeader(){
+  setTxt("m-period",  D.header.period);
+  setTxt("m-updated", D.header.updated);
+  setTxt("m-by",      D.header.by);
+}
+
+/* ---------- freshness banner (only when something is off) ---------- */
+function renderFreshness(){
+  var m = D.meta || {}, s = m.sources || {};
+  var bad = [];
+  Object.keys(s).forEach(function(k){
+    var st = (s[k] && s[k].status) || "";
+    if(st !== "ok" && st !== "manual") bad.push({ k: k, st: st, as_of: s[k].as_of });
+  });
+  var box = el("freshness");
+  if(!bad.length && m.run_status !== "failed"){ box.style.display = "none"; return; }
+
+  var listJa = bad.map(function(b){ return b.k + "（" + b.st + "・" + (b.as_of || "取得なし") + "）"; }).join("、");
+  var listEn = bad.map(function(b){ return b.k + " (" + b.st + ", " + (b.as_of || "no data") + ")"; }).join(", ");
+  box.className = (m.run_status === "failed" ? "" : "partial");
+  box.innerHTML = L(
+    "<b>⚠ データが最新ではありません。</b>取得に失敗したソース: " + listJa + "。表示中の数値は前回取得分です。",
+    "<b>⚠ This data is not current.</b> Failed source(s): " + listEn + ". The figures shown are from the previous run."
+  );
+  box.style.display = "block";
+}
+
+/* ---------- KPIs ---------- */
+function renderKpi(){
+  var k = D.kpi;
+  setTxt("k-spend", k.spend.value);   setTxt("k-spend-n", L(k.spend.note_ja, k.spend.note_en));
+  setTxt("k-cv",    k.ad_cv.value);   setTxt("k-cv-n",    L(k.ad_cv.note_ja, k.ad_cv.note_en));
+  setTxt("k-cpa",   k.cost_per_cv.value); setTxt("k-cpa-n", L(k.cost_per_cv.note_ja, k.cost_per_cv.note_en));
+  setTxt("k-done",  k.completed.value);   setTxt("k-done-n", L(k.completed.note_ja, k.completed.note_en));
+
+  var d = D.delivery;
+  setTxt("d-impr", d.impressions);
+  setTxt("d-clk",  d.clicks);
+  setTxt("d-ctr",  d.ctr);
+  setTxt("d-ctr-n", L(d.ctr_note_ja, d.ctr_note_en));
+  setTxt("d-cpc",  d.cpc);
+}
+
+/* ---------- section 2: source breakdown cards ---------- */
+function renderSourceBreakdown(){
+  el("src-breakdown").innerHTML = D.sources_breakdown.map(function(g){
+    return '<div class="goal">' +
+      '<div class="tag">' + L(g.tag_ja, g.tag_en) + '</div>' +
+      '<div class="nm">' + g.name + '</div>' +
+      '<div class="num">' + g.num + '</div>' +
+      '<div class="st ' + g.state + '">' + L(g.st_ja, g.st_en) + '</div>' +
+    '</div>';
+  }).join("");
+}
+
+/* ---------- section 3: daily table ---------- */
+function renderDaily(){
+  var b = el("logbody"); b.innerHTML = "";
+  var rows = "";
+  D.daily.forEach(function(r){
+    if(curFilter === "active"  && r.impr === 0)      return;
+    if(curFilter === "weekend" && r.type !== "weekend") return;
+    var wd  = curLang === "en" ? r.wdEn : r.wd;
+    var cls = (r.zero ? "zero " : "") + (r.peak ? "peak" : "");
+    var cvTag = r.cvd ? ' <span class="daytag">' + (curLang === "en" ? r.cvdEn : r.cvd) + '</span>' : '';
+    rows += '<tr class="' + cls + '">' +
+      '<td>' + r.d + ' <span class="daytag">' + wd + '</span></td>' +
+      '<td>' + r.impr + '</td><td>' + r.clk + '</td><td>' + r.ctr + '</td>' +
+      '<td>' + r.cost + '</td><td>' + r.cpc + '</td>' +
+      '<td>' + r.cv + cvTag + '</td></tr>';
+  });
+  b.innerHTML = rows;
+
+  var t = D.daily_total;
+  el("logfoot").innerHTML = '<tr><td>' + L("合計","Total") + '</td><td>' + t.impr + '</td><td>' + t.clk +
+    '</td><td>' + t.ctr + '</td><td>' + t.cost + '</td><td>' + t.cpc + '</td><td>' + t.cv + '</td></tr>';
+}
+
+/* ---------- section 4: targeting ---------- */
+function renderTargeting(){
+  el("targeting").innerHTML = D.targeting.map(function(r){
+    return '<li><span>' + L(r.k_ja, r.k_en) + '</span><b>' + L(r.v_ja, r.v_en) + '</b></li>';
+  }).join("");
+}
+
+/* ---------- section 5: next moves ---------- */
+function renderNextMoves(){
+  el("next-moves").innerHTML = D.next_moves.map(function(r){
+    return '<li><span>' + r.n + ' ' + L(r.ja, r.en) + '</span>' +
+           '<b class="pill">' + L(r.pill_ja, r.pill_en) + '</b></li>';
+  }).join("");
+}
+
+/* ---------- funnel + goals ---------- */
+function renderFunnel(){
+  el("funnel").innerHTML = D.funnel.map(function(r){
+    return '<li><span>' + r.ev + ' <span class="daytag">' + L(r.lab_ja, r.lab_en) + '</span></span><b>' + r.v + '</b></li>';
+  }).join("");
+
+  var head = '<li><span>' + L("ゴール","Goal") + '</span><b>' + L("全体 / うち広告(cpc)","All / of which ads") + '</b></li>';
+  el("goals").innerHTML = head + D.goals.map(function(r){
+    var lab = (r.lab_ja || r.lab_en) ? ' ' + L(r.lab_ja, r.lab_en) : '';
+    return '<li><span>' + r.g + ' · ' + r.ev + lab + '</span>' +
+      '<b>' + r.all + ' / <span style="color:' + r.ads_color + '">' + r.ads + '</span> ' +
+      '<span class="pill">' + L(r.pill_ja, r.pill_en) + '</span></b></li>';
+  }).join("");
+}
+
+/* ---------- conversions detail table ---------- */
+function renderConversions(){
+  el("cvbody").innerHTML = D.conversions.map(function(r){
+    var when = r.when + (r.hour ? '<span class="daytag">' + L("時","h") + '</span>' : '');
+
+    var kw = '<b>' + r.kw + '</b>';
+    if(r.kw_tag_ja) kw += ' <span class="daytag">' + L(r.kw_tag_ja, r.kw_tag_en) + '</span>';
+
+    var what;
+    if(r.what_bold){
+      var c = r.what_bold_color ? ' style="color:' + r.what_bold_color + '"' : '';
+      what = '<b' + c + '>' + L(r.what_bold, r.what_bold_en) + '</b>';
+    } else {
+      what = L(r.what_ja, r.what_en);
+    }
+    if(r.what_tag){
+      what += ' <span class="daytag">' + r.what_tag +
+              (r.what_tag_ja ? L(r.what_tag_ja, r.what_tag_en) : '') + '</span>';
+    }
+
+    var where = r.where ? r.where : L(r.where_ja, r.where_en);
+    if(r.where_tag) where += ' <span class="daytag">' + r.where_tag + '</span>';
+
+    var out = r.icon + ' <b style="color:' + r.out_color + '">' + L(r.out_ja, r.out_en) + '</b>' +
+              (r.out_tag_ja ? ' <span class="daytag">' + L(r.out_tag_ja, r.out_tag_en) + '</span>' : '');
+
+    return '<tr class="' + r.cls + '">' +
+      '<td style="text-align:left">' + when  + '</td>' +
+      '<td style="text-align:left">' + kw    + '</td>' +
+      '<td style="text-align:left">' + what  + '</td>' +
+      '<td style="text-align:left">' + where + '</td>' +
+      '<td style="text-align:left">' + out   + '</td>' +
+      '<td>' + r.n + '</td></tr>';
+  }).join("");
+
+  var f = D.conversions_total;
+  el("cvfoot").innerHTML = '<tr>' +
+    '<td style="text-align:left">—</td>' +
+    '<td style="text-align:left">' + L(f.kw_ja, f.kw_en) + '</td>' +
+    '<td style="text-align:left">' + L(f.what_ja, f.what_en) + '</td>' +
+    '<td style="text-align:left">—</td>' +
+    '<td style="text-align:left">' + L(f.out_ja, f.out_en) + '</td>' +
+    '<td>' + f.n + '</td></tr>';
+}
+
+/* ---------- "inside the 6 conversions" ---------- */
+function renderCvInside(){
+  el("cv-inside").innerHTML = D.cv_inside.map(function(r){
+    var title = r.bold ? '<b>' + L(r.t_ja, r.t_en) + '</b>' : L(r.t_ja, r.t_en);
+    var tag = "";
+    if(r.tag)          tag = ' <span class="daytag">' + r.tag + '</span>';
+    else if(r.tag_ja)  tag = ' <span class="daytag">' + L(r.tag_ja, r.tag_en) + '</span>';
+    return '<li><span>' + r.icon + ' ' + title + tag + '</span><b>' + L(r.v_ja, r.v_en) + '</b></li>';
+  }).join("");
+}
+
+/* ---------- keywords ---------- */
+function renderKeywords(){
+  el("kw-strategy").innerHTML = D.keyword_strategy.map(function(r){
+    return '<li><span>' + L(r.k_ja, r.k_en) + '</span><b>' + L(r.v_ja, r.v_en) + '</b></li>';
+  }).join("");
+
+  var head = '<li><span>' + L("CVに繋がった実検索語句","Queries that led to CV") + '</span></li>';
+  el("cv-queries").innerHTML = head + D.cv_queries.map(function(r){
+    return '<li><span>' + r.term + '</span><b>' + r.n +
+           ' <span class="pill">' + L(r.pill_ja, r.pill_en) + '</span></b></li>';
+  }).join("");
+
+  var st = D.search_terms;
+  el("st-range").innerHTML = L(st.range_ja, st.range_en);
+  el("stbody").innerHTML = st.rows.map(function(r){
+    var term = r.bold ? '<b>' + r.term + '</b>' : r.term;
+    var tag  = r.tag_ja ? ' <span class="daytag">' + L(r.tag_ja, r.tag_en) + '</span>' : '';
+    var cv   = r.cv_color ? '<b style="color:' + r.cv_color + '">' + r.cv + '</b>' : r.cv;
+    return '<tr class="' + (r.cls || "") + '">' +
+      '<td style="text-align:left">' + term + tag + '</td>' +
+      '<td>' + r.clicks + '</td><td>' + r.cost + '</td><td>' + cv + '</td></tr>';
+  }).join("");
+}
+
+/* ---------- callouts / commentary ---------- */
+function renderNotes(){
+  var slots = document.querySelectorAll('[data-note]');
+  Array.prototype.forEach.call(slots, function(slot){
+    var key = slot.getAttribute("data-note");
+    var n = D.notes[key];
+    if(!n){ slot.style.display = "none"; return; }
+    slot.className = "callout" + (n.kind ? " " + n.kind : "");
+    var st = slot.getAttribute("data-style");
+    if(st) slot.setAttribute("style", st);
+    slot.innerHTML = L(n.ja, n.en);
+  });
+}
+
+/* ---------- orchestration ---------- */
+function renderAll(){
+  renderHeader();
+  renderFreshness();
+  renderKpi();
+  renderSourceBreakdown();
+  renderDaily();
+  renderTargeting();
+  renderNextMoves();
+  renderFunnel();
+  renderConversions();
+  renderCvInside();
+  renderKeywords();
+  renderNotes();
+}
+
+function filt(f, elm){
+  curFilter = f;
+  document.querySelectorAll('.filters button').forEach(function(x){ x.classList.remove('active'); });
+  elm.classList.add('active');
+  renderDaily();
+}
+function setLang(l){
+  curLang = l;
+  document.body.className = (l === "en" ? "lang-en" : "lang-ja");
+  el('btn-ja').classList.toggle('active', l === "ja");
+  el('btn-en').classList.toggle('active', l === "en");
+  renderDaily();
+}
+
+/* cache-bust so a fresh commit shows immediately */
+fetch('data.json?t=' + Date.now(), { cache: 'no-store' })
+  .then(function(r){
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(function(json){ D = json; renderAll(); })
+  .catch(function(e){
+    var box = el("loaderr");
+    box.style.display = "block";
+    box.innerHTML = '<b>⚠ data.json を読み込めませんでした / Could not load data.json</b><br>' +
+                    '<span style="color:var(--muted);font-size:12px">' + e.message +
+                    ' — file:// で直接開いた場合はブラウザが fetch をブロックします。' +
+                    'ローカル確認は <code>python -m http.server</code> 等を使ってください。' +
+                    ' / Opening this file via file:// blocks fetch; serve it over http to preview locally.</span>';
+  });
 </script>
 </body>
 </html>
