@@ -1,194 +1,626 @@
 {
   "meta": {
-    "generated_at": "2026-07-27T08:00:00Z",
-    "generated_by": "manual",
+    "generated_at": "2026-07-29T10:25:43Z",
+    "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
-      "google_ads": { "status": "ok", "as_of": "2026-07-27" },
-      "ga4":        { "status": "ok", "as_of": "2026-07-27" },
-      "tablecheck": { "status": "manual", "as_of": "2026-07-27" }
+      "google_ads": {
+        "status": "manual",
+        "as_of": "2026-07-27",
+        "note": "hand-entered; awaiting Google Ads developer token"
+      },
+      "ga4": {
+        "status": "ok",
+        "as_of": "2026-07-28"
+      },
+      "tablecheck": {
+        "status": "manual",
+        "as_of": "2026-07-27"
+      }
     }
   },
-
   "header": {
-    "period":  "2026/07/17 – 07/27",
-    "updated": "2026/07/27 17:00",
-    "by":      "MASHTAKE"
+    "period": "2026/07/17 – 07/28",
+    "updated": "2026/07/29 19:25",
+    "by": "MASHTAKE"
   },
-
   "kpi": {
-    "spend":        { "value": "¥36,907", "note_ja": "11日間・日予算¥6,000", "note_en": "11 days · ¥6,000/day" },
-    "ad_cv":        { "value": "6", "note_ja": "うち<b>実予約1件</b>・惜しい離脱3人", "note_en": "<b>1 real booking</b> · 3 near-misses" },
-    "cost_per_cv":  { "value": "¥6,151", "note_ja": "費用 ÷ 広告CV", "note_en": "spend ÷ ad CV" },
-    "completed":    { "value": "2", "note_ja": "出所は計測開始前", "note_en": "source pre-tracking" }
+    "spend": {
+      "value": "¥36,907",
+      "note_ja": "11日間・日予算¥6,000",
+      "note_en": "11 days · ¥6,000/day"
+    },
+    "ad_cv": {
+      "value": "6",
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱3人",
+      "note_en": "<b>1 real booking</b> · 3 near-misses"
+    },
+    "cost_per_cv": {
+      "value": "¥6,151",
+      "note_ja": "費用 ÷ 広告CV",
+      "note_en": "spend ÷ ad CV"
+    },
+    "completed": {
+      "value": "2",
+      "note_ja": "出所は計測開始前",
+      "note_en": "source pre-tracking"
+    }
   },
-
   "delivery": {
     "impressions": "2,105",
-    "clicks":      "77",
-    "ctr":         "3.66%",
+    "clicks": "77",
+    "ctr": "3.66%",
     "ctr_note_ja": "目安2–3%超",
     "ctr_note_en": "above 2–3%",
-    "cpc":         "¥479"
+    "cpc": "¥479"
   },
-
   "sources_breakdown": [
-    { "tag_ja": "広告から",     "tag_en": "FROM ADS",   "name": "google / cpc", "num": "1",
-      "state": "ok",   "st_ja": "予約完了1件 確定",   "st_en": "1 completed, verified" },
-    { "tag_ja": "LPから（自然）", "tag_en": "LP ORGANIC", "name": "vip_lp",       "num": "0",
-      "state": "wait", "st_ja": "当期間なし",         "st_en": "none this period" },
-    { "tag_ja": "直接 / 計測前", "tag_en": "DIRECT / PRE", "name": "—",          "num": "1",
-      "state": "warn", "st_ja": "計測開始前(7/16)",   "st_en": "pre-tracking (7/16)" }
+    {
+      "tag_ja": "広告から",
+      "tag_en": "FROM ADS",
+      "name": "google / cpc",
+      "num": "1",
+      "state": "ok",
+      "st_ja": "予約完了1件 確定",
+      "st_en": "1 completed, verified"
+    },
+    {
+      "tag_ja": "LPから（自然）",
+      "tag_en": "LP ORGANIC",
+      "name": "vip_lp",
+      "num": "0",
+      "state": "wait",
+      "st_ja": "当期間なし",
+      "st_en": "none this period"
+    },
+    {
+      "tag_ja": "直接 / 計測前",
+      "tag_en": "DIRECT / PRE",
+      "name": "—",
+      "num": "1",
+      "state": "warn",
+      "st_ja": "計測開始前(7/16)",
+      "st_en": "pre-tracking (7/16)"
+    }
   ],
-
   "daily": [
-    { "d":"07/17", "wd":"金", "wdEn":"Fri", "impr":80,  "clk":3,  "ctr":"3.75%", "cost":"¥1,047",  "cpc":"¥349", "cv":0, "type":"weekend" },
-    { "d":"07/18", "wd":"土", "wdEn":"Sat", "impr":486, "clk":19, "ctr":"3.91%", "cost":"¥5,253",  "cpc":"¥276", "cv":1, "cvd":"🟡開始のみ", "cvdEn":"🟡start only", "type":"weekend" },
-    { "d":"07/19", "wd":"日", "wdEn":"Sun", "impr":86,  "clk":4,  "ctr":"4.65%", "cost":"¥1,120",  "cpc":"¥280", "cv":1, "cvd":"🟡開始のみ", "cvdEn":"🟡start only", "type":"weekend" },
-    { "d":"07/20", "wd":"月", "wdEn":"Mon", "impr":0,   "clk":0,  "ctr":"—",     "cost":"¥0",      "cpc":"—",    "cv":0, "type":"week", "zero":true },
-    { "d":"07/21", "wd":"火", "wdEn":"Tue", "impr":0,   "clk":0,  "ctr":"—",     "cost":"¥0",      "cpc":"—",    "cv":0, "type":"week", "zero":true },
-    { "d":"07/22", "wd":"水", "wdEn":"Wed", "impr":0,   "clk":0,  "ctr":"—",     "cost":"¥0",      "cpc":"—",    "cv":0, "type":"week", "zero":true },
-    { "d":"07/23", "wd":"木", "wdEn":"Thu", "impr":262, "clk":8,  "ctr":"3.05%", "cost":"¥3,837",  "cpc":"¥480", "cv":0, "type":"weekend" },
-    { "d":"07/24", "wd":"金", "wdEn":"Fri", "impr":437, "clk":18, "ctr":"4.12%", "cost":"¥11,990", "cpc":"¥666", "cv":4, "cvd":"✅成約1・🟡開始1・🔵途中2", "cvdEn":"✅1 booked·🟡1 start·🔵2 steps", "type":"weekend", "peak":true },
-    { "d":"07/25", "wd":"土", "wdEn":"Sat", "impr":620, "clk":22, "ctr":"3.55%", "cost":"¥11,996", "cpc":"¥545", "cv":0, "type":"weekend", "peak":true },
-    { "d":"07/26", "wd":"日", "wdEn":"Sun", "impr":134, "clk":3,  "ctr":"2.24%", "cost":"¥1,664",  "cpc":"¥555", "cv":0, "type":"weekend" },
-    { "d":"07/27", "wd":"月", "wdEn":"Mon", "impr":0,   "clk":0,  "ctr":"—",     "cost":"¥0",      "cpc":"—",    "cv":0, "type":"week", "zero":true }
+    {
+      "d": "07/17",
+      "wd": "金",
+      "wdEn": "Fri",
+      "impr": 80,
+      "clk": 3,
+      "ctr": "3.75%",
+      "cost": "¥1,047",
+      "cpc": "¥349",
+      "cv": 0,
+      "type": "weekend"
+    },
+    {
+      "d": "07/18",
+      "wd": "土",
+      "wdEn": "Sat",
+      "impr": 486,
+      "clk": 19,
+      "ctr": "3.91%",
+      "cost": "¥5,253",
+      "cpc": "¥276",
+      "cv": 1,
+      "cvd": "🟡開始のみ",
+      "cvdEn": "🟡start only",
+      "type": "weekend"
+    },
+    {
+      "d": "07/19",
+      "wd": "日",
+      "wdEn": "Sun",
+      "impr": 86,
+      "clk": 4,
+      "ctr": "4.65%",
+      "cost": "¥1,120",
+      "cpc": "¥280",
+      "cv": 1,
+      "cvd": "🟡開始のみ",
+      "cvdEn": "🟡start only",
+      "type": "weekend"
+    },
+    {
+      "d": "07/20",
+      "wd": "月",
+      "wdEn": "Mon",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "week",
+      "zero": true
+    },
+    {
+      "d": "07/21",
+      "wd": "火",
+      "wdEn": "Tue",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "week",
+      "zero": true
+    },
+    {
+      "d": "07/22",
+      "wd": "水",
+      "wdEn": "Wed",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "week",
+      "zero": true
+    },
+    {
+      "d": "07/23",
+      "wd": "木",
+      "wdEn": "Thu",
+      "impr": 262,
+      "clk": 8,
+      "ctr": "3.05%",
+      "cost": "¥3,837",
+      "cpc": "¥480",
+      "cv": 0,
+      "type": "weekend"
+    },
+    {
+      "d": "07/24",
+      "wd": "金",
+      "wdEn": "Fri",
+      "impr": 437,
+      "clk": 18,
+      "ctr": "4.12%",
+      "cost": "¥11,990",
+      "cpc": "¥666",
+      "cv": 4,
+      "cvd": "✅成約1・🟡開始1・🔵途中2",
+      "cvdEn": "✅1 booked·🟡1 start·🔵2 steps",
+      "type": "weekend",
+      "peak": true
+    },
+    {
+      "d": "07/25",
+      "wd": "土",
+      "wdEn": "Sat",
+      "impr": 620,
+      "clk": 22,
+      "ctr": "3.55%",
+      "cost": "¥11,996",
+      "cpc": "¥545",
+      "cv": 0,
+      "type": "weekend",
+      "peak": true
+    },
+    {
+      "d": "07/26",
+      "wd": "日",
+      "wdEn": "Sun",
+      "impr": 134,
+      "clk": 3,
+      "ctr": "2.24%",
+      "cost": "¥1,664",
+      "cpc": "¥555",
+      "cv": 0,
+      "type": "weekend"
+    },
+    {
+      "d": "07/27",
+      "wd": "月",
+      "wdEn": "Mon",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "week",
+      "zero": true
+    }
   ],
-
-  "daily_total": { "impr":"2,105", "clk":"77", "ctr":"3.66%", "cost":"¥36,907", "cpc":"¥479", "cv":"6" },
-
-  "targeting": [
-    { "k_ja":"地域",       "k_en":"Location", "v_ja":"大阪市（所在地ベース）", "v_en":"Osaka city" },
-    { "k_ja":"言語",       "k_en":"Language", "v_ja":"英語 + スペイン語(LatAm)", "v_en":"English + Spanish (LatAm)" },
-    { "k_ja":"狙う層",     "k_en":"Audience", "v_ja":"訪日外国人",             "v_en":"Inbound foreigners" },
-    { "k_ja":"属性ターゲット","k_en":"Segments","v_ja":"なし（酒類規制）",       "v_en":"None (alcohol policy)" }
-  ],
-
-  "next_moves": [
-    { "n":"①", "ja":"電話(phone_tap)を広告CVに追加", "en":"Add phone_tap as an ad conversion",
-      "pill_ja":"今すぐ・広告側だけ", "pill_en":"now, ads-side" },
-    { "n":"②", "ja":"予約の出所データを2〜3週ためてROI確定", "en":"Accrue 2–3 wks of source data → confirm ROI",
-      "pill_ja":"計測", "pill_en":"measure" },
-    { "n":"③", "ja":"配信は回復（週末に伸長）。週末の勢い維持を監視", "en":"Delivery recovered (weekend surge) — monitor it holds",
-      "pill_ja":"監視", "pill_en":"watch" },
-    { "n":"④", "ja":"フォーム到達→予約完了の離脱を改善（🟡の3人が落ちた場所）", "en":"Reduce form→completed drop-off (where the 3 🟡 fell)",
-      "pill_ja":"改善", "pill_en":"improve" },
-    { "n":"⑤", "ja":"画像アセット：撮り直し素材を待って入稿（現LP写真はポリシー不可）", "en":"Image assets: wait for re-shoot before uploading (current LP photos fail policy)",
-      "pill_ja":"保留", "pill_en":"hold" }
-  ],
-
-  "funnel": [
-    { "ev":"reserve_form",    "lab_ja":"フォーム到達", "lab_en":"reached form", "v":"418" },
-    { "ev":"reserve_review",  "lab_ja":"内容確認",     "lab_en":"reviewing",    "v":"3" },
-    { "ev":"reserve_success", "lab_ja":"予約完了",     "lab_en":"completed",    "v":"2" }
-  ],
-
-  "goals": [
-    { "g":"A", "ev":"reserve_success", "lab_ja":"予約完了", "lab_en":"reservation",
-      "all":"2", "ads":"2", "ads_color":"var(--good)", "pill_ja":"実質1件", "pill_en":"=1 real" },
-    { "g":"B", "ev":"phone_tap", "lab_ja":"電話", "lab_en":"phone",
-      "all":"1", "ads":"0", "ads_color":"var(--dim)", "pill_ja":"CV未連携", "pill_en":"not imported" },
-    { "g":"C", "ev":"whatsapp_tap", "lab_ja":"", "lab_en":"",
-      "all":"3", "ads":"0", "ads_color":"var(--dim)", "pill_ja":"✅ 入札対象", "pill_en":"✅ bid target" }
-  ],
-
-  "conversions": [
-    { "cls":"zero", "when":"7/18 23", "hour":true, "kw":"the pink osaka",
-      "what_ja":"予約開始", "what_en":"Booking started", "what_tag":"vip_booking_start",
-      "where":"VIP LP", "where_tag":"book.gala-resort.jp",
-      "icon":"🟡", "out_color":"var(--warn)", "out_ja":"あと一歩・離脱", "out_en":"near-miss, dropped",
-      "out_tag_ja":"TableCheckで完了せず", "out_tag_en":"never completed", "n":"1" },
-
-    { "cls":"zero", "when":"7/19 00", "hour":true, "kw":"nightclub gala resort",
-      "what_ja":"予約開始", "what_en":"Booking started", "what_tag":"vip_booking_start",
-      "where":"VIP LP", "where_tag":"book.gala-resort.jp",
-      "icon":"🟡", "out_color":"var(--warn)", "out_ja":"あと一歩・離脱", "out_en":"near-miss, dropped",
-      "out_tag_ja":"TableCheckで完了せず", "out_tag_en":"never completed", "n":"1" },
-
-    { "cls":"peak", "when":"7/24 19", "hour":true, "kw":"nightclub gala resort",
-      "kw_tag_ja":"※同一人物・下の完了と同フロー", "kw_tag_en":"※same person as completion below",
-      "what_bold":"連絡先", "what_bold_en":"Contact", "what_tag":"form_submit",
-      "what_tag_ja":"＝予約フローのサインイン", "what_tag_en":" = booking sign-in",
-      "where_ja":"TableCheck サインイン", "where_en":"TableCheck sign-in", "where_tag":"tablecheck.com/en/users/sign_in",
-      "icon":"🔵", "out_color":"var(--info)", "out_ja":"成約者の途中工程", "out_en":"booker's mid-step",
-      "out_tag_ja":"別客ではない", "out_tag_en":"not a separate guest", "n":"1" },
-
-    { "cls":"peak", "when":"7/24 19:43", "hour":false, "kw":"nightclub gala resort",
-      "kw_tag_ja":"※Google広告で確定", "kw_tag_en":"※confirmed in Google Ads",
-      "what_bold":"予約完了", "what_bold_en":"Reservation completed", "what_bold_color":"var(--good)",
-      "what_tag":"reserve_success", "what_tag_ja":"・実質1予約(二重発火)", "what_tag_en":" · 1 real booking (double-fire)",
-      "where_ja":"TableCheck 予約確定ページ", "where_en":"TableCheck confirmation page",
-      "where_tag":"tablecheck.com/reservations/FUCQX2",
-      "icon":"✅", "out_color":"var(--good)", "out_ja":"成約（6件中唯一）", "out_en":"BOOKED (the only one)",
-      "out_tag_ja":"2件目は二重計測", "out_tag_en":"2nd = double-count", "n":"2" },
-
-    { "cls":"zero", "when":"7/24 22", "hour":true, "kw":"nightclub gala resort",
-      "what_ja":"予約開始", "what_en":"Booking started", "what_tag":"vip_booking_start",
-      "where":"VIP LP", "where_tag":"book.gala-resort.jp",
-      "icon":"🟡", "out_color":"var(--warn)", "out_ja":"あと一歩・離脱", "out_en":"near-miss, dropped",
-      "out_tag_ja":"TableCheckで完了せず", "out_tag_en":"never completed", "n":"1" }
-  ],
-
-  "conversions_total": {
-    "kw_ja":"計2語（すべて指名検索）", "kw_en":"2 terms (all brand)",
-    "what_ja":"完了1・サインイン1・開始3", "what_en":"1 completed · 1 sign-in · 3 starts",
-    "out_ja":"✅1 ／ 🔵1 ／ 🟡3", "out_en":"✅1 / 🔵1 / 🟡3",
-    "n":"6"
+  "daily_total": {
+    "impr": "2,105",
+    "clk": "77",
+    "ctr": "3.66%",
+    "cost": "¥36,907",
+    "cpc": "¥479",
+    "cv": "6"
   },
-
+  "targeting": [
+    {
+      "k_ja": "地域",
+      "k_en": "Location",
+      "v_ja": "大阪市（所在地ベース）",
+      "v_en": "Osaka city"
+    },
+    {
+      "k_ja": "言語",
+      "k_en": "Language",
+      "v_ja": "英語 + スペイン語(LatAm)",
+      "v_en": "English + Spanish (LatAm)"
+    },
+    {
+      "k_ja": "狙う層",
+      "k_en": "Audience",
+      "v_ja": "訪日外国人",
+      "v_en": "Inbound foreigners"
+    },
+    {
+      "k_ja": "属性ターゲット",
+      "k_en": "Segments",
+      "v_ja": "なし（酒類規制）",
+      "v_en": "None (alcohol policy)"
+    }
+  ],
+  "next_moves": [
+    {
+      "n": "①",
+      "ja": "電話(phone_tap)を広告CVに追加",
+      "en": "Add phone_tap as an ad conversion",
+      "pill_ja": "今すぐ・広告側だけ",
+      "pill_en": "now, ads-side"
+    },
+    {
+      "n": "②",
+      "ja": "予約の出所データを2〜3週ためてROI確定",
+      "en": "Accrue 2–3 wks of source data → confirm ROI",
+      "pill_ja": "計測",
+      "pill_en": "measure"
+    },
+    {
+      "n": "③",
+      "ja": "配信は回復（週末に伸長）。週末の勢い維持を監視",
+      "en": "Delivery recovered (weekend surge) — monitor it holds",
+      "pill_ja": "監視",
+      "pill_en": "watch"
+    },
+    {
+      "n": "④",
+      "ja": "フォーム到達→予約完了の離脱を改善（🟡の3人が落ちた場所）",
+      "en": "Reduce form→completed drop-off (where the 3 🟡 fell)",
+      "pill_ja": "改善",
+      "pill_en": "improve"
+    },
+    {
+      "n": "⑤",
+      "ja": "画像アセット：撮り直し素材を待って入稿（現LP写真はポリシー不可）",
+      "en": "Image assets: wait for re-shoot before uploading (current LP photos fail policy)",
+      "pill_ja": "保留",
+      "pill_en": "hold"
+    }
+  ],
+  "funnel": [
+    {
+      "ev": "reserve_form",
+      "lab_ja": "フォーム到達",
+      "lab_en": "reached form",
+      "v": "462"
+    },
+    {
+      "ev": "reserve_review",
+      "lab_ja": "内容確認",
+      "lab_en": "reviewing",
+      "v": "3"
+    },
+    {
+      "ev": "reserve_success",
+      "lab_ja": "予約完了",
+      "lab_en": "completed",
+      "v": "2"
+    }
+  ],
+  "goals": [
+    {
+      "g": "A",
+      "ev": "reserve_success",
+      "lab_ja": "予約完了",
+      "lab_en": "reservation",
+      "all": "2",
+      "ads": "2",
+      "ads_color": "var(--good)",
+      "pill_ja": "実質1件",
+      "pill_en": "=1 real"
+    },
+    {
+      "g": "B",
+      "ev": "phone_tap",
+      "lab_ja": "電話",
+      "lab_en": "phone",
+      "all": "1",
+      "ads": "0",
+      "ads_color": "var(--dim)",
+      "pill_ja": "CV未連携",
+      "pill_en": "not imported"
+    },
+    {
+      "g": "C",
+      "ev": "whatsapp_tap",
+      "lab_ja": "",
+      "lab_en": "",
+      "all": "4",
+      "ads": "0",
+      "ads_color": "var(--dim)",
+      "pill_ja": "✅ 入札対象",
+      "pill_en": "✅ bid target"
+    }
+  ],
+  "conversions": [
+    {
+      "cls": "zero",
+      "when": "7/18 23",
+      "hour": true,
+      "kw": "the pink osaka",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "where": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "icon": "🟡",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed",
+      "n": "1"
+    },
+    {
+      "cls": "zero",
+      "when": "7/19 00",
+      "hour": true,
+      "kw": "nightclub gala resort",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "where": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "icon": "🟡",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed",
+      "n": "1"
+    },
+    {
+      "cls": "peak",
+      "when": "7/24 19",
+      "hour": true,
+      "kw": "nightclub gala resort",
+      "kw_tag_ja": "※同一人物・下の完了と同フロー",
+      "kw_tag_en": "※same person as completion below",
+      "what_bold": "連絡先",
+      "what_bold_en": "Contact",
+      "what_tag": "form_submit",
+      "what_tag_ja": "＝予約フローのサインイン",
+      "what_tag_en": " = booking sign-in",
+      "where_ja": "TableCheck サインイン",
+      "where_en": "TableCheck sign-in",
+      "where_tag": "tablecheck.com/en/users/sign_in",
+      "icon": "🔵",
+      "out_color": "var(--info)",
+      "out_ja": "成約者の途中工程",
+      "out_en": "booker's mid-step",
+      "out_tag_ja": "別客ではない",
+      "out_tag_en": "not a separate guest",
+      "n": "1"
+    },
+    {
+      "cls": "peak",
+      "when": "7/24 19:43",
+      "hour": false,
+      "kw": "nightclub gala resort",
+      "kw_tag_ja": "※Google広告で確定",
+      "kw_tag_en": "※confirmed in Google Ads",
+      "what_bold": "予約完了",
+      "what_bold_en": "Reservation completed",
+      "what_bold_color": "var(--good)",
+      "what_tag": "reserve_success",
+      "what_tag_ja": "・実質1予約(二重発火)",
+      "what_tag_en": " · 1 real booking (double-fire)",
+      "where_ja": "TableCheck 予約確定ページ",
+      "where_en": "TableCheck confirmation page",
+      "where_tag": "tablecheck.com/reservations/FUCQX2",
+      "icon": "✅",
+      "out_color": "var(--good)",
+      "out_ja": "成約（6件中唯一）",
+      "out_en": "BOOKED (the only one)",
+      "out_tag_ja": "2件目は二重計測",
+      "out_tag_en": "2nd = double-count",
+      "n": "2"
+    },
+    {
+      "cls": "zero",
+      "when": "7/24 22",
+      "hour": true,
+      "kw": "nightclub gala resort",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "where": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "icon": "🟡",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed",
+      "n": "1"
+    }
+  ],
+  "conversions_total": {
+    "kw_ja": "計2語（すべて指名検索）",
+    "kw_en": "2 terms (all brand)",
+    "what_ja": "完了1・サインイン1・開始3",
+    "what_en": "1 completed · 1 sign-in · 3 starts",
+    "out_ja": "✅1 ／ 🔵1 ／ 🟡3",
+    "out_en": "✅1 / 🔵1 / 🟡3",
+    "n": "6"
+  },
   "cv_inside": [
-    { "icon":"✅", "bold":true, "t_ja":"成約 1件", "t_en":"1 BOOKED", "tag":"reserve_success · 7/24 19:43",
-      "v_ja":"Gabat Mark様・Weekend VIPテーブル3名・予約番号FUCQX2・「nightclub gala resort」検索",
-      "v_en":"Gabat Mark · Weekend VIP table ×3 · FUCQX2 · via \"nightclub gala resort\"" },
-    { "icon":"⚪", "t_ja":"残り① reserve_success の2発目", "t_en":"#1 of the other 5: the 2nd reserve_success fire", "tag":"7/24 19:43",
-      "v_ja":"上と同じ予約の二重計測。新しい客ではない",
-      "v_en":"double-count of the same booking — not a new guest" },
-    { "icon":"🔵", "t_ja":"残り② form_submit（連絡先）", "t_en":"#2: form_submit (contact)", "tag_ja":"7/24 19時 · TableCheckサインイン", "tag_en":"7/24 19h · TableCheck sign-in",
-      "v_ja":"成約者本人の途中工程。問い合わせでも別客でもない",
-      "v_en":"the booker's own sign-in step — not an inquiry, not a separate guest" },
-    { "icon":"🟡", "t_ja":"残り③ 予約開始→離脱", "t_en":"#3: booking-start → dropped", "tag_ja":"7/18 23時（土曜深夜）", "tag_en":"7/18 23h (late Sat)",
-      "v_ja":"「the pink osaka」で来訪→VIP LPで予約ボタンを押した→TableCheckで完了せず（サインイン・決済の記録なし）",
-      "v_en":"came via \"the pink osaka\" → tapped booking on VIP LP → never completed (no sign-in / payment recorded)" },
-    { "icon":"🟡", "t_ja":"残り④ 予約開始→離脱", "t_en":"#4: booking-start → dropped", "tag_ja":"7/19 00時（土曜深夜）", "tag_en":"7/19 00h (late Sat)",
-      "v_ja":"「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
-      "v_en":"via \"nightclub gala resort\" → reached booking button → never completed" },
-    { "icon":"🟡", "t_ja":"残り⑤ 予約開始→離脱", "t_en":"#5: booking-start → dropped", "tag_ja":"7/24 22時（金曜夜・成約の約2時間後）", "tag_en":"7/24 22h (Fri, ~2h after the booking)",
-      "v_ja":"「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
-      "v_en":"via \"nightclub gala resort\" → reached booking button → never completed" }
+    {
+      "icon": "✅",
+      "bold": true,
+      "t_ja": "成約 1件",
+      "t_en": "1 BOOKED",
+      "tag": "reserve_success · 7/24 19:43",
+      "v_ja": "Gabat Mark様・Weekend VIPテーブル3名・予約番号FUCQX2・「nightclub gala resort」検索",
+      "v_en": "Gabat Mark · Weekend VIP table ×3 · FUCQX2 · via \"nightclub gala resort\""
+    },
+    {
+      "icon": "⚪",
+      "t_ja": "残り① reserve_success の2発目",
+      "t_en": "#1 of the other 5: the 2nd reserve_success fire",
+      "tag": "7/24 19:43",
+      "v_ja": "上と同じ予約の二重計測。新しい客ではない",
+      "v_en": "double-count of the same booking — not a new guest"
+    },
+    {
+      "icon": "🔵",
+      "t_ja": "残り② form_submit（連絡先）",
+      "t_en": "#2: form_submit (contact)",
+      "tag_ja": "7/24 19時 · TableCheckサインイン",
+      "tag_en": "7/24 19h · TableCheck sign-in",
+      "v_ja": "成約者本人の途中工程。問い合わせでも別客でもない",
+      "v_en": "the booker's own sign-in step — not an inquiry, not a separate guest"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "残り③ 予約開始→離脱",
+      "t_en": "#3: booking-start → dropped",
+      "tag_ja": "7/18 23時（土曜深夜）",
+      "tag_en": "7/18 23h (late Sat)",
+      "v_ja": "「the pink osaka」で来訪→VIP LPで予約ボタンを押した→TableCheckで完了せず（サインイン・決済の記録なし）",
+      "v_en": "came via \"the pink osaka\" → tapped booking on VIP LP → never completed (no sign-in / payment recorded)"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "残り④ 予約開始→離脱",
+      "t_en": "#4: booking-start → dropped",
+      "tag_ja": "7/19 00時（土曜深夜）",
+      "tag_en": "7/19 00h (late Sat)",
+      "v_ja": "「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"nightclub gala resort\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "残り⑤ 予約開始→離脱",
+      "t_en": "#5: booking-start → dropped",
+      "tag_ja": "7/24 22時（金曜夜・成約の約2時間後）",
+      "tag_en": "7/24 22h (Fri, ~2h after the booking)",
+      "v_ja": "「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"nightclub gala resort\" → reached booking button → never completed"
+    }
   ],
-
   "keyword_strategy": [
-    { "k_ja":"キーワード",       "k_en":"Keywords",            "v_ja":"指名3 / 英語23 / 西13（フレーズ一致）", "v_en":"3 brand / 23 EN / 13 ES" },
-    { "k_ja":"競合コンクエスト", "k_en":"Competitor conquest", "v_ja":"維持（2–3週後に評価）",                "v_en":"kept" },
-    { "k_ja":"除外キーワード",   "k_en":"Negatives",           "v_ja":"約40語",                              "v_en":"~40" }
+    {
+      "k_ja": "キーワード",
+      "k_en": "Keywords",
+      "v_ja": "指名3 / 英語23 / 西13（フレーズ一致）",
+      "v_en": "3 brand / 23 EN / 13 ES"
+    },
+    {
+      "k_ja": "競合コンクエスト",
+      "k_en": "Competitor conquest",
+      "v_ja": "維持（2–3週後に評価）",
+      "v_en": "kept"
+    },
+    {
+      "k_ja": "除外キーワード",
+      "k_en": "Negatives",
+      "v_ja": "約40語",
+      "v_en": "~40"
+    }
   ],
-
   "cv_queries": [
-    { "term":"nightclub gala resort", "n":"2", "pill_ja":"指名", "pill_en":"brand" },
-    { "term":"the pink osaka",        "n":"1", "pill_ja":"指名", "pill_en":"brand" }
+    {
+      "term": "nightclub gala resort",
+      "n": "2",
+      "pill_ja": "指名",
+      "pill_en": "brand"
+    },
+    {
+      "term": "the pink osaka",
+      "n": "1",
+      "pill_ja": "指名",
+      "pill_en": "brand"
+    }
   ],
-
   "search_terms": {
     "range_ja": "クリックが付いた語・7/22–27",
     "range_en": "terms with clicks · 7/22–27",
     "rows": [
-      { "cls":"peak", "term":"nightclub gala resort", "bold":true, "tag_ja":"指名／ブランド",   "tag_en":"brand",
-        "clicks":"3", "cost":"¥803",   "cv":"1 ✅", "cv_color":"var(--good)" },
-      { "term":"club maria osaka",              "tag_ja":"他店名",       "tag_en":"rival venue",
-        "clicks":"2", "cost":"¥974",   "cv":"0" },
-      { "term":"tenjin matsuri osaka",          "tag_ja":"無関係（祭り）", "tag_en":"unrelated (festival)",
-        "clicks":"2", "cost":"¥1,438", "cv":"0" },
-      { "term":"things to do in osaka at night","tag_ja":"発見系",       "tag_en":"discovery",
-        "clicks":"1", "cost":"¥872",   "cv":"0" },
-      { "term":"giraffe night club osaka",      "tag_ja":"他店名",       "tag_en":"rival venue",
-        "clicks":"1", "cost":"¥853",   "cv":"0" },
-      { "term":"joule club osaka",              "tag_ja":"他店名",       "tag_en":"rival venue",
-        "clicks":"1", "cost":"¥521",   "cv":"0" },
-      { "term":"owl osaka",                     "tag_ja":"他店名",       "tag_en":"rival venue",
-        "clicks":"1", "cost":"¥747",   "cv":"0" }
+      {
+        "cls": "peak",
+        "term": "nightclub gala resort",
+        "bold": true,
+        "tag_ja": "指名／ブランド",
+        "tag_en": "brand",
+        "clicks": "3",
+        "cost": "¥803",
+        "cv": "1 ✅",
+        "cv_color": "var(--good)"
+      },
+      {
+        "term": "club maria osaka",
+        "tag_ja": "他店名",
+        "tag_en": "rival venue",
+        "clicks": "2",
+        "cost": "¥974",
+        "cv": "0"
+      },
+      {
+        "term": "tenjin matsuri osaka",
+        "tag_ja": "無関係（祭り）",
+        "tag_en": "unrelated (festival)",
+        "clicks": "2",
+        "cost": "¥1,438",
+        "cv": "0"
+      },
+      {
+        "term": "things to do in osaka at night",
+        "tag_ja": "発見系",
+        "tag_en": "discovery",
+        "clicks": "1",
+        "cost": "¥872",
+        "cv": "0"
+      },
+      {
+        "term": "giraffe night club osaka",
+        "tag_ja": "他店名",
+        "tag_en": "rival venue",
+        "clicks": "1",
+        "cost": "¥853",
+        "cv": "0"
+      },
+      {
+        "term": "joule club osaka",
+        "tag_ja": "他店名",
+        "tag_en": "rival venue",
+        "clicks": "1",
+        "cost": "¥521",
+        "cv": "0"
+      },
+      {
+        "term": "owl osaka",
+        "tag_ja": "他店名",
+        "tag_en": "rival venue",
+        "clicks": "1",
+        "cost": "¥747",
+        "cv": "0"
+      }
     ]
   },
-
   "notes": {
     "money": {
       "kind": "warn",
