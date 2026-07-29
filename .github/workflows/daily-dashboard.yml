@@ -39,29 +39,18 @@ jobs:
           GOOGLE_ADS_CUSTOMER_ID:     '2138197168'
         run: python scripts/build_data.py
 
-      - name: Commit
+      - name: Commit and push
         run: |
-          # Author must be the Vercel-verified identity of the repo owner,
-          # otherwise Hobby refuses to build the commit.
           git config user.name  "gala-dashboard-bot"
-          git config user.email "${{ secrets.VERCEL_GIT_EMAIL }}"
+          git config user.email "mashtakeec@gmail.com"
           git add data.json
           if git diff --staged --quiet; then
             echo "no change"
           else
+            git pull --rebase origin main
             git commit -m "data: $(date -u +%F)"
             git push
           fi
-
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN:      ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID:     ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          npx --yes vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN"
-          npx --yes vercel@latest build --prod --token="$VERCEL_TOKEN"
-          npx --yes vercel@latest deploy --prebuilt --prod --token="$VERCEL_TOKEN"
 
       - name: Report source failures
         run: |
