@@ -1,0 +1,73 @@
+name: daily-dashboard-update
+
+on:
+  schedule:
+    # 11:00 UTC = 20:00 JST, every day.
+    # GitHub may delay scheduled runs under load — the job is idempotent,
+    # so a late run is harmless.
+    - cron: '0 11 * * *'
+  workflow_dispatch:        # manual re-run / recovery
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-dashboard
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch data and rebuild data.json
+        env:
+          GOOGLE_SA_KEY:              ${{ secrets.GOOGLE_SA_KEY }}
+          GA4_PROPERTY_ID:            '383604323'
+          CAMPAIGN_START:             '2026-07-17'
+          # Present only once the MCC / developer token exists.
+          # build_data.py skips the Ads fetch entirely while it is empty.
+          GOOGLE_ADS_DEVELOPER_TOKEN: ${{ secrets.GOOGLE_ADS_DEVELOPER_TOKEN }}
+          GOOGLE_ADS_CUSTOMER_ID:     '2138197168'
+        run: python scripts/build_data.py
+
+      - name: Commit
+        run: |
+          # Author must be the Vercel-verified identity of the repo owner,
+          # otherwise Hobby refuses to build the commit.
+          git config user.name  "gala-dashboard-bot"
+          git config user.email "${{ secrets.VERCEL_GIT_EMAIL }}"
+          git add data.json
+          if git diff --staged --quiet; then
+            echo "no change"
+          else
+            git commit -m "data: $(date -u +%F)"
+            git push
+          fi
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN:      ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID:     ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx --yes vercel@latest pull --yes --environment=production --token="$VERCEL_TOKEN"
+          npx --yes vercel@latest build --prod --token="$VERCEL_TOKEN"
+          npx --yes vercel@latest deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+      - name: Report source failures
+        run: |
+          STATUS=$(python -c "import json;print(json.load(open('data.json'))['meta']['run_status'])")
+          echo "run_status=$STATUS" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$STATUS" != "ok" ]; then
+            echo "::warning::Dashboard published with run_status=$STATUS — a data source failed. The page shows a stale-data banner."
+            exit 1
+          fi
