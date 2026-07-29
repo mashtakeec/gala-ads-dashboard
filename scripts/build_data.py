@@ -63,7 +63,8 @@ def apply_ga4(data, ga4):
             row["ads"] = str(ads.get(name, 0))
             # Grey out a zero, colour a non-zero. Same rule the page used
             # when a human maintained it.
-            row["ads_color"] = "var(--good)" if ads.get(name, 0) > 0 else "var(--dim)"
+            row["ads_color"] = "var(--good)" if ads.get(name,
+                                                        0) > 0 else "var(--dim)"
 
 
 def fmt_period(start, end):
@@ -115,20 +116,32 @@ def main():
         # as_of is whenever a human last edited them — not today.
         set_source(
             data, "google_ads", "manual",
-            data.get("meta", {}).get("sources", {}).get("google_ads", {}).get("as_of"),
+            data.get("meta", {}).get("sources", {}).get(
+                "google_ads", {}).get("as_of"),
             note="hand-entered; awaiting Google Ads developer token",
         )
         print("[ads] skipped — no developer token yet, leaving manual figures")
 
     # ---------- meta ----------
     meta = data.setdefault("meta", {})
-    meta["generated_at"] = now.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    meta["generated_at"] = now.astimezone(
+        timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     meta["generated_by"] = "github-actions"
-    meta["run_status"] = "failed" if len(failures) >= 2 else ("partial" if failures else "ok")
+    meta["run_status"] = "failed" if len(
+        failures) >= 2 else ("partial" if failures else "ok")
 
     hdr = data.setdefault("header", {})
     hdr["updated"] = now.strftime("%Y/%m/%d %H:%M")
-    if "ga4" not in failures:
+
+    # The header period is a claim about ALL the figures on the page, so it may
+    # only advance when every source has actually reached end_date. While the
+    # Ads numbers are hand-entered ('manual'), advancing it would assert
+    # coverage the ad figures do not have — the page would silently claim a
+    # period its own KPIs stop short of.
+    all_current = not failures and all(
+        s.get("status") == "ok" for s in meta.get("sources", {}).values()
+    )
+    if all_current:
         hdr["period"] = fmt_period(CAMPAIGN_START, end_date)
 
     save(data)
