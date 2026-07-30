@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-30T05:51:00Z",
+    "generated_at": "2026-07-30T06:47:51Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
@@ -20,14 +20,14 @@
   },
   "header": {
     "period": "2026/07/17 – 07/29",
-    "updated": "2026/07/30 14:51",
+    "updated": "2026/07/30 15:47",
     "by": "MASHTAKE"
   },
   "kpi": {
     "spend": {
       "value": "¥54,877",
-      "note_ja": "13日間・日予算¥6,000",
-      "note_en": "13 days · ¥6,000/day"
+      "note_ja": "13日間・日予算¥9,000",
+      "note_en": "13 days · ¥9,000/day"
     },
     "ad_cv": {
       "value": "6",
