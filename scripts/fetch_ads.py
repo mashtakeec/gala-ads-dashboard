@@ -68,6 +68,24 @@ def fetch(start_date=None, end_date=None, customer_id=None):
     client = _client()
     svc = client.get_service("GoogleAdsService")
 
+    # ---- 0. daily budget ----
+    # Read the live budget rather than hardcoding it. Budgets get changed in the
+    # Ads UI and a stale literal here would quietly misreport the plan.
+    # Shared budgets are counted once, hence the dict keyed by resource name.
+    budget_q = """
+        SELECT campaign.name,
+               campaign_budget.resource_name,
+               campaign_budget.amount_micros
+        FROM campaign
+        WHERE campaign.status = 'ENABLED'
+    """
+    budgets = {}
+    for row in svc.search(customer_id=customer_id, query=budget_q):
+        budgets[row.campaign_budget.resource_name] = _yen(
+            row.campaign_budget.amount_micros
+        )
+    daily_budget = sum(budgets.values()) if budgets else None
+
     # ---- 1. daily performance ----
     daily_q = f"""
         SELECT segments.date,
@@ -161,12 +179,21 @@ def fetch(start_date=None, end_date=None, customer_id=None):
     cpc = _fmt_yen(round(tot_cost / tot_clk)) if tot_clk else "—"
     days = (d1 - d0).days + 1
 
+    if daily_budget:
+        note_ja = f"{days}日間・日予算{_fmt_yen(daily_budget)}"
+        note_en = f"{days} days · {_fmt_yen(daily_budget)}/day"
+    else:
+        # No enabled campaign to read a budget from — say so rather than
+        # inventing a figure.
+        note_ja = f"{days}日間"
+        note_en = f"{days} days"
+
     return {
         "kpi": {
             "spend": {
                 "value": _fmt_yen(tot_cost),
-                "note_ja": f"{days}日間・日予算¥6,000",
-                "note_en": f"{days} days · ¥6,000/day",
+                "note_ja": note_ja,
+                "note_en": note_en,
             },
             "ad_cv": {"value": str(tot_cv)},
             "cost_per_cv": {
