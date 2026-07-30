@@ -63,8 +63,49 @@ def apply_ga4(data, ga4):
             row["ads"] = str(ads.get(name, 0))
             # Grey out a zero, colour a non-zero. Same rule the page used
             # when a human maintained it.
-            row["ads_color"] = "var(--good)" if ads.get(name,
-                                                        0) > 0 else "var(--dim)"
+            row["ads_color"] = "var(--good)" if ads.get(name, 0) > 0 else "var(--dim)"
+
+
+def apply_ads(data, ads):
+    """
+    Map Google Ads figures onto the page.
+
+    Merges field-by-field so human-authored copy survives:
+      - kpi.*.note_* is only replaced when the fetch supplies one
+      - kpi.completed is left alone (that number is a booking count, not an
+        Ads metric)
+      - daily rows keep their hand-written cvd / cvdEn annotations, matched
+        by date. Those annotations are analysis ("✅成約1・🟡開始1"), not data.
+    """
+    # --- KPIs: update values, keep any note the fetch didn't supply ---
+    for key, incoming in ads["kpi"].items():
+        target = data.setdefault("kpi", {}).setdefault(key, {})
+        for k, v in incoming.items():
+            target[k] = v
+
+    data["delivery"] = {**data.get("delivery", {}), **ads["delivery"]}
+
+    # --- daily: preserve human annotations per date ---
+    old_notes = {}
+    for r in data.get("daily", []):
+        # Old rows may predate the 'date' field; fall back to the display date.
+        k = r.get("date") or r.get("d")
+        if r.get("cvd") or r.get("cvdEn"):
+            old_notes[k] = (r.get("cvd"), r.get("cvdEn"))
+
+    for r in ads["daily"]:
+        note = old_notes.get(r["date"]) or old_notes.get(r["d"])
+        if note:
+            if note[0]:
+                r["cvd"] = note[0]
+            if note[1]:
+                r["cvdEn"] = note[1]
+    data["daily"] = ads["daily"]
+    data["daily_total"] = ads["daily_total"]
+
+    # --- search terms: replace rows, keep the section's label/range copy ---
+    st = data.setdefault("search_terms", {})
+    st["rows"] = ads["search_terms_rows"]
 
 
 def fmt_period(start, end):
@@ -102,10 +143,10 @@ def main():
         try:
             from fetch_ads import fetch as fetch_ads
 
-            ads = fetch_ads(end_date=end_date)
-            data.update(ads)  # fetch_ads returns the sections it owns
+            ads = fetch_ads(start_date=CAMPAIGN_START, end_date=end_date)
+            apply_ads(data, ads)
             set_source(data, "google_ads", "ok", end_date)
-            print("[ads] ok")
+            print(f"[ads] ok — spend={ads['kpi']['spend']['value']} cv={ads['kpi']['ad_cv']['value']}")
         except Exception:
             failures.append("google_ads")
             set_source(data, "google_ads", "failed", None)
@@ -116,32 +157,31 @@ def main():
         # as_of is whenever a human last edited them — not today.
         set_source(
             data, "google_ads", "manual",
-            data.get("meta", {}).get("sources", {}).get(
-                "google_ads", {}).get("as_of"),
+            data.get("meta", {}).get("sources", {}).get("google_ads", {}).get("as_of"),
             note="hand-entered; awaiting Google Ads developer token",
         )
         print("[ads] skipped — no developer token yet, leaving manual figures")
 
     # ---------- meta ----------
     meta = data.setdefault("meta", {})
-    meta["generated_at"] = now.astimezone(
-        timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    meta["generated_at"] = now.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     meta["generated_by"] = "github-actions"
-    meta["run_status"] = "failed" if len(
-        failures) >= 2 else ("partial" if failures else "ok")
+    meta["run_status"] = "failed" if len(failures) >= 2 else ("partial" if failures else "ok")
 
     hdr = data.setdefault("header", {})
     hdr["updated"] = now.strftime("%Y/%m/%d %H:%M")
 
-    # The header period is a claim about ALL the figures on the page, so it may
-    # only advance when every source has actually reached end_date. While the
-    # Ads numbers are hand-entered ('manual'), advancing it would assert
-    # coverage the ad figures do not have — the page would silently claim a
-    # period its own KPIs stop short of.
-    all_current = not failures and all(
-        s.get("status") == "ok" for s in meta.get("sources", {}).values()
-    )
-    if all_current:
+    # The header period is a claim about the figures shown on the page, so it
+    # may only advance once the sources those figures come from have actually
+    # reached end_date. If Ads is still hand-entered, advancing would assert
+    # coverage the KPIs do not have.
+    #
+    # Only these two feed displayed numbers. TableCheck is deliberately
+    # excluded: it is a reservation cross-check, and it stays 'manual' until
+    # Booking v1 access arrives — gating on it would freeze the period forever.
+    PERIOD_SOURCES = ("ga4", "google_ads")
+    srcs = meta.get("sources", {})
+    if all(srcs.get(n, {}).get("status") == "ok" for n in PERIOD_SOURCES):
         hdr["period"] = fmt_period(CAMPAIGN_START, end_date)
 
     save(data)
