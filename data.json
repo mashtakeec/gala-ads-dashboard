@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-07-30T12:48:04Z",
+    "generated_at": "2026-07-31T03:31:10Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-07-29"
+        "as_of": "2026-07-30"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-07-29"
+        "as_of": "2026-07-30"
       },
       "tablecheck": {
         "status": "manual",
@@ -19,23 +19,23 @@
     }
   },
   "header": {
-    "period": "2026/07/17 – 07/29",
-    "updated": "2026/07/30 21:48",
+    "period": "2026/07/17 – 07/30",
+    "updated": "2026/07/31 12:31",
     "by": "MASHTAKE"
   },
   "kpi": {
     "spend": {
-      "value": "¥54,877",
-      "note_ja": "13日間・日予算¥9,000",
-      "note_en": "13 days · ¥9,000/day"
+      "value": "¥64,335",
+      "note_ja": "14日間・日予算¥9,000",
+      "note_en": "14 days · ¥9,000/day"
     },
     "ad_cv": {
-      "value": "6",
+      "value": "9",
       "note_ja": "うち<b>実予約1件</b>・惜しい離脱3人",
       "note_en": "<b>1 real booking</b> · 3 near-misses"
     },
     "cost_per_cv": {
-      "value": "¥9,146",
+      "value": "¥7,148",
       "note_ja": "費用 ÷ 広告CV",
       "note_en": "spend ÷ ad CV"
     },
@@ -46,12 +46,12 @@
     }
   },
   "delivery": {
-    "impressions": "2,752",
-    "clicks": "100",
-    "ctr": "3.63%",
+    "impressions": "2,917",
+    "clicks": "116",
+    "ctr": "3.98%",
     "ctr_note_ja": "目安2–3%超",
     "ctr_note_en": "above 2–3%",
-    "cpc": "¥549"
+    "cpc": "¥555"
   },
   "sources_breakdown": [
     {
@@ -263,15 +263,28 @@
       "cpc": "¥648",
       "cv": 0,
       "type": "week"
+    },
+    {
+      "d": "07/30",
+      "date": "2026-07-30",
+      "wd": "木",
+      "wdEn": "Thu",
+      "impr": 165,
+      "clk": 16,
+      "ctr": "9.70%",
+      "cost": "¥9,458",
+      "cpc": "¥591",
+      "cv": 3,
+      "type": "weekend"
     }
   ],
   "daily_total": {
-    "impr": "2,752",
-    "clk": "100",
-    "ctr": "3.63%",
-    "cost": "¥54,877",
-    "cpc": "¥549",
-    "cv": "6"
+    "impr": "2,917",
+    "clk": "116",
+    "ctr": "3.98%",
+    "cost": "¥64,335",
+    "cpc": "¥555",
+    "cv": "9"
   },
   "targeting": [
     {
@@ -341,7 +354,7 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "472"
+      "v": "504"
     },
     {
       "ev": "reserve_review",
@@ -597,6 +610,21 @@
     "range_en": "terms with clicks · 7/22–27",
     "rows": [
       {
+        "term": "nightclub gala resort クチコミ",
+        "clicks": "5",
+        "cost": "¥3,000",
+        "cv": "0"
+      },
+      {
+        "term": "gala resort",
+        "clicks": "4",
+        "cost": "¥2,038",
+        "cv": "3 ✅",
+        "cls": "peak",
+        "bold": true,
+        "cv_color": "var(--good)"
+      },
+      {
         "term": "nightclub gala resort",
         "clicks": "4",
         "cost": "¥1,072",
@@ -604,12 +632,6 @@
         "cls": "peak",
         "bold": true,
         "cv_color": "var(--good)"
-      },
-      {
-        "term": "nightclub gala resort クチコミ",
-        "clicks": "4",
-        "cost": "¥2,126",
-        "cv": "0"
       },
       {
         "term": "club maria osaka",
@@ -645,15 +667,15 @@
         "cv": "0"
       },
       {
-        "term": "gala resort",
-        "clicks": "2",
-        "cost": "¥984",
-        "cv": "0"
-      },
-      {
         "term": "bambi nightclub osaka",
         "clicks": "1",
         "cost": "¥1,104",
+        "cv": "0"
+      },
+      {
+        "term": "belgian beer weekend osaka",
+        "clicks": "1",
+        "cost": "¥707",
         "cv": "0"
       },
       {
@@ -735,6 +757,12 @@
         "cv": "0"
       },
       {
+        "term": "osaka stripclub",
+        "clicks": "1",
+        "cost": "¥429",
+        "cv": "0"
+      },
+      {
         "term": "owl osaka",
         "clicks": "1",
         "cost": "¥747",
@@ -777,6 +805,12 @@
         "cv": "0"
       },
       {
+        "term": "大阪 club",
+        "clicks": "1",
+        "cost": "¥524",
+        "cv": "0"
+      },
+      {
         "term": "circus osaka",
         "clicks": "1",
         "cost": "¥557",
@@ -813,9 +847,21 @@
         "cv": "0"
       },
       {
+        "term": "gala osaka club",
+        "clicks": "1",
+        "cost": "¥463",
+        "cv": "0"
+      },
+      {
         "term": "giraffe osaka",
         "clicks": "1",
         "cost": "¥704",
+        "cv": "0"
+      },
+      {
+        "term": "ガラ リゾート 大阪",
+        "clicks": "1",
+        "cost": "¥693",
         "cv": "0"
       }
     ]
