@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-31T03:31:10Z",
+    "generated_at": "2026-07-31T04:29:43Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
@@ -15,12 +15,16 @@
       "tablecheck": {
         "status": "manual",
         "as_of": "2026-07-27"
+      },
+      "cv_detail": {
+        "status": "ok",
+        "as_of": "2026-07-30"
       }
     }
   },
   "header": {
     "period": "2026/07/17 – 07/30",
-    "updated": "2026/07/31 12:31",
+    "updated": "2026/07/31 13:29",
     "by": "MASHTAKE"
   },
   "kpi": {
@@ -31,8 +35,8 @@
     },
     "ad_cv": {
       "value": "9",
-      "note_ja": "うち<b>実予約1件</b>・惜しい離脱3人",
-      "note_en": "<b>1 real booking</b> · 3 near-misses"
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱7人",
+      "note_en": "<b>1 real booking(s)</b> · 7 near-miss(es)"
     },
     "cost_per_cv": {
       "value": "¥7,148",
@@ -406,115 +410,191 @@
   ],
   "conversions": [
     {
-      "cls": "zero",
       "when": "7/18 23",
       "hour": true,
+      "date": "2026-07-18",
+      "event": "vip_booking_start",
       "kw": "the pink osaka",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
       "what_ja": "予約開始",
       "what_en": "Booking started",
       "what_tag": "vip_booking_start",
-      "where": "VIP LP",
-      "where_tag": "book.gala-resort.jp",
-      "icon": "🟡",
       "out_color": "var(--warn)",
       "out_ja": "あと一歩・離脱",
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
-      "out_tag_en": "never completed",
-      "n": "1"
+      "out_tag_en": "never completed"
     },
     {
-      "cls": "zero",
       "when": "7/19 00",
       "hour": true,
+      "date": "2026-07-19",
+      "event": "vip_booking_start",
       "kw": "nightclub gala resort",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
       "what_ja": "予約開始",
       "what_en": "Booking started",
       "what_tag": "vip_booking_start",
-      "where": "VIP LP",
-      "where_tag": "book.gala-resort.jp",
-      "icon": "🟡",
       "out_color": "var(--warn)",
       "out_ja": "あと一歩・離脱",
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
-      "out_tag_en": "never completed",
-      "n": "1"
+      "out_tag_en": "never completed"
     },
     {
+      "when": "7/24 19:43",
+      "hour": false,
+      "date": "2026-07-24",
+      "event": "reserve_success",
+      "kw": "nightclub gala resort",
+      "where_ja": "TableCheck 予約確定ページ",
+      "where_en": "TableCheck confirmation page",
+      "where_tag": "www.tablecheck.com/reservations/CODE",
+      "n": "2",
+      "kw_tag_ja": "※Google広告で確定",
+      "kw_tag_en": "※confirmed in Google Ads",
       "cls": "peak",
+      "icon": "✅",
+      "what_bold": "予約完了",
+      "what_bold_en": "Reservation completed",
+      "what_bold_color": "var(--good)",
+      "what_tag": "reserve_success",
+      "out_color": "var(--good)",
+      "out_ja": "成約",
+      "out_en": "BOOKED",
+      "what_tag_ja": "・実質1予約(2回発火)",
+      "what_tag_en": " · 1 real booking (2 fires)",
+      "out_tag_ja": "2件目以降は二重計測",
+      "out_tag_en": "extra fires = double-count"
+    },
+    {
       "when": "7/24 19",
       "hour": true,
+      "date": "2026-07-24",
+      "event": "form_submit",
       "kw": "nightclub gala resort",
+      "where_ja": "TableCheck サインイン",
+      "where_en": "TableCheck sign-in",
+      "where_tag": "www.tablecheck.com/en/users/sign_in",
+      "n": "1",
       "kw_tag_ja": "※同一人物・下の完了と同フロー",
       "kw_tag_en": "※same person as completion below",
+      "cls": "peak",
+      "icon": "🔵",
       "what_bold": "連絡先",
       "what_bold_en": "Contact",
       "what_tag": "form_submit",
       "what_tag_ja": "＝予約フローのサインイン",
       "what_tag_en": " = booking sign-in",
-      "where_ja": "TableCheck サインイン",
-      "where_en": "TableCheck sign-in",
-      "where_tag": "tablecheck.com/en/users/sign_in",
-      "icon": "🔵",
       "out_color": "var(--info)",
       "out_ja": "成約者の途中工程",
       "out_en": "booker's mid-step",
       "out_tag_ja": "別客ではない",
-      "out_tag_en": "not a separate guest",
-      "n": "1"
+      "out_tag_en": "not a separate guest"
     },
     {
-      "cls": "peak",
-      "when": "7/24 19:43",
-      "hour": false,
-      "kw": "nightclub gala resort",
-      "kw_tag_ja": "※Google広告で確定",
-      "kw_tag_en": "※confirmed in Google Ads",
-      "what_bold": "予約完了",
-      "what_bold_en": "Reservation completed",
-      "what_bold_color": "var(--good)",
-      "what_tag": "reserve_success",
-      "what_tag_ja": "・実質1予約(二重発火)",
-      "what_tag_en": " · 1 real booking (double-fire)",
-      "where_ja": "TableCheck 予約確定ページ",
-      "where_en": "TableCheck confirmation page",
-      "where_tag": "tablecheck.com/reservations/FUCQX2",
-      "icon": "✅",
-      "out_color": "var(--good)",
-      "out_ja": "成約（6件中唯一）",
-      "out_en": "BOOKED (the only one)",
-      "out_tag_ja": "2件目は二重計測",
-      "out_tag_en": "2nd = double-count",
-      "n": "2"
-    },
-    {
-      "cls": "zero",
       "when": "7/24 22",
       "hour": true,
+      "date": "2026-07-24",
+      "event": "vip_booking_start",
       "kw": "nightclub gala resort",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
       "what_ja": "予約開始",
       "what_en": "Booking started",
       "what_tag": "vip_booking_start",
-      "where": "VIP LP",
-      "where_tag": "book.gala-resort.jp",
-      "icon": "🟡",
       "out_color": "var(--warn)",
       "out_ja": "あと一歩・離脱",
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
-      "out_tag_en": "never completed",
-      "n": "1"
+      "out_tag_en": "never completed"
+    },
+    {
+      "when": "7/27 19",
+      "hour": true,
+      "date": "2026-07-27",
+      "event": "vip_booking_start",
+      "kw": "(not set)",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
+    },
+    {
+      "when": "7/30 20",
+      "hour": true,
+      "date": "2026-07-30",
+      "event": "vip_booking_start",
+      "kw": "gala resort",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "2",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
+    },
+    {
+      "when": "7/30 21",
+      "hour": true,
+      "date": "2026-07-30",
+      "event": "vip_booking_start",
+      "kw": "gala resort",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
     }
   ],
   "conversions_total": {
-    "kw_ja": "計2語（すべて指名検索）",
-    "kw_en": "2 terms (all brand)",
-    "what_ja": "完了1・サインイン1・開始3",
-    "what_en": "1 completed · 1 sign-in · 3 starts",
-    "out_ja": "✅1 ／ 🔵1 ／ 🟡3",
-    "out_en": "✅1 / 🔵1 / 🟡3",
-    "n": "6"
+    "kw_ja": "計3語（指名2・一般1）",
+    "kw_en": "3 terms (2 brand / 1 generic)",
+    "what_ja": "完了2・サインイン1・開始7",
+    "what_en": "2 completed · 1 sign-in · 7 starts",
+    "out_ja": "✅2 ／ 🔵1 ／ 🟡7",
+    "out_en": "✅2 ／ 🔵1 ／ 🟡7",
+    "n": "10"
   },
   "cv_inside": [
     {
@@ -522,53 +602,71 @@
       "bold": true,
       "t_ja": "成約 1件",
       "t_en": "1 BOOKED",
-      "tag": "reserve_success · 7/24 19:43",
-      "v_ja": "Gabat Mark様・Weekend VIPテーブル3名・予約番号FUCQX2・「nightclub gala resort」検索",
-      "v_en": "Gabat Mark · Weekend VIP table ×3 · FUCQX2 · via \"nightclub gala resort\""
+      "tag": "reserve_success",
+      "v_ja": "TableCheck 予約確定ページまで到達",
+      "v_en": "reached the TableCheck confirmation page"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "7/18 23時",
+      "tag_en": "7/18 23h",
+      "v_ja": "「the pink osaka」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"the pink osaka\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "7/19 00時",
+      "tag_en": "7/19 00h",
+      "v_ja": "「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"nightclub gala resort\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "7/24 22時",
+      "tag_en": "7/24 22h",
+      "v_ja": "「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"nightclub gala resort\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "7/27 19時",
+      "tag_en": "7/27 19h",
+      "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"(not set)\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "7/30 20時",
+      "tag_en": "7/30 20h",
+      "v_ja": "「gala resort」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"gala resort\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "7/30 21時",
+      "tag_en": "7/30 21h",
+      "v_ja": "「gala resort」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"gala resort\" → reached booking button → never completed"
     },
     {
       "icon": "⚪",
-      "t_ja": "残り① reserve_success の2発目",
-      "t_en": "#1 of the other 5: the 2nd reserve_success fire",
-      "tag": "7/24 19:43",
-      "v_ja": "上と同じ予約の二重計測。新しい客ではない",
+      "t_ja": "reserve_success の重複発火 1件",
+      "t_en": "1 duplicate reserve_success fire(s)",
+      "tag": "7/24 19",
+      "v_ja": "同じ予約の二重計測。新しい客ではない",
       "v_en": "double-count of the same booking — not a new guest"
-    },
-    {
-      "icon": "🔵",
-      "t_ja": "残り② form_submit（連絡先）",
-      "t_en": "#2: form_submit (contact)",
-      "tag_ja": "7/24 19時 · TableCheckサインイン",
-      "tag_en": "7/24 19h · TableCheck sign-in",
-      "v_ja": "成約者本人の途中工程。問い合わせでも別客でもない",
-      "v_en": "the booker's own sign-in step — not an inquiry, not a separate guest"
-    },
-    {
-      "icon": "🟡",
-      "t_ja": "残り③ 予約開始→離脱",
-      "t_en": "#3: booking-start → dropped",
-      "tag_ja": "7/18 23時（土曜深夜）",
-      "tag_en": "7/18 23h (late Sat)",
-      "v_ja": "「the pink osaka」で来訪→VIP LPで予約ボタンを押した→TableCheckで完了せず（サインイン・決済の記録なし）",
-      "v_en": "came via \"the pink osaka\" → tapped booking on VIP LP → never completed (no sign-in / payment recorded)"
-    },
-    {
-      "icon": "🟡",
-      "t_ja": "残り④ 予約開始→離脱",
-      "t_en": "#4: booking-start → dropped",
-      "tag_ja": "7/19 00時（土曜深夜）",
-      "tag_en": "7/19 00h (late Sat)",
-      "v_ja": "「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
-      "v_en": "via \"nightclub gala resort\" → reached booking button → never completed"
-    },
-    {
-      "icon": "🟡",
-      "t_ja": "残り⑤ 予約開始→離脱",
-      "t_en": "#5: booking-start → dropped",
-      "tag_ja": "7/24 22時（金曜夜・成約の約2時間後）",
-      "tag_en": "7/24 22h (Fri, ~2h after the booking)",
-      "v_ja": "「nightclub gala resort」で来訪→予約ボタンまで→完了せず",
-      "v_en": "via \"nightclub gala resort\" → reached booking button → never completed"
     }
   ],
   "keyword_strategy": [
@@ -594,20 +692,26 @@
   "cv_queries": [
     {
       "term": "nightclub gala resort",
-      "n": "2",
+      "n": "5",
+      "pill_ja": "指名",
+      "pill_en": "brand"
+    },
+    {
+      "term": "gala resort",
+      "n": "3",
       "pill_ja": "指名",
       "pill_en": "brand"
     },
     {
       "term": "the pink osaka",
       "n": "1",
-      "pill_ja": "指名",
-      "pill_en": "brand"
+      "pill_ja": "一般",
+      "pill_en": "generic"
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/22–27",
-    "range_en": "terms with clicks · 7/22–27",
+    "range_ja": "クリックが付いた語・7/17–7/30",
+    "range_en": "terms with clicks · 7/17–7/30",
     "rows": [
       {
         "term": "nightclub gala resort クチコミ",
@@ -963,5 +1067,13 @@
         "kw_tag_en": "※same person as completion below"
       }
     }
-  ]
+  ],
+  "conversions_head": {
+    "sub_ja": "7/17–7/30・広告(google/cpc)由来の全10件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–7/30 · all 10 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+  },
+  "cv_inside_head": {
+    "ja": "「10コンバージョン」の中身 — 成約1件と、残り9件の正体",
+    "en": "Inside the \"10 conversions\" — 1 booked, and what the other 9 really are"
+  }
 }
