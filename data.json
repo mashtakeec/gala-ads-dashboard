@@ -937,5 +937,31 @@
       "ja": "<b>除外候補:</b> 他店名（club maria / giraffe night club / joule club / owl osaka）と祭り(tenjin matsuri)はクリックのみ0CV。<b>「things to do in osaka at night」は発見系で残す価値あり。</b>ディスカバリ拡大が指名依存脱却の次の一手。",
       "en": "<b>Negative candidates:</b> rival-venue names (club maria / giraffe / joule / owl) and the festival term (tenjin matsuri) got clicks, 0 CV. <b>Keep \"things to do in osaka at night\" (discovery).</b> Expanding discovery is the next step beyond brand-dependence."
     }
-  }
+  },
+  "cv_overrides": [
+    {
+      "_why": "GA4は時単位まで。分と予約番号はTableCheck予約詳細から。",
+      "match": {
+        "when": "7/24 19",
+        "event": "reserve_success"
+      },
+      "set": {
+        "when": "7/24 19:43",
+        "hour": false,
+        "kw_tag_ja": "※Google広告で確定",
+        "kw_tag_en": "※confirmed in Google Ads"
+      }
+    },
+    {
+      "_why": "この form_submit は成約者本人のサインイン。別客ではない。",
+      "match": {
+        "when": "7/24 19",
+        "event": "form_submit"
+      },
+      "set": {
+        "kw_tag_ja": "※同一人物・下の完了と同フロー",
+        "kw_tag_en": "※same person as completion below"
+      }
+    }
+  ]
 }

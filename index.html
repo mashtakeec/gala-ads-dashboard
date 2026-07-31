@@ -248,7 +248,7 @@
   <section>
     <div class="sec-head">
       <h2><span class="ja">広告コンバージョン：検索語句 × 時刻 × 発生場所</span><span class="en">Ad conversions: keyword × time × where</span></h2>
-      <div class="sub"><span class="ja">7/17–27・広告(google/cpc)由来の全6件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）</span><span class="en">7/17–27 · all 6 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)</span></div>
+      <div class="sub" id="cv-sub"></div>
     </div>
     <div class="panel" style="padding:6px 8px;overflow-x:auto">
       <table>
@@ -265,7 +265,7 @@
       </table>
     </div>
     <div class="panel" style="margin-top:12px">
-      <div style="font-size:13px;font-weight:700;margin-bottom:8px"><span class="ja">「6コンバージョン」の中身 — 成約1件と、残り5件の正体</span><span class="en">Inside the "6 conversions" — 1 booked, and what the other 5 really are</span></div>
+      <div style="font-size:13px;font-weight:700;margin-bottom:8px" id="cv-inside-title"></div>
       <ul class="clean" id="cv-inside"></ul>
       <div data-note="near_miss" data-style="margin-top:10px"></div>
     </div>
@@ -443,6 +443,11 @@ function renderFunnel(){
 
 /* ---------- conversions detail table ---------- */
 function renderConversions(){
+  /* Heading and count come from the data now. They used to be literals in this
+     file and kept describing "6 conversions" long after there were nine. */
+  var h = D.conversions_head;
+  if(h) el("cv-sub").innerHTML = L(h.sub_ja, h.sub_en);
+
   el("cvbody").innerHTML = D.conversions.map(function(r){
     var when = r.when + (r.hour ? '<span class="daytag">' + L("時","h") + '</span>' : '');
 
@@ -488,6 +493,9 @@ function renderConversions(){
 
 /* ---------- "inside the 6 conversions" ---------- */
 function renderCvInside(){
+  var h = D.cv_inside_head;
+  if(h) el("cv-inside-title").innerHTML = L(h.ja, h.en);
+
   el("cv-inside").innerHTML = D.cv_inside.map(function(r){
     var title = r.bold ? '<b>' + L(r.t_ja, r.t_en) + '</b>' : L(r.t_ja, r.t_en);
     var tag = "";

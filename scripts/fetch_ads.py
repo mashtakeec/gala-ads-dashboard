@@ -5,9 +5,10 @@ Read-only. Uses a service-account credential (supported without Workspace
 domain-wide delegation since 2024-11-27) and Explorer access, which allows
 ~2,880 operations/day — this module uses 2.
 
-Returns only the sections it owns. Human-written interpretation (the
-conversion detail table, the "inside the 6 conversions" list, all callout
-copy) is never touched — build_data.py merges, it does not overwrite.
+Returns only the sections it owns. Callout copy and the hand-written daily
+annotations are never touched — build_data.py merges, it does not overwrite.
+(The conversion detail table used to be hand-written too; it is now built by
+fetch_cv_detail.py, which uses converting_terms_by_date from here.)
 """
 
 import json
@@ -175,6 +176,25 @@ def fetch(start_date=None, end_date=None, customer_id=None):
             t["cv_color"] = "var(--good)"
         terms.append(t)
 
+    # ---- 3. converting terms per day ----
+    # Used only as a fallback by fetch_cv_detail: events that fire on the
+    # TableCheck domain carry no GA4 query, but Ads still knows which term the
+    # click came from. Separate query so it cannot disturb the aggregation above.
+    conv_q = f"""
+        SELECT segments.date,
+               search_term_view.search_term,
+               metrics.conversions
+        FROM search_term_view
+        WHERE segments.date BETWEEN '{start_date}' AND '{end_date}'
+          AND metrics.conversions > 0
+    """
+    converting_by_date = {}
+    for row in svc.search(customer_id=customer_id, query=conv_q):
+        converting_by_date.setdefault(row.segments.date, set()).add(
+            row.search_term_view.search_term
+        )
+    converting_by_date = {d: sorted(v) for d, v in converting_by_date.items()}
+
     ctr = f"{tot_clk / tot_impr * 100:.2f}%" if tot_impr else "—"
     cpc = _fmt_yen(round(tot_cost / tot_clk)) if tot_clk else "—"
     days = (d1 - d0).days + 1
@@ -218,6 +238,7 @@ def fetch(start_date=None, end_date=None, customer_id=None):
             "cv": str(tot_cv),
         },
         "search_terms_rows": terms,
+        "converting_terms_by_date": converting_by_date,
         "range": {"from": start_date, "to": end_date},
     }
 

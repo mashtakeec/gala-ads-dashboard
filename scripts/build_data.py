@@ -106,6 +106,66 @@ def apply_ads(data, ads):
     # --- search terms: replace rows, keep the section's label/range copy ---
     st = data.setdefault("search_terms", {})
     st["rows"] = ads["search_terms_rows"]
+    # The range label is a claim about the rows directly under it. It was a
+    # literal ("7/22–27") and went on asserting that long after the rows had
+    # moved on, so it is derived now.
+    st["range_ja"] = f"クリックが付いた語・{_short_range(ads['range'])}"
+    st["range_en"] = f"terms with clicks · {_short_range(ads['range'])}"
+
+
+def _short_range(rng):
+    """{'from':'2026-07-17','to':'2026-07-30'} -> '7/17–7/30'"""
+    a = datetime.strptime(rng["from"], "%Y-%m-%d")
+    b = datetime.strptime(rng["to"], "%Y-%m-%d")
+    return f"{a.month}/{a.day}–{b.month}/{b.day}"
+
+
+def apply_cv_detail(data, cv):
+    """
+    Replace the ad-conversion detail table and everything that describes it.
+
+    This whole block used to be hand-maintained, which is why it froze at 7/27
+    while the KPIs above it kept moving — the page showed 9 conversions and then
+    explained 6. Every field here is derived, so it cannot drift again.
+
+    data.json may carry a 'cv_overrides' list to re-attach knowledge GA4 does
+    not have (booking numbers, exact minutes from TableCheck). Each entry is
+    {"match": {"when": "7/24 19", "event": "reserve_success"}, "set": {...}}
+    and is applied last. Overrides only decorate a row that still exists; they
+    can never resurrect one the data no longer supports.
+    """
+    rows = cv["conversions"]
+
+    for ov in data.get("cv_overrides", []):
+        m = ov.get("match", {})
+        for r in rows:
+            if all(r.get(k) == v for k, v in m.items()):
+                r.update(ov.get("set", {}))
+
+    data["conversions"] = rows
+    data["conversions_total"] = cv["conversions_total"]
+    data["cv_queries"] = cv["cv_queries"]
+    data["cv_inside"] = cv["cv_inside"]
+
+    s = cv["summary"]
+    rng = _short_range(cv["range"])
+    data["conversions_head"] = {
+        "sub_ja": f"{rng}・広告(google/cpc)由来の全{s['events']}件。"
+                  "「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+        "sub_en": f"{rng} · all {s['events']} ad-driven conversions — which search term, "
+                  "when, where, and what became of it (GA4 + Google Ads, verified)",
+    }
+    data["cv_inside_head"] = {
+        "ja": f"「{s['events']}コンバージョン」の中身 — 成約{s['bookings']}件と、"
+              f"残り{s['events'] - s['bookings']}件の正体",
+        "en": f"Inside the \"{s['events']} conversions\" — {s['bookings']} booked, "
+              f"and what the other {s['events'] - s['bookings']} really are",
+    }
+
+    # The KPI subtitle is the same claim in miniature. Derive it too.
+    ad_cv = data.setdefault("kpi", {}).setdefault("ad_cv", {})
+    ad_cv["note_ja"] = (f"うち<b>実予約{s['bookings']}件</b>・惜しい離脱{s['near_misses']}人")
+    ad_cv["note_en"] = (f"<b>{s['bookings']} real booking(s)</b> · {s['near_misses']} near-miss(es)")
 
 
 def fmt_period(start, end):
@@ -139,6 +199,7 @@ def main():
     # Not wired yet: no developer token. Left as 'manual' so the dashboard
     # does not flag it as broken — those numbers are still hand-entered and
     # are genuinely current as of whenever a human last touched them.
+    ads = None
     if os.environ.get("GOOGLE_ADS_DEVELOPER_TOKEN"):
         try:
             from fetch_ads import fetch as fetch_ads
@@ -162,11 +223,36 @@ def main():
         )
         print("[ads] skipped — no developer token yet, leaving manual figures")
 
+    # ---------- conversion detail (GA4, with an Ads fallback for the keyword) ----------
+    # Runs after Ads so it can borrow converting_terms_by_date. It degrades to
+    # GA4-only if Ads failed: the rows are still correct, some keywords just
+    # read (not set) instead of being recovered.
+    try:
+        from fetch_cv_detail import fetch as fetch_cv
+
+        cv = fetch_cv(
+            start_date=CAMPAIGN_START,
+            end_date=end_date,
+            ads_hint=(ads or {}).get("converting_terms_by_date"),
+        )
+        apply_cv_detail(data, cv)
+        set_source(data, "cv_detail", "ok", end_date)
+        print(f"[cv_detail] ok — {cv['summary']}")
+    except Exception:
+        failures.append("cv_detail")
+        set_source(data, "cv_detail", "failed", None)
+        print("[cv_detail] FAILED", file=sys.stderr)
+        traceback.print_exc()
+
     # ---------- meta ----------
     meta = data.setdefault("meta", {})
     meta["generated_at"] = now.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     meta["generated_by"] = "github-actions"
     meta["run_status"] = "failed" if len(failures) >= 2 else ("partial" if failures else "ok")
+    # cv_detail rides on the GA4 credential, so a GA4 outage takes both. That
+    # is one root cause, not two — don't let it read as a total failure.
+    if set(failures) == {"ga4", "cv_detail"}:
+        meta["run_status"] = "partial"
 
     hdr = data.setdefault("header", {})
     hdr["updated"] = now.strftime("%Y/%m/%d %H:%M")
@@ -179,7 +265,7 @@ def main():
     # Only these two feed displayed numbers. TableCheck is deliberately
     # excluded: it is a reservation cross-check, and it stays 'manual' until
     # Booking v1 access arrives — gating on it would freeze the period forever.
-    PERIOD_SOURCES = ("ga4", "google_ads")
+    PERIOD_SOURCES = ("ga4", "google_ads", "cv_detail")
     srcs = meta.get("sources", {})
     if all(srcs.get(n, {}).get("status") == "ok" for n in PERIOD_SOURCES):
         hdr["period"] = fmt_period(CAMPAIGN_START, end_date)
