@@ -168,6 +168,27 @@ def apply_cv_detail(data, cv):
     ad_cv["note_en"] = (f"<b>{s['bookings']} real booking(s)</b> · {s['near_misses']} near-miss(es)")
 
 
+def mark_partial_day(data, end_date):
+    """
+    Flag the in-progress day.
+
+    Deliberately a flag on the row, not a note in `cvd`: apply_ads() carries
+    human cvd annotations forward by date, so a '集計中' written there would
+    survive into tomorrow and label a finished night as still counting.
+    A flag is recomputed from scratch every run and cannot go stale.
+    """
+    d = datetime.strptime(end_date, "%Y-%m-%d")
+    for r in data.get("daily", []):
+        if r.get("partial") and r.get("date") != end_date:
+            del r["partial"]          # yesterday's night is over now
+        if r.get("date") == end_date:
+            r["partial"] = True
+
+    hdr = data.setdefault("header", {})
+    hdr["partial_ja"] = f"{d.month}/{d.day} は集計中"
+    hdr["partial_en"] = f"{d.month}/{d.day} still counting"
+
+
 def fmt_period(start, end):
     """'2026-07-17', '2026-07-28' -> '2026/07/17 – 07/28'"""
     s = datetime.strptime(start, "%Y-%m-%d")
@@ -178,7 +199,13 @@ def fmt_period(start, end):
 def main():
     data = load()
     now = datetime.now(JST)
-    end_date = str((now - timedelta(days=1)).date())
+    # Include today. The window used to stop at yesterday, which meant the
+    # 20:00 JST run reported a night that had already ended and today never
+    # appeared until the following evening — the dashboard was structurally a
+    # day behind. Today's figures are real but incomplete (the night is still
+    # running, and GA4 can lag a few hours), so the last row is labelled
+    # 集計中 rather than presented as final.
+    end_date = str(now.date())
     failures = []
 
     # ---------- GA4 ----------
@@ -256,6 +283,11 @@ def main():
 
     hdr = data.setdefault("header", {})
     hdr["updated"] = now.strftime("%Y/%m/%d %H:%M")
+
+    # The last day in the window is today, and today is not over. Say so, in
+    # the two places a reader could otherwise mistake it for a finished night:
+    # the period label and the final row of the daily table.
+    mark_partial_day(data, end_date)
 
     # The header period is a claim about the figures shown on the page, so it
     # may only advance once the sources those figures come from have actually

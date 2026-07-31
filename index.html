@@ -334,7 +334,13 @@ function setTxt(id, v){ var n = el(id); if(n) n.innerHTML = (v == null ? "—" :
 
 /* ---------- header ---------- */
 function renderHeader(){
-  setTxt("m-period",  D.header.period);
+  // The window now runs up to and including today, so the period label has to
+  // admit that its last day is still in progress.
+  var p = D.header.period;
+  if(D.header.partial_ja){
+    p += ' <span class="daytag">' + L(D.header.partial_ja, D.header.partial_en) + '</span>';
+  }
+  setTxt("m-period",  p);
   setTxt("m-updated", D.header.updated);
   setTxt("m-by",      D.header.by);
 }
@@ -398,8 +404,11 @@ function renderDaily(){
     var wd  = curLang === "en" ? r.wdEn : r.wd;
     var cls = (r.zero ? "zero " : "") + (r.peak ? "peak" : "");
     var cvTag = r.cvd ? ' <span class="daytag">' + (curLang === "en" ? r.cvdEn : r.cvd) + '</span>' : '';
+    // Today is in the table now. Mark it, or a half-finished night reads as a
+    // weak one.
+    var partTag = r.partial ? ' <span class="daytag">' + L("集計中","counting") + '</span>' : '';
     rows += '<tr class="' + cls + '">' +
-      '<td>' + r.d + ' <span class="daytag">' + wd + '</span></td>' +
+      '<td>' + r.d + ' <span class="daytag">' + wd + '</span>' + partTag + '</td>' +
       '<td>' + r.impr + '</td><td>' + r.clk + '</td><td>' + r.ctr + '</td>' +
       '<td>' + r.cost + '</td><td>' + r.cpc + '</td>' +
       '<td>' + r.cv + cvTag + '</td></tr>';

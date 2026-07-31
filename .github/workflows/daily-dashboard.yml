@@ -2,10 +2,14 @@ name: daily-dashboard-update
 
 on:
   schedule:
-    # 11:00 UTC = 20:00 JST, every day.
+    # 18:00 UTC = 03:00 JST the following day, every day.
+    # 03:00 JST is just after last order, so the night that has just ended is
+    # complete — including the post-midnight tail, which Ads books under the
+    # new date. The old 20:00 JST slot ran before the club had really opened
+    # and reported a night nobody had had yet.
     # GitHub may delay scheduled runs under load — the job is idempotent,
     # so a late run is harmless.
-    - cron: '0 11 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch:        # manual re-run / recovery
 
 permissions:
