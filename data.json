@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-08-01T19:05:59Z",
+    "generated_at": "2026-08-02T19:07:39Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-08-02"
+        "as_of": "2026-08-03"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-08-02"
+        "as_of": "2026-08-03"
       },
       "tablecheck": {
         "status": "manual",
@@ -18,27 +18,27 @@
       },
       "cv_detail": {
         "status": "ok",
-        "as_of": "2026-08-02"
+        "as_of": "2026-08-03"
       }
     }
   },
   "header": {
-    "period": "2026/07/17 – 08/02",
-    "updated": "2026/08/02 04:05",
+    "period": "2026/07/17 – 08/03",
+    "updated": "2026/08/03 04:07",
     "by": "MASHTAKE",
-    "partial_ja": "8/2 は集計中",
-    "partial_en": "8/2 still counting"
+    "partial_ja": "8/3 は集計中",
+    "partial_en": "8/3 still counting"
   },
   "kpi": {
     "spend": {
       "value": "¥82,999",
-      "note_ja": "17日間・日予算¥9,000",
-      "note_en": "17 days · ¥9,000/day"
+      "note_ja": "18日間・日予算¥9,000",
+      "note_en": "18 days · ¥9,000/day"
     },
     "ad_cv": {
       "value": "9",
-      "note_ja": "うち<b>実予約1件</b>・惜しい離脱8人",
-      "note_en": "<b>1 real booking(s)</b> · 8 near-miss(es)"
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱9人",
+      "note_en": "<b>1 real booking(s)</b> · 9 near-miss(es)"
     },
     "cost_per_cv": {
       "value": "¥9,222",
@@ -320,7 +320,21 @@
       "cost": "¥538",
       "cpc": "¥538",
       "cv": 0,
-      "type": "weekend",
+      "type": "weekend"
+    },
+    {
+      "d": "08/03",
+      "date": "2026-08-03",
+      "wd": "月",
+      "wdEn": "Mon",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "week",
+      "zero": true,
       "partial": true
     }
   ],
@@ -400,7 +414,7 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "575"
+      "v": "598"
     },
     {
       "ev": "reserve_review",
@@ -648,16 +662,37 @@
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
       "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/1 21",
+      "hour": true,
+      "date": "2026-08-01",
+      "event": "vip_booking_start",
+      "kw": "(not set)",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
     }
   ],
   "conversions_total": {
     "kw_ja": "計4語（指名3・一般1）",
     "kw_en": "4 terms (3 brand / 1 generic)",
-    "what_ja": "完了2・サインイン1・開始8",
-    "what_en": "2 completed · 1 sign-in · 8 starts",
-    "out_ja": "✅2 ／ 🔵1 ／ 🟡8",
-    "out_en": "✅2 ／ 🔵1 ／ 🟡8",
-    "n": "11"
+    "what_ja": "完了2・サインイン1・開始9",
+    "what_en": "2 completed · 1 sign-in · 9 starts",
+    "out_ja": "✅2 ／ 🔵1 ／ 🟡9",
+    "out_en": "✅2 ／ 🔵1 ／ 🟡9",
+    "n": "12"
   },
   "cv_inside": [
     {
@@ -733,6 +768,15 @@
       "v_en": "via \"大阪 gala\" → reached booking button → never completed"
     },
     {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/1 21時",
+      "tag_en": "8/1 21h",
+      "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"(not set)\" → reached booking button → never completed"
+    },
+    {
       "icon": "⚪",
       "t_ja": "reserve_success の重複発火 1件",
       "t_en": "1 duplicate reserve_success fire(s)",
@@ -788,8 +832,8 @@
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/17–8/2",
-    "range_en": "terms with clicks · 7/17–8/2",
+    "range_ja": "クリックが付いた語・7/17–8/3",
+    "range_en": "terms with clicks · 7/17–8/3",
     "rows": [
       {
         "term": "nightclub gala resort クチコミ",
@@ -1267,11 +1311,11 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–8/2・広告(google/cpc)由来の全11件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–8/2 · all 11 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–8/3・広告(google/cpc)由来の全12件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–8/3 · all 12 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
-    "ja": "「11コンバージョン」の中身 — 成約1件と、残り10件の正体",
-    "en": "Inside the \"11 conversions\" — 1 booked, and what the other 10 really are"
+    "ja": "「12コンバージョン」の中身 — 成約1件と、残り11件の正体",
+    "en": "Inside the \"12 conversions\" — 1 booked, and what the other 11 really are"
   }
 }
