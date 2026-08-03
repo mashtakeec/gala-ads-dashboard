@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-02T19:07:39Z",
+    "generated_at": "2026-08-03T10:55:24Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
@@ -24,24 +24,24 @@
   },
   "header": {
     "period": "2026/07/17 – 08/03",
-    "updated": "2026/08/03 04:07",
+    "updated": "2026/08/03 19:55",
     "by": "MASHTAKE",
     "partial_ja": "8/3 は集計中",
     "partial_en": "8/3 still counting"
   },
   "kpi": {
     "spend": {
-      "value": "¥82,999",
+      "value": "¥84,560",
       "note_ja": "18日間・日予算¥9,000",
       "note_en": "18 days · ¥9,000/day"
     },
     "ad_cv": {
       "value": "9",
-      "note_ja": "うち<b>実予約1件</b>・惜しい離脱9人",
-      "note_en": "<b>1 real booking(s)</b> · 9 near-miss(es)"
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱10人",
+      "note_en": "<b>1 real booking(s)</b> · 10 near-miss(es)"
     },
     "cost_per_cv": {
-      "value": "¥9,222",
+      "value": "¥9,396",
       "note_ja": "費用 ÷ 広告CV",
       "note_en": "spend ÷ ad CV"
     },
@@ -52,8 +52,8 @@
     }
   },
   "delivery": {
-    "impressions": "3,588",
-    "clicks": "156",
+    "impressions": "3,654",
+    "clicks": "159",
     "ctr": "4.35%",
     "ctr_note_ja": "目安2–3%超",
     "ctr_note_en": "above 2–3%",
@@ -327,22 +327,21 @@
       "date": "2026-08-03",
       "wd": "月",
       "wdEn": "Mon",
-      "impr": 0,
-      "clk": 0,
-      "ctr": "—",
-      "cost": "¥0",
-      "cpc": "—",
+      "impr": 66,
+      "clk": 3,
+      "ctr": "4.55%",
+      "cost": "¥1,561",
+      "cpc": "¥520",
       "cv": 0,
       "type": "week",
-      "zero": true,
       "partial": true
     }
   ],
   "daily_total": {
-    "impr": "3,588",
-    "clk": "156",
+    "impr": "3,654",
+    "clk": "159",
     "ctr": "4.35%",
-    "cost": "¥82,999",
+    "cost": "¥84,560",
     "cpc": "¥532",
     "cv": "9"
   },
@@ -414,7 +413,7 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "598"
+      "v": "608"
     },
     {
       "ev": "reserve_review",
@@ -457,7 +456,7 @@
       "ev": "whatsapp_tap",
       "lab_ja": "",
       "lab_en": "",
-      "all": "9",
+      "all": "10",
       "ads": "0",
       "ads_color": "var(--dim)",
       "pill_ja": "✅ 入札対象",
@@ -683,16 +682,37 @@
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
       "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/2 02",
+      "hour": true,
+      "date": "2026-08-02",
+      "event": "vip_booking_start",
+      "kw": "gala resort osaka",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
     }
   ],
   "conversions_total": {
-    "kw_ja": "計4語（指名3・一般1）",
-    "kw_en": "4 terms (3 brand / 1 generic)",
-    "what_ja": "完了2・サインイン1・開始9",
-    "what_en": "2 completed · 1 sign-in · 9 starts",
-    "out_ja": "✅2 ／ 🔵1 ／ 🟡9",
-    "out_en": "✅2 ／ 🔵1 ／ 🟡9",
-    "n": "12"
+    "kw_ja": "計5語（指名4・一般1）",
+    "kw_en": "5 terms (4 brand / 1 generic)",
+    "what_ja": "完了2・サインイン1・開始10",
+    "what_en": "2 completed · 1 sign-in · 10 starts",
+    "out_ja": "✅2 ／ 🔵1 ／ 🟡10",
+    "out_en": "✅2 ／ 🔵1 ／ 🟡10",
+    "n": "13"
   },
   "cv_inside": [
     {
@@ -777,6 +797,15 @@
       "v_en": "via \"(not set)\" → reached booking button → never completed"
     },
     {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/2 02時",
+      "tag_en": "8/2 02h",
+      "v_ja": "「gala resort osaka」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"gala resort osaka\" → reached booking button → never completed"
+    },
+    {
       "icon": "⚪",
       "t_ja": "reserve_success の重複発火 1件",
       "t_en": "1 duplicate reserve_success fire(s)",
@@ -826,6 +855,12 @@
     },
     {
       "term": "大阪 gala",
+      "n": "1",
+      "pill_ja": "指名",
+      "pill_en": "brand"
+    },
+    {
+      "term": "gala resort osaka",
       "n": "1",
       "pill_ja": "指名",
       "pill_en": "brand"
@@ -1311,11 +1346,11 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–8/3・広告(google/cpc)由来の全12件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–8/3 · all 12 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–8/3・広告(google/cpc)由来の全13件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–8/3 · all 13 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
-    "ja": "「12コンバージョン」の中身 — 成約1件と、残り11件の正体",
-    "en": "Inside the \"12 conversions\" — 1 booked, and what the other 11 really are"
+    "ja": "「13コンバージョン」の中身 — 成約1件と、残り12件の正体",
+    "en": "Inside the \"13 conversions\" — 1 booked, and what the other 12 really are"
   }
 }
