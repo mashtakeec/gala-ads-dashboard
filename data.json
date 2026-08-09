@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-08-08T18:35:21Z",
+    "generated_at": "2026-08-09T18:37:59Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-08-09"
+        "as_of": "2026-08-10"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-08-09"
+        "as_of": "2026-08-10"
       },
       "tablecheck": {
         "status": "manual",
@@ -18,22 +18,22 @@
       },
       "cv_detail": {
         "status": "ok",
-        "as_of": "2026-08-09"
+        "as_of": "2026-08-10"
       }
     }
   },
   "header": {
-    "period": "2026/07/17 – 08/09",
-    "updated": "2026/08/09 03:35",
+    "period": "2026/07/17 – 08/10",
+    "updated": "2026/08/10 03:37",
     "by": "MASHTAKE",
-    "partial_ja": "8/9 は集計中",
-    "partial_en": "8/9 still counting"
+    "partial_ja": "8/10 は集計中",
+    "partial_en": "8/10 still counting"
   },
   "kpi": {
     "spend": {
       "value": "¥149,983",
-      "note_ja": "24日間・日予算¥9,000",
-      "note_en": "24 days · ¥9,000/day"
+      "note_ja": "25日間・日予算¥9,000",
+      "note_en": "25 days · ¥9,000/day"
     },
     "ad_cv": {
       "value": "10",
@@ -411,7 +411,21 @@
       "cost": "¥4,266",
       "cpc": "¥533",
       "cv": 0,
-      "type": "weekend",
+      "type": "weekend"
+    },
+    {
+      "d": "08/10",
+      "date": "2026-08-10",
+      "wd": "月",
+      "wdEn": "Mon",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "week",
+      "zero": true,
       "partial": true
     }
   ],
@@ -491,13 +505,13 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "4662"
+      "v": "6150"
     },
     {
       "ev": "reserve_review",
       "lab_ja": "内容確認",
       "lab_en": "reviewing",
-      "v": "6"
+      "v": "7"
     },
     {
       "ev": "reserve_success",
@@ -534,7 +548,7 @@
       "ev": "whatsapp_tap",
       "lab_ja": "",
       "lab_en": "",
-      "all": "14",
+      "all": "15",
       "ads": "0",
       "ads_color": "var(--dim)",
       "pill_ja": "✅ 入札対象",
@@ -1077,8 +1091,8 @@
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/17–8/9",
-    "range_en": "terms with clicks · 7/17–8/9",
+    "range_ja": "クリックが付いた語・7/17–8/10",
+    "range_en": "terms with clicks · 7/17–8/10",
     "rows": [
       {
         "term": "gala resort",
@@ -1784,8 +1798,8 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–8/9・広告(google/cpc)由来の全17件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–8/9 · all 17 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–8/10・広告(google/cpc)由来の全17件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–8/10 · all 17 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
     "ja": "「17コンバージョン」の中身 — 成約1件と、残り16件の正体",
