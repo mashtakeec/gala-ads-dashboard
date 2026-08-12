@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-08-11T19:00:03Z",
+    "generated_at": "2026-08-12T18:59:34Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-08-12"
+        "as_of": "2026-08-13"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-08-12"
+        "as_of": "2026-08-13"
       },
       "tablecheck": {
         "status": "manual",
@@ -18,30 +18,30 @@
       },
       "cv_detail": {
         "status": "ok",
-        "as_of": "2026-08-12"
+        "as_of": "2026-08-13"
       }
     }
   },
   "header": {
-    "period": "2026/07/17 – 08/12",
-    "updated": "2026/08/12 04:00",
+    "period": "2026/07/17 – 08/13",
+    "updated": "2026/08/13 03:59",
     "by": "MASHTAKE",
-    "partial_ja": "8/12 は集計中",
-    "partial_en": "8/12 still counting"
+    "partial_ja": "8/13 は集計中",
+    "partial_en": "8/13 still counting"
   },
   "kpi": {
     "spend": {
-      "value": "¥174,129",
-      "note_ja": "27日間・日予算¥9,000",
-      "note_en": "27 days · ¥9,000/day"
+      "value": "¥184,740",
+      "note_ja": "28日間・日予算¥9,000",
+      "note_en": "28 days · ¥9,000/day"
     },
     "ad_cv": {
       "value": "10",
-      "note_ja": "うち<b>実予約1件</b>・惜しい離脱17人",
-      "note_en": "<b>1 real booking(s)</b> · 17 near-miss(es)"
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱19人",
+      "note_en": "<b>1 real booking(s)</b> · 19 near-miss(es)"
     },
     "cost_per_cv": {
-      "value": "¥17,413",
+      "value": "¥18,474",
       "note_ja": "費用 ÷ 広告CV",
       "note_en": "spend ÷ ad CV"
     },
@@ -52,12 +52,12 @@
     }
   },
   "delivery": {
-    "impressions": "6,684",
-    "clicks": "360",
-    "ctr": "5.39%",
+    "impressions": "7,011",
+    "clicks": "403",
+    "ctr": "5.75%",
     "ctr_note_ja": "目安2–3%超",
     "ctr_note_en": "above 2–3%",
-    "cpc": "¥484"
+    "cpc": "¥458"
   },
   "sources_breakdown": [
     {
@@ -444,22 +444,35 @@
       "date": "2026-08-12",
       "wd": "水",
       "wdEn": "Wed",
-      "impr": 72,
-      "clk": 6,
-      "ctr": "8.33%",
-      "cost": "¥1,171",
-      "cpc": "¥195",
+      "impr": 344,
+      "clk": 44,
+      "ctr": "12.79%",
+      "cost": "¥9,297",
+      "cpc": "¥211",
       "cv": 0,
-      "type": "week",
+      "type": "week"
+    },
+    {
+      "d": "08/13",
+      "date": "2026-08-13",
+      "wd": "木",
+      "wdEn": "Thu",
+      "impr": 55,
+      "clk": 5,
+      "ctr": "9.09%",
+      "cost": "¥2,485",
+      "cpc": "¥497",
+      "cv": 0,
+      "type": "weekend",
       "partial": true
     }
   ],
   "daily_total": {
-    "impr": "6,684",
-    "clk": "360",
-    "ctr": "5.39%",
-    "cost": "¥174,129",
-    "cpc": "¥484",
+    "impr": "7,011",
+    "clk": "403",
+    "ctr": "5.75%",
+    "cost": "¥184,740",
+    "cpc": "¥458",
     "cv": "10"
   },
   "targeting": [
@@ -530,7 +543,7 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "8534"
+      "v": "8671"
     },
     {
       "ev": "reserve_review",
@@ -573,7 +586,7 @@
       "ev": "whatsapp_tap",
       "lab_ja": "",
       "lab_en": "",
-      "all": "15",
+      "all": "16",
       "ads": "0",
       "ads_color": "var(--dim)",
       "pill_ja": "✅ 入札対象",
@@ -967,16 +980,58 @@
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
       "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/11 00",
+      "hour": true,
+      "date": "2026-08-11",
+      "event": "vip_booking_start",
+      "kw": "(not set)",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/11 22",
+      "hour": true,
+      "date": "2026-08-11",
+      "event": "vip_booking_start",
+      "kw": "(not set)",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
     }
   ],
   "conversions_total": {
     "kw_ja": "計8語（指名4・一般4）",
     "kw_en": "8 terms (4 brand / 4 generic)",
-    "what_ja": "完了2・サインイン1・開始17",
-    "what_en": "2 completed · 1 sign-in · 17 starts",
-    "out_ja": "✅2 ／ 🔵1 ／ 🟡17",
-    "out_en": "✅2 ／ 🔵1 ／ 🟡17",
-    "n": "20"
+    "what_ja": "完了2・サインイン1・開始19",
+    "what_en": "2 completed · 1 sign-in · 19 starts",
+    "out_ja": "✅2 ／ 🔵1 ／ 🟡19",
+    "out_en": "✅2 ／ 🔵1 ／ 🟡19",
+    "n": "22"
   },
   "cv_inside": [
     {
@@ -1133,6 +1188,24 @@
       "v_en": "via \"(not set)\" → reached booking button → never completed"
     },
     {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/11 00時",
+      "tag_en": "8/11 00h",
+      "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"(not set)\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/11 22時",
+      "tag_en": "8/11 22h",
+      "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"(not set)\" → reached booking button → never completed"
+    },
+    {
       "icon": "⚪",
       "t_ja": "reserve_success の重複発火 1件",
       "t_en": "1 duplicate reserve_success fire(s)",
@@ -1212,8 +1285,8 @@
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/17–8/12",
-    "range_en": "terms with clicks · 7/17–8/12",
+    "range_ja": "クリックが付いた語・7/17–8/13",
+    "range_en": "terms with clicks · 7/17–8/13",
     "rows": [
       {
         "term": "gala resort",
@@ -1234,6 +1307,12 @@
         "cv_color": "var(--good)"
       },
       {
+        "term": "night club",
+        "clicks": "6",
+        "cost": "¥399",
+        "cv": "0"
+      },
+      {
         "term": "nightclub gala resort クチコミ",
         "clicks": "6",
         "cost": "¥3,619",
@@ -1246,15 +1325,15 @@
         "cv": "0"
       },
       {
-        "term": "clubs osaka",
-        "clicks": "4",
-        "cost": "¥1,894",
+        "term": "night club near me",
+        "clicks": "5",
+        "cost": "¥255",
         "cv": "0"
       },
       {
-        "term": "night club",
+        "term": "clubs osaka",
         "clicks": "4",
-        "cost": "¥208",
+        "cost": "¥1,894",
         "cv": "0"
       },
       {
@@ -1279,6 +1358,18 @@
         "cv": "0"
       },
       {
+        "term": "club namba",
+        "clicks": "3",
+        "cost": "¥335",
+        "cv": "0"
+      },
+      {
+        "term": "club near by me near me",
+        "clicks": "3",
+        "cost": "¥351",
+        "cv": "0"
+      },
+      {
         "term": "clubs in osaka",
         "clicks": "3",
         "cost": "¥2,085",
@@ -1291,9 +1382,9 @@
         "cv": "0"
       },
       {
-        "term": "night club near me",
+        "term": "night life in osaka",
         "clicks": "3",
-        "cost": "¥120",
+        "cost": "¥1,477",
         "cv": "0"
       },
       {
@@ -1318,6 +1409,18 @@
         "term": "gala resort osaka",
         "clicks": "3",
         "cost": "¥1,038",
+        "cv": "0"
+      },
+      {
+        "term": "bambi nightclub osaka",
+        "clicks": "2",
+        "cost": "¥1,209",
+        "cv": "0"
+      },
+      {
+        "term": "cheval nightclub",
+        "clicks": "2",
+        "cost": "¥474",
         "cv": "0"
       },
       {
@@ -1387,9 +1490,9 @@
         "cv": "0"
       },
       {
-        "term": "night life in osaka",
+        "term": "macho macho osaka",
         "clicks": "2",
-        "cost": "¥1,058",
+        "cost": "¥802",
         "cv": "0"
       },
       {
@@ -1441,6 +1544,18 @@
         "cv": "0"
       },
       {
+        "term": "アウル 大阪",
+        "clicks": "2",
+        "cost": "¥2,043",
+        "cv": "0"
+      },
+      {
+        "term": "夜店",
+        "clicks": "2",
+        "cost": "¥102",
+        "cv": "0"
+      },
+      {
         "term": "心斎橋 ナイト クラブ",
         "clicks": "2",
         "cost": "¥630",
@@ -1465,9 +1580,9 @@
         "cv": "0"
       },
       {
-        "term": "bambi nightclub osaka",
+        "term": "awabar osaka",
         "clicks": "1",
-        "cost": "¥1,104",
+        "cost": "¥177",
         "cv": "0"
       },
       {
@@ -1492,6 +1607,12 @@
         "term": "best clubs in osaka",
         "clicks": "1",
         "cost": "¥446",
+        "cv": "0"
+      },
+      {
+        "term": "best clubs in osaka for foreigners",
+        "clicks": "1",
+        "cost": "¥291",
         "cv": "0"
       },
       {
@@ -1531,6 +1652,12 @@
         "cv": "0"
       },
       {
+        "term": "club near me",
+        "clicks": "1",
+        "cost": "¥72",
+        "cv": "0"
+      },
+      {
         "term": "club noon osaka",
         "clicks": "1",
         "cost": "¥570",
@@ -1564,6 +1691,12 @@
         "term": "frenz frenzy osaka",
         "clicks": "1",
         "cost": "¥579",
+        "cv": "0"
+      },
+      {
+        "term": "gala club",
+        "clicks": "1",
+        "cost": "¥298",
         "cv": "0"
       },
       {
@@ -1621,6 +1754,12 @@
         "cv": "0"
       },
       {
+        "term": "namba river",
+        "clicks": "1",
+        "cost": "¥115",
+        "cv": "0"
+      },
+      {
         "term": "night club cheval osaka crazy land",
         "clicks": "1",
         "cost": "¥674",
@@ -1633,9 +1772,21 @@
         "cv": "0"
       },
       {
+        "term": "night club the pink",
+        "clicks": "1",
+        "cost": "¥321",
+        "cv": "0"
+      },
+      {
         "term": "night life osaka",
         "clicks": "1",
         "cost": "¥648",
+        "cv": "0"
+      },
+      {
+        "term": "nightclub gala resort",
+        "clicks": "1",
+        "cost": "¥285",
         "cv": "0"
       },
       {
@@ -1648,6 +1799,18 @@
         "term": "nightclubs in osaka",
         "clicks": "1",
         "cost": "¥176",
+        "cv": "0"
+      },
+      {
+        "term": "nightlife in osaka",
+        "clicks": "1",
+        "cost": "¥227",
+        "cv": "0"
+      },
+      {
+        "term": "nightlife near me",
+        "clicks": "1",
+        "cost": "¥52",
         "cv": "0"
       },
       {
@@ -1813,6 +1976,12 @@
         "cv": "0"
       },
       {
+        "term": "the pink near me",
+        "clicks": "1",
+        "cost": "¥88",
+        "cv": "0"
+      },
+      {
         "term": "the super pink osaka",
         "clicks": "1",
         "cost": "¥589",
@@ -1861,6 +2030,18 @@
         "cv": "0"
       },
       {
+        "term": "ガラ リゾート",
+        "clicks": "1",
+        "cost": "¥294",
+        "cv": "0"
+      },
+      {
+        "term": "ナイト クラブ",
+        "clicks": "1",
+        "cost": "¥27",
+        "cv": "0"
+      },
+      {
         "term": "ニルス 北 新地",
         "clicks": "1",
         "cost": "¥425",
@@ -1885,9 +2066,21 @@
         "cv": "0"
       },
       {
+        "term": "원더 크루즈",
+        "clicks": "1",
+        "cost": "¥427",
+        "cv": "0"
+      },
+      {
         "term": "circus osaka",
         "clicks": "1",
         "cost": "¥557",
+        "cv": "0"
+      },
+      {
+        "term": "giraffe japan",
+        "clicks": "1",
+        "cost": "¥289",
         "cv": "0"
       },
       {
@@ -1912,6 +2105,12 @@
         "term": "osaka techno clubs",
         "clicks": "1",
         "cost": "¥757",
+        "cv": "0"
+      },
+      {
+        "term": "party in osaka",
+        "clicks": "1",
+        "cost": "¥59",
         "cv": "0"
       },
       {
@@ -2057,11 +2256,11 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–8/12・広告(google/cpc)由来の全20件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–8/12 · all 20 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–8/13・広告(google/cpc)由来の全22件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–8/13 · all 22 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
-    "ja": "「20コンバージョン」の中身 — 成約1件と、残り19件の正体",
-    "en": "Inside the \"20 conversions\" — 1 booked, and what the other 19 really are"
+    "ja": "「22コンバージョン」の中身 — 成約1件と、残り21件の正体",
+    "en": "Inside the \"22 conversions\" — 1 booked, and what the other 21 really are"
   }
 }
