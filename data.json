@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-08-15T18:26:34Z",
+    "generated_at": "2026-08-16T18:26:07Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-08-16"
+        "as_of": "2026-08-17"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-08-16"
+        "as_of": "2026-08-17"
       },
       "tablecheck": {
         "status": "manual",
@@ -18,27 +18,27 @@
       },
       "cv_detail": {
         "status": "ok",
-        "as_of": "2026-08-16"
+        "as_of": "2026-08-17"
       }
     }
   },
   "header": {
-    "period": "2026/07/17 – 08/16",
-    "updated": "2026/08/16 03:26",
+    "period": "2026/07/17 – 08/17",
+    "updated": "2026/08/17 03:26",
     "by": "MASHTAKE",
-    "partial_ja": "8/16 は集計中",
-    "partial_en": "8/16 still counting"
+    "partial_ja": "8/17 は集計中",
+    "partial_en": "8/17 still counting"
   },
   "kpi": {
     "spend": {
       "value": "¥211,244",
-      "note_ja": "31日間・日予算¥9,000",
-      "note_en": "31 days · ¥9,000/day"
+      "note_ja": "32日間・日予算¥9,000",
+      "note_en": "32 days · ¥9,000/day"
     },
     "ad_cv": {
       "value": "12",
-      "note_ja": "うち<b>実予約1件</b>・惜しい離脱24人",
-      "note_en": "<b>1 real booking(s)</b> · 24 near-miss(es)"
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱25人",
+      "note_en": "<b>1 real booking(s)</b> · 25 near-miss(es)"
     },
     "cost_per_cv": {
       "value": "¥17,604",
@@ -502,7 +502,21 @@
       "cost": "¥1,353",
       "cpc": "¥104",
       "cv": 0,
-      "type": "weekend",
+      "type": "weekend"
+    },
+    {
+      "d": "08/17",
+      "date": "2026-08-17",
+      "wd": "月",
+      "wdEn": "Mon",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "week",
+      "zero": true,
       "partial": true
     }
   ],
@@ -582,7 +596,7 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "8754"
+      "v": "8774"
     },
     {
       "ev": "reserve_review",
@@ -626,8 +640,8 @@
       "lab_ja": "",
       "lab_en": "",
       "all": "19",
-      "ads": "0",
-      "ads_color": "var(--dim)",
+      "ads": "1",
+      "ads_color": "var(--good)",
       "pill_ja": "✅ 入札対象",
       "pill_en": "✅ bid target"
     }
@@ -1147,16 +1161,60 @@
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
       "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/15 22",
+      "hour": true,
+      "date": "2026-08-15",
+      "event": "vip_booking_start",
+      "kw": "osaka club",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "kw_tag_ja": "※Google広告で確定",
+      "kw_tag_en": "※confirmed in Google Ads",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/15 22",
+      "hour": true,
+      "date": "2026-08-15",
+      "event": "whatsapp_tap",
+      "kw": "osaka club",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "kw_tag_ja": "※Google広告で確定",
+      "kw_tag_en": "※confirmed in Google Ads",
+      "cls": "",
+      "icon": "💬",
+      "what_bold": "WhatsApp",
+      "what_bold_en": "WhatsApp",
+      "what_tag": "whatsapp_tap",
+      "out_color": "var(--info)",
+      "out_ja": "問い合わせ開始",
+      "out_en": "inquiry started"
     }
   ],
   "conversions_total": {
-    "kw_ja": "計10語（指名5・一般5）",
-    "kw_en": "10 terms (5 brand / 5 generic)",
-    "what_ja": "完了2・サインイン1・開始24",
-    "what_en": "2 completed · 1 sign-in · 24 starts",
-    "out_ja": "✅2 ／ 🔵1 ／ 🟡24",
-    "out_en": "✅2 ／ 🔵1 ／ 🟡24",
-    "n": "27"
+    "kw_ja": "計11語（指名5・一般6）",
+    "kw_en": "11 terms (5 brand / 6 generic)",
+    "what_ja": "完了2・サインイン1・開始25・WhatsApp1",
+    "what_en": "2 completed · 1 sign-in · 25 starts · 1 WhatsApp",
+    "out_ja": "✅2 ／ 🔵1 ／ 🟡25 ／ 💬1",
+    "out_en": "✅2 ／ 🔵1 ／ 🟡25 ／ 💬1",
+    "n": "29"
   },
   "cv_inside": [
     {
@@ -1367,6 +1425,15 @@
       "v_en": "via \"(not set)\" → reached booking button → never completed"
     },
     {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/15 22時",
+      "tag_en": "8/15 22h",
+      "v_ja": "「osaka club」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"osaka club\" → reached booking button → never completed"
+    },
+    {
       "icon": "⚪",
       "t_ja": "reserve_success の重複発火 1件",
       "t_en": "1 duplicate reserve_success fire(s)",
@@ -1407,6 +1474,12 @@
       "n": "4",
       "pill_ja": "指名",
       "pill_en": "brand"
+    },
+    {
+      "term": "osaka club",
+      "n": "2",
+      "pill_ja": "一般",
+      "pill_en": "generic"
     },
     {
       "term": "the pink osaka",
@@ -1458,8 +1531,8 @@
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/17–8/16",
-    "range_en": "terms with clicks · 7/17–8/16",
+    "range_ja": "クリックが付いた語・7/17–8/17",
+    "range_en": "terms with clicks · 7/17–8/17",
     "rows": [
       {
         "term": "night club near me",
@@ -2855,11 +2928,11 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–8/16・広告(google/cpc)由来の全27件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–8/16 · all 27 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–8/17・広告(google/cpc)由来の全29件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–8/17 · all 29 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
-    "ja": "「27コンバージョン」の中身 — 成約1件と、残り26件の正体",
-    "en": "Inside the \"27 conversions\" — 1 booked, and what the other 26 really are"
+    "ja": "「29コンバージョン」の中身 — 成約1件と、残り28件の正体",
+    "en": "Inside the \"29 conversions\" — 1 booked, and what the other 28 really are"
   }
 }
