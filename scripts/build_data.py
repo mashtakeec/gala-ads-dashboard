@@ -250,6 +250,28 @@ def main():
         )
         print("[ads] skipped — no developer token yet, leaving manual figures")
 
+    # ---------- local actions (Google Business Profile / Maps) ----------
+    # Added 2026-08-17, after the location asset was linked on 08-10. Rides on
+    # the same Ads credential, so it only runs when the developer token is
+    # present. It lands in its own key on purpose: these are not reservations
+    # and not what bidding optimises for, and folding them into any CV figure
+    # would overstate performance several-fold.
+    if os.environ.get("GOOGLE_ADS_DEVELOPER_TOKEN"):
+        try:
+            from fetch_local_actions import fetch as fetch_local
+
+            la = fetch_local(start_date=CAMPAIGN_START, end_date=end_date)
+            data["local_actions"] = la
+            set_source(data, "local_actions", "ok", end_date)
+            print(f"[local_actions] ok — {la['total_all']} all-conv "
+                  f"across {len(la['rows'])} action(s), "
+                  f"{la['total_counted']} of them inside the bidding CV count")
+        except Exception:
+            failures.append("local_actions")
+            set_source(data, "local_actions", "failed", None)
+            print("[local_actions] FAILED", file=sys.stderr)
+            traceback.print_exc()
+
     # ---------- conversion detail (GA4, with an Ads fallback for the keyword) ----------
     # Runs after Ads so it can borrow converting_terms_by_date. It degrades to
     # GA4-only if Ads failed: the rows are still correct, some keywords just
