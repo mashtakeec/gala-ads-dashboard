@@ -226,6 +226,26 @@
     </div>
   </section>
 
+  <!-- local actions (Google Business Profile / Maps) -->
+  <section id="sec-local" style="display:none">
+    <div class="sec-head">
+      <h2><span class="ja">ローカルアクション（Googleマップ / ビジネスプロフィール）</span><span class="en">Local actions (Google Maps / Business Profile)</span></h2>
+      <div class="sub"><span class="ja">住所アセット経由の行動。<b>予約ではありません</b>。入札の最適化対象にも入っておらず、「すべてのコンバージョン」にのみ計上されます</span><span class="en"><b>Not reservations.</b> Actions taken via the location asset — outside bidding, counted only in All conversions</span></div>
+    </div>
+    <div class="panel" style="padding:6px 8px;overflow-x:auto">
+      <table>
+        <thead><tr>
+          <th style="text-align:left"><span class="ja">アクション</span><span class="en">Action</span></th>
+          <th><span class="tip"><span class="ja">すべてのCV</span><span class="en">All conv.</span><span class="tt"><span class="ja"><b>すべてのコンバージョン</b>：入札に使われないものも含めた全計測値</span><span class="en"><b>All conversions</b>: every measured action, including ones bidding ignores</span></span></span></th>
+          <th><span class="tip"><span class="ja">入札CVに計上</span><span class="en">In bid CV</span><span class="tt"><span class="ja">上の「広告CV」に含まれている件数。<b>0 なら入札に影響していません</b></span><span class="en">How many are inside the ad-CV figure above. <b>0 means bidding is unaffected</b></span></span></span></th>
+        </tr></thead>
+        <tbody id="labody"></tbody>
+        <tfoot id="lafoot"></tfoot>
+      </table>
+    </div>
+    <div class="src"><span class="ja">出典</span><span class="en">Source</span>: Google Ads → <span class="ja">目標 → コンバージョン（すべてのコンバージョン・アクション別）</span><span class="en">Goals → Conversions (all conversions, by action)</span> · <span class="ja">住所アセット連携 2026/08/10</span><span class="en">location asset linked 2026/08/10</span></div>
+  </section>
+
   <!-- funnel + goals -->
   <section>
     <div class="sec-head"><h2><span class="ja">予約ファネル &amp; ゴール A/B/C</span><span class="en">Reservation funnel &amp; goals A/B/C</span></h2></div>
@@ -552,6 +572,32 @@ function renderNotes(){
   });
 }
 
+/* ---------- local actions (Maps / Business Profile) ---------- */
+/* Its own section, never folded into a CV figure. A route-planning tap is not
+   a reservation. The "in bid CV" column exists so that claim is shown rather
+   than asserted — if it ever stops reading 0, bidding has changed. The whole
+   section stays hidden when the source is absent, so an older data.json still
+   renders exactly as before. */
+function renderLocalActions(){
+  var la = D.local_actions, sec = el("sec-local");
+  if(!sec) return;
+  if(!la || !la.rows || !la.rows.length){ sec.style.display = "none"; return; }
+  sec.style.display = "";
+
+  el("labody").innerHTML = la.rows.map(function(r){
+    var counted = r.counted
+      ? '<b style="color:var(--warn)">' + r.counted + '</b>'
+      : '<span style="color:var(--dim)">0</span>';
+    return '<tr>' +
+      '<td style="text-align:left">' + L(r.label_ja, r.label_en) + '</td>' +
+      '<td>' + r.all + '</td>' +
+      '<td>' + counted + '</td></tr>';
+  }).join("");
+
+  el("lafoot").innerHTML = '<tr><td style="text-align:left">' + L("合計","Total") + '</td>' +
+    '<td>' + la.total_all + '</td><td>' + la.total_counted + '</td></tr>';
+}
+
 /* ---------- orchestration ---------- */
 function renderAll(){
   renderHeader();
@@ -562,6 +608,7 @@ function renderAll(){
   renderTargeting();
   renderNextMoves();
   renderFunnel();
+  renderLocalActions();
   renderConversions();
   renderCvInside();
   renderKeywords();
