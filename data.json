@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-08-26T19:46:23Z",
+    "generated_at": "2026-08-28T02:02:16Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-08-27"
+        "as_of": "2026-08-28"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-08-27"
+        "as_of": "2026-08-28"
       },
       "tablecheck": {
         "status": "manual",
@@ -18,34 +18,34 @@
       },
       "cv_detail": {
         "status": "ok",
-        "as_of": "2026-08-27"
+        "as_of": "2026-08-28"
       },
       "local_actions": {
         "status": "ok",
-        "as_of": "2026-08-27"
+        "as_of": "2026-08-28"
       }
     }
   },
   "header": {
-    "period": "2026/07/17 – 08/27",
-    "updated": "2026/08/27 04:46",
+    "period": "2026/07/17 – 08/28",
+    "updated": "2026/08/28 11:02",
     "by": "MASHTAKE",
-    "partial_ja": "8/27 は集計中",
-    "partial_en": "8/27 still counting"
+    "partial_ja": "8/28 は集計中",
+    "partial_en": "8/28 still counting"
   },
   "kpi": {
     "spend": {
-      "value": "¥321,089",
-      "note_ja": "42日間・日予算¥11,000",
-      "note_en": "42 days · ¥11,000/day"
+      "value": "¥330,295",
+      "note_ja": "43日間・日予算¥11,000",
+      "note_en": "43 days · ¥11,000/day"
     },
     "ad_cv": {
       "value": "13",
-      "note_ja": "うち<b>実予約1件</b>・惜しい離脱44人",
-      "note_en": "<b>1 real booking(s)</b> · 44 near-miss(es)"
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱46人",
+      "note_en": "<b>1 real booking(s)</b> · 46 near-miss(es)"
     },
     "cost_per_cv": {
-      "value": "¥24,699",
+      "value": "¥25,407",
       "note_ja": "費用 ÷ 広告CV",
       "note_en": "spend ÷ ad CV"
     },
@@ -56,12 +56,12 @@
     }
   },
   "delivery": {
-    "impressions": "47,735",
-    "clicks": "1,166",
-    "ctr": "2.44%",
+    "impressions": "52,729",
+    "clicks": "1,215",
+    "ctr": "2.30%",
     "ctr_note_ja": "目安2–3%超",
     "ctr_note_en": "above 2–3%",
-    "cpc": "¥275"
+    "cpc": "¥272"
   },
   "sources_breakdown": [
     {
@@ -577,7 +577,7 @@
       "date": "2026-08-22",
       "wd": "土",
       "wdEn": "Sat",
-      "impr": 5818,
+      "impr": 5812,
       "clk": 65,
       "ctr": "1.12%",
       "cost": "¥10,164",
@@ -590,7 +590,7 @@
       "date": "2026-08-23",
       "wd": "日",
       "wdEn": "Sun",
-      "impr": 5546,
+      "impr": 5545,
       "clk": 46,
       "ctr": "0.83%",
       "cost": "¥5,360",
@@ -603,10 +603,10 @@
       "date": "2026-08-24",
       "wd": "月",
       "wdEn": "Mon",
-      "impr": 6378,
+      "impr": 6377,
       "clk": 52,
       "ctr": "0.82%",
-      "cost": "¥6,984",
+      "cost": "¥6,983",
       "cpc": "¥134",
       "cv": 0,
       "type": "week"
@@ -616,10 +616,10 @@
       "date": "2026-08-25",
       "wd": "火",
       "wdEn": "Tue",
-      "impr": 6660,
+      "impr": 6657,
       "clk": 68,
       "ctr": "1.02%",
-      "cost": "¥13,122",
+      "cost": "¥13,116",
       "cpc": "¥193",
       "cv": 0,
       "type": "week"
@@ -629,10 +629,10 @@
       "date": "2026-08-26",
       "wd": "水",
       "wdEn": "Wed",
-      "impr": 5781,
+      "impr": 5780,
       "clk": 65,
       "ctr": "1.12%",
-      "cost": "¥14,842",
+      "cost": "¥14,843",
       "cpc": "¥228",
       "cv": 0,
       "type": "week",
@@ -643,22 +643,35 @@
       "date": "2026-08-27",
       "wd": "木",
       "wdEn": "Thu",
-      "impr": 675,
-      "clk": 14,
-      "ctr": "2.07%",
-      "cost": "¥3,781",
-      "cpc": "¥270",
+      "impr": 3937,
+      "clk": 54,
+      "ctr": "1.37%",
+      "cost": "¥12,063",
+      "cpc": "¥223",
+      "cv": 0,
+      "type": "weekend"
+    },
+    {
+      "d": "08/28",
+      "date": "2026-08-28",
+      "wd": "金",
+      "wdEn": "Fri",
+      "impr": 1744,
+      "clk": 9,
+      "ctr": "0.52%",
+      "cost": "¥930",
+      "cpc": "¥103",
       "cv": 0,
       "type": "weekend",
       "partial": true
     }
   ],
   "daily_total": {
-    "impr": "47,735",
-    "clk": "1,166",
-    "ctr": "2.44%",
-    "cost": "¥321,089",
-    "cpc": "¥275",
+    "impr": "52,729",
+    "clk": "1,215",
+    "ctr": "2.30%",
+    "cost": "¥330,295",
+    "cpc": "¥272",
     "cv": "13"
   },
   "targeting": [
@@ -729,7 +742,7 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "12797"
+      "v": "12893"
     },
     {
       "ev": "reserve_review",
@@ -761,7 +774,7 @@
       "ev": "phone_tap",
       "lab_ja": "電話",
       "lab_en": "phone",
-      "all": "7",
+      "all": "8",
       "ads": "0",
       "ads_color": "var(--dim)",
       "pill_ja": "CV未連携",
@@ -772,7 +785,7 @@
       "ev": "whatsapp_tap",
       "lab_ja": "",
       "lab_en": "",
-      "all": "25",
+      "all": "27",
       "ads": "2",
       "ads_color": "var(--good)",
       "pill_ja": "✅ 入札対象",
@@ -1705,7 +1718,7 @@
       "hour": true,
       "date": "2026-08-25",
       "event": "vip_booking_start",
-      "kw": "(not set)",
+      "kw": "osaka night clubs",
       "where_ja": "VIP LP",
       "where_en": "VIP LP",
       "where_tag": "book.gala-resort.jp",
@@ -1726,6 +1739,48 @@
       "hour": true,
       "date": "2026-08-25",
       "event": "vip_booking_start",
+      "kw": "giraffe osaka dress code",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/27 00",
+      "hour": true,
+      "date": "2026-08-27",
+      "event": "vip_booking_start",
+      "kw": "(not set)",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "1",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/27 21",
+      "hour": true,
+      "date": "2026-08-27",
+      "event": "vip_booking_start",
       "kw": "(not set)",
       "where_ja": "VIP LP",
       "where_en": "VIP LP",
@@ -1744,13 +1799,13 @@
     }
   ],
   "conversions_total": {
-    "kw_ja": "計14語（指名6・一般8）",
-    "kw_en": "14 terms (6 brand / 8 generic)",
-    "what_ja": "完了2・サインイン1・開始44・WhatsApp2",
-    "what_en": "2 completed · 1 sign-in · 44 starts · 2 WhatsApp",
-    "out_ja": "✅2 ／ 🔵1 ／ 🟡44 ／ 💬2",
-    "out_en": "✅2 ／ 🔵1 ／ 🟡44 ／ 💬2",
-    "n": "49"
+    "kw_ja": "計16語（指名6・一般10）",
+    "kw_en": "16 terms (6 brand / 10 generic)",
+    "what_ja": "完了2・サインイン1・開始46・WhatsApp2",
+    "what_en": "2 completed · 1 sign-in · 46 starts · 2 WhatsApp",
+    "out_ja": "✅2 ／ 🔵1 ／ 🟡46 ／ 💬2",
+    "out_en": "✅2 ／ 🔵1 ／ 🟡46 ／ 💬2",
+    "n": "51"
   },
   "cv_inside": [
     {
@@ -2119,8 +2174,8 @@
       "t_en": "booking-start → dropped",
       "tag_ja": "8/25 21時",
       "tag_en": "8/25 21h",
-      "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
-      "v_en": "via \"(not set)\" → reached booking button → never completed"
+      "v_ja": "「osaka night clubs」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"osaka night clubs\" → reached booking button → never completed"
     },
     {
       "icon": "🟡",
@@ -2128,6 +2183,24 @@
       "t_en": "booking-start → dropped",
       "tag_ja": "8/25 23時",
       "tag_en": "8/25 23h",
+      "v_ja": "「giraffe osaka dress code」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"giraffe osaka dress code\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/27 00時",
+      "tag_en": "8/27 00h",
+      "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"(not set)\" → reached booking button → never completed"
+    },
+    {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/27 21時",
+      "tag_en": "8/27 21h",
       "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
       "v_en": "via \"(not set)\" → reached booking button → never completed"
     },
@@ -2244,11 +2317,23 @@
       "n": "1",
       "pill_ja": "一般",
       "pill_en": "generic"
+    },
+    {
+      "term": "osaka night clubs",
+      "n": "1",
+      "pill_ja": "一般",
+      "pill_en": "generic"
+    },
+    {
+      "term": "giraffe osaka dress code",
+      "n": "1",
+      "pill_ja": "一般",
+      "pill_en": "generic"
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/17–8/27",
-    "range_en": "terms with clicks · 7/17–8/27",
+    "range_ja": "クリックが付いた語・7/17–8/28",
+    "range_en": "terms with clicks · 7/17–8/28",
     "rows": [
       {
         "term": "night club near me",
@@ -2264,14 +2349,14 @@
       },
       {
         "term": "clubs near me",
-        "clicks": "20",
-        "cost": "¥2,150",
+        "clicks": "21",
+        "cost": "¥2,189",
         "cv": "0"
       },
       {
         "term": "night club",
-        "clicks": "16",
-        "cost": "¥825",
+        "clicks": "17",
+        "cost": "¥880",
         "cv": "0"
       },
       {
@@ -2296,6 +2381,12 @@
         "cv_color": "var(--good)"
       },
       {
+        "term": "gala club osaka",
+        "clicks": "9",
+        "cost": "¥2,184",
+        "cv": "0"
+      },
+      {
         "term": "gala night club",
         "clicks": "9",
         "cost": "¥2,067",
@@ -2305,15 +2396,15 @@
         "cv_color": "var(--good)"
       },
       {
-        "term": "gala club osaka",
-        "clicks": "8",
-        "cost": "¥1,856",
-        "cv": "0"
-      },
-      {
         "term": "giraffe club osaka",
         "clicks": "8",
         "cost": "¥3,170",
+        "cv": "0"
+      },
+      {
+        "term": "clubs osaka",
+        "clicks": "7",
+        "cost": "¥2,299",
         "cv": "0"
       },
       {
@@ -2371,12 +2462,6 @@
         "cv": "0"
       },
       {
-        "term": "clubs osaka",
-        "clicks": "6",
-        "cost": "¥2,201",
-        "cv": "0"
-      },
-      {
         "term": "the pink club osaka",
         "clicks": "6",
         "cost": "¥1,533",
@@ -2413,6 +2498,12 @@
         "cv": "0"
       },
       {
+        "term": "night life in osaka",
+        "clicks": "5",
+        "cost": "¥1,692",
+        "cv": "0"
+      },
+      {
         "term": "nightclub near me",
         "clicks": "5",
         "cost": "¥525",
@@ -2428,6 +2519,12 @@
         "term": "voyager lounge osaka",
         "clicks": "5",
         "cost": "¥1,473",
+        "cv": "0"
+      },
+      {
+        "term": "오사카 클럽",
+        "clicks": "5",
+        "cost": "¥403",
         "cv": "0"
       },
       {
@@ -2452,12 +2549,6 @@
         "term": "giraffe osaka",
         "clicks": "4",
         "cost": "¥2,098",
-        "cv": "0"
-      },
-      {
-        "term": "night life in osaka",
-        "clicks": "4",
-        "cost": "¥1,571",
         "cv": "0"
       },
       {
@@ -2491,9 +2582,9 @@
         "cv": "0"
       },
       {
-        "term": "오사카 클럽",
+        "term": "night club near me",
         "clicks": "4",
-        "cost": "¥394",
+        "cost": "¥301",
         "cv": "0"
       },
       {
@@ -2599,6 +2690,12 @@
         "cv": "0"
       },
       {
+        "term": "nightlife osaka",
+        "clicks": "3",
+        "cost": "¥1,337",
+        "cv": "0"
+      },
+      {
         "term": "osaka clubbing",
         "clicks": "3",
         "cost": "¥1,594",
@@ -2635,6 +2732,12 @@
         "cv": "0"
       },
       {
+        "term": "voyager stand osaka",
+        "clicks": "3",
+        "cost": "¥885",
+        "cv": "0"
+      },
+      {
         "term": "ナイト ライフ",
         "clicks": "3",
         "cost": "¥230",
@@ -2662,12 +2765,6 @@
         "term": "giraffe club osaka",
         "clicks": "3",
         "cost": "¥505",
-        "cv": "0"
-      },
-      {
-        "term": "night club near me",
-        "clicks": "3",
-        "cost": "¥278",
         "cv": "0"
       },
       {
@@ -2791,12 +2888,6 @@
         "cv": "0"
       },
       {
-        "term": "nightlife osaka",
-        "clicks": "2",
-        "cost": "¥1,149",
-        "cv": "0"
-      },
-      {
         "term": "osaka club",
         "clicks": "2",
         "cost": "¥665",
@@ -2848,6 +2939,12 @@
         "cv": "0"
       },
       {
+        "term": "techno club osaka",
+        "clicks": "2",
+        "cost": "¥741",
+        "cv": "0"
+      },
+      {
         "term": "tenjin matsuri osaka",
         "clicks": "2",
         "cost": "¥1,438",
@@ -2863,12 +2960,6 @@
         "term": "the super pink osaka",
         "clicks": "2",
         "cost": "¥760",
-        "cv": "0"
-      },
-      {
-        "term": "voyager stand osaka",
-        "clicks": "2",
-        "cost": "¥628",
         "cv": "0"
       },
       {
@@ -2956,6 +3047,12 @@
         "term": "gala osaka",
         "clicks": "2",
         "cost": "¥746",
+        "cv": "0"
+      },
+      {
+        "term": "giraffe japan",
+        "clicks": "2",
+        "cost": "¥926",
         "cv": "0"
       },
       {
@@ -3313,6 +3410,12 @@
         "cv": "0"
       },
       {
+        "term": "joule near me",
+        "clicks": "1",
+        "cost": "¥65",
+        "cv": "0"
+      },
+      {
         "term": "l and l osaka",
         "clicks": "1",
         "cost": "¥198",
@@ -3391,6 +3494,18 @@
         "cv": "0"
       },
       {
+        "term": "nightclub cerca de mi",
+        "clicks": "1",
+        "cost": "¥45",
+        "cv": "0"
+      },
+      {
+        "term": "nightclub crazyland by cheval osaka photos",
+        "clicks": "1",
+        "cost": "¥210",
+        "cv": "0"
+      },
+      {
         "term": "nightclub gala resort photos",
         "clicks": "1",
         "cost": "¥51",
@@ -3436,6 +3551,12 @@
         "term": "osaka candlelight concert",
         "clicks": "1",
         "cost": "¥242",
+        "cv": "0"
+      },
+      {
+        "term": "osaka dancing",
+        "clicks": "1",
+        "cost": "¥105",
         "cv": "0"
       },
       {
@@ -3646,12 +3767,6 @@
         "term": "strip club osaka",
         "clicks": "1",
         "cost": "¥286",
-        "cv": "0"
-      },
-      {
-        "term": "techno club osaka",
-        "clicks": "1",
-        "cost": "¥414",
         "cv": "0"
       },
       {
@@ -4051,6 +4166,12 @@
         "cv": "0"
       },
       {
+        "term": "nightclub",
+        "clicks": "1",
+        "cost": "¥39",
+        "cv": "0"
+      },
+      {
         "term": "nightclub ammona osaka",
         "clicks": "1",
         "cost": "¥140",
@@ -4343,19 +4464,19 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–8/27・広告(google/cpc)由来の全49件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–8/27 · all 49 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–8/28・広告(google/cpc)由来の全51件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–8/28 · all 51 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
-    "ja": "「49コンバージョン」の中身 — 成約1件と、残り48件の正体",
-    "en": "Inside the \"49 conversions\" — 1 booked, and what the other 48 really are"
+    "ja": "「51コンバージョン」の中身 — 成約1件と、残り50件の正体",
+    "en": "Inside the \"51 conversions\" — 1 booked, and what the other 50 really are"
   },
   "local_actions": {
     "rows": [
       {
         "name": "Local actions - Other engagements",
         "category": "19",
-        "all": 1001,
+        "all": 1091,
         "counted": 0,
         "label_ja": "その他のエンゲージメント",
         "label_en": "Other engagements"
@@ -4363,7 +4484,7 @@
       {
         "name": "Local actions - Directions",
         "category": "16",
-        "all": 227,
+        "all": 256,
         "counted": 0,
         "label_ja": "ルート・乗換案内",
         "label_en": "Directions"
@@ -4379,7 +4500,7 @@
       {
         "name": "Local actions - Website visits",
         "category": "3",
-        "all": 27,
+        "all": 29,
         "counted": 0,
         "label_ja": "ウェブサイト訪問",
         "label_en": "Website visits"
@@ -4387,19 +4508,19 @@
       {
         "name": "Local actions - Orders",
         "category": "9",
-        "all": 9,
+        "all": 10,
         "counted": 0,
         "label_ja": "注文（決済手続きの開始）",
         "label_en": "Orders"
       }
     ],
-    "total_all": 1294,
+    "total_all": 1416,
     "total_counted": 0,
-    "account_all": 1362,
+    "account_all": 1485,
     "account_counted": 13,
     "range": {
       "from": "2026-07-17",
-      "to": "2026-08-27"
+      "to": "2026-08-28"
     }
   }
 }
