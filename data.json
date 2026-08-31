@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-08-30T20:35:43Z",
+    "generated_at": "2026-08-31T22:28:31Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-08-31"
+        "as_of": "2026-09-01"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-08-31"
+        "as_of": "2026-09-01"
       },
       "tablecheck": {
         "status": "manual",
@@ -18,34 +18,34 @@
       },
       "cv_detail": {
         "status": "ok",
-        "as_of": "2026-08-31"
+        "as_of": "2026-09-01"
       },
       "local_actions": {
         "status": "ok",
-        "as_of": "2026-08-31"
+        "as_of": "2026-09-01"
       }
     }
   },
   "header": {
-    "period": "2026/07/17 – 08/31",
-    "updated": "2026/08/31 05:35",
+    "period": "2026/07/17 – 09/01",
+    "updated": "2026/09/01 07:28",
     "by": "MASHTAKE",
-    "partial_ja": "8/31 は集計中",
-    "partial_en": "8/31 still counting"
+    "partial_ja": "9/1 は集計中",
+    "partial_en": "9/1 still counting"
   },
   "kpi": {
     "spend": {
-      "value": "¥363,644",
-      "note_ja": "46日間・日予算¥11,000",
-      "note_en": "46 days · ¥11,000/day"
+      "value": "¥364,264",
+      "note_ja": "47日間",
+      "note_en": "47 days"
     },
     "ad_cv": {
       "value": "13",
-      "note_ja": "うち<b>実予約1件</b>・惜しい離脱47人",
-      "note_en": "<b>1 real booking(s)</b> · 47 near-miss(es)"
+      "note_ja": "うち<b>実予約1件</b>・惜しい離脱49人",
+      "note_en": "<b>1 real booking(s)</b> · 49 near-miss(es)"
     },
     "cost_per_cv": {
-      "value": "¥27,973",
+      "value": "¥28,020",
       "note_ja": "費用 ÷ 広告CV",
       "note_en": "spend ÷ ad CV"
     },
@@ -56,12 +56,12 @@
     }
   },
   "delivery": {
-    "impressions": "65,285",
-    "clicks": "1,392",
-    "ctr": "2.13%",
+    "impressions": "66,625",
+    "clicks": "1,399",
+    "ctr": "2.10%",
     "ctr_note_ja": "目安2–3%超",
     "ctr_note_en": "above 2–3%",
-    "cpc": "¥261"
+    "cpc": "¥260"
   },
   "sources_breakdown": [
     {
@@ -646,7 +646,7 @@
       "impr": 3934,
       "clk": 55,
       "ctr": "1.40%",
-      "cost": "¥12,163",
+      "cost": "¥12,162",
       "cpc": "¥221",
       "cv": 0,
       "type": "weekend"
@@ -656,10 +656,10 @@
       "date": "2026-08-28",
       "wd": "金",
       "wdEn": "Fri",
-      "impr": 4677,
+      "impr": 4673,
       "clk": 68,
-      "ctr": "1.45%",
-      "cost": "¥13,033",
+      "ctr": "1.46%",
+      "cost": "¥13,028",
       "cpc": "¥192",
       "cv": 0,
       "type": "weekend"
@@ -695,22 +695,36 @@
       "date": "2026-08-31",
       "wd": "月",
       "wdEn": "Mon",
-      "impr": 313,
-      "clk": 2,
-      "ctr": "0.64%",
-      "cost": "¥154",
-      "cpc": "¥77",
+      "impr": 1657,
+      "clk": 9,
+      "ctr": "0.54%",
+      "cost": "¥780",
+      "cpc": "¥87",
+      "cv": 0,
+      "type": "week"
+    },
+    {
+      "d": "09/01",
+      "date": "2026-09-01",
+      "wd": "火",
+      "wdEn": "Tue",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
       "cv": 0,
       "type": "week",
+      "zero": true,
       "partial": true
     }
   ],
   "daily_total": {
-    "impr": "65,285",
-    "clk": "1,392",
-    "ctr": "2.13%",
-    "cost": "¥363,644",
-    "cpc": "¥261",
+    "impr": "66,625",
+    "clk": "1,399",
+    "ctr": "2.10%",
+    "cost": "¥364,264",
+    "cpc": "¥260",
     "cv": "13"
   },
   "targeting": [
@@ -781,7 +795,7 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "12980"
+      "v": "13005"
     },
     {
       "ev": "reserve_review",
@@ -824,7 +838,7 @@
       "ev": "whatsapp_tap",
       "lab_ja": "",
       "lab_en": "",
-      "all": "28",
+      "all": "29",
       "ads": "2",
       "ads_color": "var(--good)",
       "pill_ja": "✅ 入札対象",
@@ -1856,16 +1870,37 @@
       "out_en": "near-miss, dropped",
       "out_tag_ja": "TableCheckで完了せず",
       "out_tag_en": "never completed"
+    },
+    {
+      "when": "8/30 01",
+      "hour": true,
+      "date": "2026-08-30",
+      "event": "vip_booking_start",
+      "kw": "(not set)",
+      "where_ja": "VIP LP",
+      "where_en": "VIP LP",
+      "where_tag": "book.gala-resort.jp",
+      "n": "2",
+      "cls": "zero",
+      "icon": "🟡",
+      "what_ja": "予約開始",
+      "what_en": "Booking started",
+      "what_tag": "vip_booking_start",
+      "out_color": "var(--warn)",
+      "out_ja": "あと一歩・離脱",
+      "out_en": "near-miss, dropped",
+      "out_tag_ja": "TableCheckで完了せず",
+      "out_tag_en": "never completed"
     }
   ],
   "conversions_total": {
     "kw_ja": "計16語（指名6・一般10）",
     "kw_en": "16 terms (6 brand / 10 generic)",
-    "what_ja": "完了2・サインイン1・開始47・WhatsApp2",
-    "what_en": "2 completed · 1 sign-in · 47 starts · 2 WhatsApp",
-    "out_ja": "✅2 ／ 🔵1 ／ 🟡47 ／ 💬2",
-    "out_en": "✅2 ／ 🔵1 ／ 🟡47 ／ 💬2",
-    "n": "52"
+    "what_ja": "完了2・サインイン1・開始49・WhatsApp2",
+    "what_en": "2 completed · 1 sign-in · 49 starts · 2 WhatsApp",
+    "out_ja": "✅2 ／ 🔵1 ／ 🟡49 ／ 💬2",
+    "out_en": "✅2 ／ 🔵1 ／ 🟡49 ／ 💬2",
+    "n": "54"
   },
   "cv_inside": [
     {
@@ -2274,6 +2309,15 @@
       "v_en": "via \"(not set)\" → reached booking button → never completed"
     },
     {
+      "icon": "🟡",
+      "t_ja": "予約開始→離脱",
+      "t_en": "booking-start → dropped",
+      "tag_ja": "8/30 01時",
+      "tag_en": "8/30 01h",
+      "v_ja": "「(not set)」で来訪→予約ボタンまで→完了せず",
+      "v_en": "via \"(not set)\" → reached booking button → never completed"
+    },
+    {
       "icon": "⚪",
       "t_ja": "reserve_success の重複発火 1件",
       "t_en": "1 duplicate reserve_success fire(s)",
@@ -2401,8 +2445,8 @@
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/17–8/31",
-    "range_en": "terms with clicks · 7/17–8/31",
+    "range_ja": "クリックが付いた語・7/17–9/1",
+    "range_en": "terms with clicks · 7/17–9/1",
     "rows": [
       {
         "term": "giraffe osaka",
@@ -4731,19 +4775,19 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–8/31・広告(google/cpc)由来の全52件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–8/31 · all 52 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–9/1・広告(google/cpc)由来の全54件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–9/1 · all 54 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
-    "ja": "「52コンバージョン」の中身 — 成約1件と、残り51件の正体",
-    "en": "Inside the \"52 conversions\" — 1 booked, and what the other 51 really are"
+    "ja": "「54コンバージョン」の中身 — 成約1件と、残り53件の正体",
+    "en": "Inside the \"54 conversions\" — 1 booked, and what the other 53 really are"
   },
   "local_actions": {
     "rows": [
       {
         "name": "Local actions - Other engagements",
         "category": "19",
-        "all": 1240,
+        "all": 1343,
         "counted": 0,
         "label_ja": "その他のエンゲージメント",
         "label_en": "Other engagements"
@@ -4751,26 +4795,26 @@
       {
         "name": "Local actions - Directions",
         "category": "16",
-        "all": 276,
+        "all": 328,
         "counted": 0,
         "label_ja": "ルート・乗換案内",
         "label_en": "Directions"
       },
       {
-        "name": "Local actions - Website visits",
-        "category": "3",
-        "all": 32,
-        "counted": 0,
-        "label_ja": "ウェブサイト訪問",
-        "label_en": "Website visits"
-      },
-      {
         "name": "Local actions - Menu views",
         "category": "3",
-        "all": 30,
+        "all": 36,
         "counted": 0,
         "label_ja": "メニュー閲覧",
         "label_en": "Menu views"
+      },
+      {
+        "name": "Local actions - Website visits",
+        "category": "3",
+        "all": 35,
+        "counted": 0,
+        "label_ja": "ウェブサイト訪問",
+        "label_en": "Website visits"
       },
       {
         "name": "Local actions - Orders",
@@ -4781,13 +4825,13 @@
         "label_en": "Orders"
       }
     ],
-    "total_all": 1588,
+    "total_all": 1752,
     "total_counted": 0,
-    "account_all": 1662,
+    "account_all": 1826,
     "account_counted": 13,
     "range": {
       "from": "2026-07-17",
-      "to": "2026-08-31"
+      "to": "2026-09-01"
     }
   }
 }
