@@ -1,16 +1,16 @@
 {
   "meta": {
-    "generated_at": "2026-09-03T20:31:38Z",
+    "generated_at": "2026-09-04T20:17:43Z",
     "generated_by": "github-actions",
     "run_status": "ok",
     "sources": {
       "google_ads": {
         "status": "ok",
-        "as_of": "2026-09-04"
+        "as_of": "2026-09-05"
       },
       "ga4": {
         "status": "ok",
-        "as_of": "2026-09-04"
+        "as_of": "2026-09-05"
       },
       "tablecheck": {
         "status": "manual",
@@ -18,26 +18,26 @@
       },
       "cv_detail": {
         "status": "ok",
-        "as_of": "2026-09-04"
+        "as_of": "2026-09-05"
       },
       "local_actions": {
         "status": "ok",
-        "as_of": "2026-09-04"
+        "as_of": "2026-09-05"
       }
     }
   },
   "header": {
-    "period": "2026/07/17 – 09/04",
-    "updated": "2026/09/04 05:31",
+    "period": "2026/07/17 – 09/05",
+    "updated": "2026/09/05 05:17",
     "by": "MASHTAKE",
-    "partial_ja": "9/4 は集計中",
-    "partial_en": "9/4 still counting"
+    "partial_ja": "9/5 は集計中",
+    "partial_en": "9/5 still counting"
   },
   "kpi": {
     "spend": {
       "value": "¥364,264",
-      "note_ja": "50日間",
-      "note_en": "50 days"
+      "note_ja": "51日間",
+      "note_en": "51 days"
     },
     "ad_cv": {
       "value": "13",
@@ -757,6 +757,20 @@
       "cpc": "—",
       "cv": 0,
       "type": "weekend",
+      "zero": true
+    },
+    {
+      "d": "09/05",
+      "date": "2026-09-05",
+      "wd": "土",
+      "wdEn": "Sat",
+      "impr": 0,
+      "clk": 0,
+      "ctr": "—",
+      "cost": "¥0",
+      "cpc": "—",
+      "cv": 0,
+      "type": "weekend",
       "zero": true,
       "partial": true
     }
@@ -837,13 +851,13 @@
       "ev": "reserve_form",
       "lab_ja": "フォーム到達",
       "lab_en": "reached form",
-      "v": "13100"
+      "v": "13122"
     },
     {
       "ev": "reserve_review",
       "lab_ja": "内容確認",
       "lab_en": "reviewing",
-      "v": "13"
+      "v": "14"
     },
     {
       "ev": "reserve_success",
@@ -2487,8 +2501,8 @@
     }
   ],
   "search_terms": {
-    "range_ja": "クリックが付いた語・7/17–9/4",
-    "range_en": "terms with clicks · 7/17–9/4",
+    "range_ja": "クリックが付いた語・7/17–9/5",
+    "range_en": "terms with clicks · 7/17–9/5",
     "rows": [
       {
         "term": "giraffe osaka",
@@ -4817,8 +4831,8 @@
     }
   ],
   "conversions_head": {
-    "sub_ja": "7/17–9/4・広告(google/cpc)由来の全54件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
-    "sub_en": "7/17–9/4 · all 54 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
+    "sub_ja": "7/17–9/5・広告(google/cpc)由来の全54件。「どの言葉で検索した人が・いつ・どこで・どうなったか」（GA4＋Google広告 実測）",
+    "sub_en": "7/17–9/5 · all 54 ad-driven conversions — which search term, when, where, and what became of it (GA4 + Google Ads, verified)"
   },
   "cv_inside_head": {
     "ja": "「54コンバージョン」の中身 — 成約1件と、残り53件の正体",
@@ -4829,7 +4843,7 @@
       {
         "name": "Local actions - Other engagements",
         "category": "19",
-        "all": 1355,
+        "all": 1356,
         "counted": 0,
         "label_ja": "その他のエンゲージメント",
         "label_en": "Other engagements"
@@ -4853,7 +4867,7 @@
       {
         "name": "Local actions - Website visits",
         "category": "3",
-        "all": 35,
+        "all": 36,
         "counted": 0,
         "label_ja": "ウェブサイト訪問",
         "label_en": "Website visits"
@@ -4867,13 +4881,13 @@
         "label_en": "Orders"
       }
     ],
-    "total_all": 1765,
+    "total_all": 1767,
     "total_counted": 0,
-    "account_all": 1839,
+    "account_all": 1841,
     "account_counted": 13,
     "range": {
       "from": "2026-07-17",
-      "to": "2026-09-04"
+      "to": "2026-09-05"
     }
   }
 }
